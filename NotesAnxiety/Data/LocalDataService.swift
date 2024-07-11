@@ -15,7 +15,7 @@ protocol LocalDataService {
     func deleteNote(_ note: NoteEntity) async
 }
 
-class LocalDataServiceImpl : LocalDataService, ObservableObject {
+class LocalDataServiceImpl : LocalDataService {
     let notesContainer: NSPersistentContainer
     
     init() {

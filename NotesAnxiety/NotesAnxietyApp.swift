@@ -22,6 +22,7 @@ struct NotesAnxietyApp: App {
                 .task {
                     await dependencyInjection.initialize()
                 }
+                .environmentObject(dependencyInjection)
                 .environmentObject(dependencyInjection.notesViewModel())
                 
         }
