@@ -85,8 +85,10 @@ struct NotesView: View {
     // MARK: Core Data Operations
     
     private func createNewNote() {
-        selectedNote = nil
-        selectedNote = vm.createNote()
+        Task {
+            selectedNote = nil
+            selectedNote = await vm.createNote()
+        }
     }
 
     private func deleteNote(in header: Date, at offsets: IndexSet) {
@@ -97,7 +99,9 @@ struct NotesView: View {
                     selectedNote = nil
                 }
                 
-                vm.deleteNote(noteToDelete)
+                Task {
+                  await vm.deleteNote(noteToDelete)
+                }
             }
         }
     }

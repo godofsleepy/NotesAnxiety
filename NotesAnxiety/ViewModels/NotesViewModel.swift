@@ -10,73 +10,49 @@ import CoreData
 
 class NotesViewModel: ObservableObject {
 
-    let manager: LocalDataServiceImpl
+    let localDataService : LocalDataService
     @Published var notes: [NoteEntity] = []
     @Published var isDataLoaded = false
 
-    init(manager: LocalDataServiceImpl) {
-        self.manager = manager
-        loadData()
-    }
-    
-    func loadData() {
-        manager.loadCoreData { [weak self] success in
-            DispatchQueue.main.async {
-                self?.isDataLoaded = success
-                if success {
-                    self?.fetchNotes()
-                }
-            }
-        }
+    init(localDataService: LocalDataService) {
+        self.localDataService = localDataService
     }
 
-    func fetchNotes(with searchText: String = "")  {
-        let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
-        request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
-        
-        if !searchText.isEmpty {
-            request.predicate = NSPredicate(format: "title CONTAINS %@", searchText)
-        }
-
+    func fetchNotes(with searchText: String = "") async  {
         do {
-            notes = try manager.container.viewContext.fetch(request)
+            let data = try await localDataService.fetchNotes(searchText: searchText)
+            DispatchQueue.main.async {
+                self.isDataLoaded = true
+                self.notes = data
+            }
         } catch {
             print("Error fetching notes: \(error)")
         }
     }
 
-    func createNote() -> NoteEntity {
-        let newNote = NoteEntity(context: manager.container.viewContext)
-        newNote.id = UUID()
-        newNote.timestamp = Date()
-        saveContext()
-        fetchNotes() // Refresh notes list
-        
+    func createNote() async -> NoteEntity {
+        let newNote = await localDataService.createNote()
+        Task {
+            await fetchNotes()
+        }
         return newNote
     }
 
-    func deleteNote(_ note: NoteEntity) {
-        manager.container.viewContext.delete(note)
-        saveContext()
-        fetchNotes() // Refresh notes list
+    func deleteNote(_ note: NoteEntity) async {
+        await localDataService.deleteNote(note)
+        Task {
+            await fetchNotes()
+        }
     }
 
-    func updateNote(_ note: NoteEntity, title: String, content: String) {
-        note.title = title
-        note.content = content
-        saveContext()
-        fetchNotes() // Refresh notes list
+    func updateNote(_ note: NoteEntity, title: String, content: String) async {
+        await localDataService.updateNote(note, title: title, content: content)
+        await fetchNotes()
     }
     
     func searchNotes(with searchText: String) {
-        fetchNotes(with: searchText)
-    }
-
-    private func saveContext() {
-        do {
-            try manager.container.viewContext.save()
-        } catch {
-            print("Error saving context: \(error)")
+        Task {
+           await fetchNotes(with: searchText)
         }
     }
 }

@@ -75,6 +75,8 @@ struct EditNotesView: View {
         
         guard let note = note else { return }
         
-        vm.updateNote(note, title: title, content: content)
+        Task {
+            await vm.updateNote(note, title: title, content: content)
+        }
     }
 }

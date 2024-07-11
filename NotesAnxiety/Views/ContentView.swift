@@ -19,6 +19,8 @@ struct ContentView: View {
             } else {
                 ProgressView("Loading...")
             }
+        }.task {
+            await notesViewModel.fetchNotes()
         }
     }
 }

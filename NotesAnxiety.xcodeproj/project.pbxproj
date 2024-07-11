@@ -76,7 +76,7 @@
 			children = (
 				FBECCD362C3E836D0089CEE8 /* NotesAnxiety.entitlements */,
 				FB3BF6252C3BB77500A9406D /* Models */,
-				FB3BF6242C3BB70100A9406D /* Services */,
+				FB3BF6242C3BB70100A9406D /* Data */,
 				FB3BF6232C3BB6D500A9406D /* Utils */,
 				FB3BF6212C3BB6B600A9406D /* ViewModels */,
 				FB3BF6202C3BB5E700A9406D /* Views */,
@@ -133,14 +133,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		FB3BF6242C3BB70100A9406D /* Services */ = {
+		FB3BF6242C3BB70100A9406D /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				FBCC49332C3F6CA70022F62C /* CoreData Container */,
 				FBECCD302C3D77D20089CEE8 /* HealthService.swift */,
 				FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */,
 			);
-			path = Services;
+			path = Data;
 			sourceTree = "<group>";
 		};
 		FB3BF6252C3BB77500A9406D /* Models */ = {

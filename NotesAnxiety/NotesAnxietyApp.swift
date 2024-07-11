@@ -9,18 +9,21 @@ import SwiftUI
 
 @main
 struct NotesAnxietyApp: App {
-    let coreDataManager = LocalDataServiceImpl()
-    @StateObject var notesViewModel: NotesViewModel
     
-
-        init() {
-            let viewModel = NotesViewModel(manager: coreDataManager)
-            _notesViewModel = StateObject(wrappedValue: viewModel)
-        }
+    @StateObject var dependencyInjection: DependencyInjection
+    
+    init() {
+        let depen1 = DependencyInjection()
+        _dependencyInjection = StateObject(wrappedValue: depen1)
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(notesViewModel)
+                .task {
+                    await dependencyInjection.initialize()
+                }
+                .environmentObject(dependencyInjection.notesViewModel())
+                
         }
     }
 }
