@@ -99,9 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				FBCC49272C3F692E0022F62C /* EditNotesView.swift */,
-				FBCC49282C3F692E0022F62C /* ListCellView.swift */,
 				FBCC492A2C3F692E0022F62C /* NotesView.swift */,
-				FBCC49292C3F692E0022F62C /* TextEditorView.swift */,
 				FB3BF6142C3BB29300A9406D /* ContentView.swift */,
 				FB3BF6222C3BB6C400A9406D /* Components */,
 			);
@@ -119,6 +117,8 @@
 		FB3BF6222C3BB6C400A9406D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				FBCC49282C3F692E0022F62C /* ListCellView.swift */,
+				FBCC49292C3F692E0022F62C /* TextEditorView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";

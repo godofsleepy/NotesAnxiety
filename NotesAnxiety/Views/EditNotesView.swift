@@ -6,13 +6,15 @@
 //
 
 import SwiftUI
+import JournalingSuggestions
 
 struct EditNotesView: View {
     
     @EnvironmentObject var vm: NotesViewModel
-    
+    @State var suggestionPhotos = [JournalingSuggestion.Photo]()
     @State var note: NoteEntity?
     @State private var title: String = ""
+    @State private var journalingSuggestion: JournalingSuggestion?
     @State private var content: String = ""
     
     @FocusState private var contentEditorInFocus: Bool
@@ -21,7 +23,16 @@ struct EditNotesView: View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                                
+                HStack{
+                    ForEach(suggestionPhotos, id: \.photo) { item in
+                        AsyncImage(url: item.photo) { image in
+                            image.image?
+                                .resizable ()
+                                .aspectRatio(contentMode: .fit)
+                        }
+                        .frame(maxHeight: 200)
+                    }
+                }
                 TextField("Title", text: $title, axis: .vertical)
                     .font(.title.bold())
                     .submitLabel(.next)
@@ -42,6 +53,13 @@ struct EditNotesView: View {
             }
             .padding(10)
         }
+        .navigationBarItems(trailing:JournalingSuggestionsPicker {
+            Text("Picker Label")
+        } onCompletion: { suggestion in
+            journalingSuggestion = suggestion
+            suggestionPhotos = await suggestion.content(forType: JournalingSuggestion.Photo.self)
+            print(suggestionPhotos.count)
+        })
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .keyboard) {
