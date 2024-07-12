@@ -10,7 +10,24 @@ import SwiftUI
 struct TextFormatter: View {
     
     @Environment(\.presentationMode) var presentationMode
-    var keyboard: Keyboard
+    @State public var titleIsPressed = false
+    @State public var headingIsPressed = false
+    @State public var subHeadingIsPressed = false
+    @State public var bodyIsPressed = false
+    @State public var monostyledIsPressed = false
+    
+    @State public var boldIsPressed = false
+    @State public var italicIsPressed = false
+    @State public var underlineIsPressed = false
+    @State public var strikeThroughIsPressed = false
+    
+    @State public var bulletIsPressed = false
+    @State public var listIsPressed = false
+    @State public var numberIsPressed = false
+    @State public var alignLeftIsPressed = false
+    @State public var alignRightIsPressed = false
+    
+//    var  :
     
     var body: some View {
         VStack{
@@ -30,83 +47,83 @@ struct TextFormatter: View {
             ScrollView(.horizontal){
                 HStack{
                     Button(action: {
-                        keyboard.titleIsPressed.toggle()
-                        keyboard.headingIsPressed = false
-                        keyboard.subHeadingIsPressed = false
-                        keyboard.bodyIsPressed = false
-                        keyboard.monostyledIsPressed = false
+                        titleIsPressed.toggle()
+                        headingIsPressed = false
+                        subHeadingIsPressed = false
+                        bodyIsPressed = false
+                        monostyledIsPressed = false
                     }) {
                         Text("Title")
                             .font(.system(size: 28))
                             .font(.title)
                             .fontWeight(.bold)
                             .padding(5)
-                            .background(keyboard.titleIsPressed ? Color.yellow : Color.gray)
+                            .background(titleIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                     }
                     
                     Button(action: {
-                        keyboard.headingIsPressed.toggle()
-                        keyboard.titleIsPressed = false
-                        keyboard.subHeadingIsPressed = false
-                        keyboard.bodyIsPressed = false
-                        keyboard.monostyledIsPressed = false
+                        headingIsPressed.toggle()
+                        titleIsPressed = false
+                        subHeadingIsPressed = false
+                        bodyIsPressed = false
+                        monostyledIsPressed = false
                         
                     }) {
                         Text("Heading")
                             .font(.system(size: 17))
                             .padding(5)
-                            .background(keyboard.headingIsPressed ? Color.yellow : Color.gray)
+                            .background(headingIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                             .font(.headline)
                             .fontWeight(.semibold)
                     }
             
                     Button(action: {
-                        keyboard.subHeadingIsPressed.toggle()
-                        keyboard.titleIsPressed = false
-                        keyboard.headingIsPressed = false
-                        keyboard.bodyIsPressed = false
-                        keyboard.monostyledIsPressed = false
+                        subHeadingIsPressed.toggle()
+                          titleIsPressed = false
+                          headingIsPressed = false
+                          bodyIsPressed = false
+                          monostyledIsPressed = false
                     }) {
                         Text("Subheading")
                             .font(.system(size: 15))
                             .padding(5)
-                            .background(keyboard.subHeadingIsPressed ? Color.yellow : Color.gray)
+                            .background(  subHeadingIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                             .font(.subheadline)
                             .fontWeight(.bold)
                     }
                     
                     Button(action: {
-                        keyboard.bodyIsPressed.toggle()
-                        keyboard.titleIsPressed = false
-                        keyboard.subHeadingIsPressed = false
-                        keyboard.headingIsPressed = false
-                        keyboard.monostyledIsPressed = false
+                          bodyIsPressed.toggle()
+                          titleIsPressed = false
+                          subHeadingIsPressed = false
+                          headingIsPressed = false
+                          monostyledIsPressed = false
                     }) {
                         Text("Body")
                             .font(.system(size: 17))
                             .padding(5)
-                            .background(keyboard.bodyIsPressed ? Color.yellow : Color.gray)
+                            .background(  bodyIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                             .font(.body)
                             .fontWeight(.regular)
                     }
                     
                     Button(action: {
-                        keyboard.monostyledIsPressed.toggle()
-                        keyboard.titleIsPressed = false
-                        keyboard.subHeadingIsPressed = false
-                        keyboard.bodyIsPressed = false
-                        keyboard.headingIsPressed = false
+                        monostyledIsPressed.toggle()
+                          titleIsPressed = false
+                          subHeadingIsPressed = false
+                          bodyIsPressed = false
+                          headingIsPressed = false
                     }) {
                         Text("Monostyled")
-//                            .frame(maxHeight:.)
+//                             frame(maxHeight:.)
                             .font(Font.system(.body, design: .monospaced))
                             .font(.system(size: 17))
                             .padding(5)
-                            .background(keyboard.monostyledIsPressed ? Color.yellow : Color.gray)
+                            .background(  monostyledIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                             .fontWeight(.bold)
                     }
@@ -115,61 +132,61 @@ struct TextFormatter: View {
             }
             HStack{
                 Button(action: {
-                    keyboard.boldIsPressed.toggle()
-                    keyboard.italicIsPressed = false
-                    keyboard.underlineIsPressed = false
-                    keyboard.strikeThroughIsPressed = false
+                    boldIsPressed.toggle()
+                      italicIsPressed = false
+                      underlineIsPressed = false
+                      strikeThroughIsPressed = false
                 }) {
                     Text("B")
                         .padding(5)
                         .font(.system(size: 28))
                         .fontWeight(.bold)
-                        .background(keyboard.boldIsPressed ? Color.yellow : Color.gray)
+                        .background(  boldIsPressed ? Color.yellow : Color.gray)
                         .cornerRadius(10)
                 }
                 Spacer()
                 
                 Button(action: {
-                    keyboard.italicIsPressed.toggle()
-                    keyboard.boldIsPressed = false
-                    keyboard.underlineIsPressed = false
-                    keyboard.strikeThroughIsPressed = false
+                      italicIsPressed.toggle()
+                      boldIsPressed = false
+                      underlineIsPressed = false
+                      strikeThroughIsPressed = false
                 }) {
                     Text("I")
                         .padding(5)
                         .font(.system(size: 28))
                         .italic()
-                        .background(keyboard.italicIsPressed ? Color.yellow : Color.gray)
+                        .background(  italicIsPressed ? Color.yellow : Color.gray)
                         .cornerRadius(10)
                 }
                 Spacer()
                 
                 Button(action: {
-                    keyboard.underlineIsPressed.toggle()
-                    keyboard.italicIsPressed = false
-                    keyboard.boldIsPressed = false
-                    keyboard.strikeThroughIsPressed = false
+                      underlineIsPressed.toggle()
+                      italicIsPressed = false
+                      boldIsPressed = false
+                      strikeThroughIsPressed = false
                 }) {
                     Text("U")
                         .padding(5)
                         .font(.system(size: 28))
                         .underline()
-                        .background(keyboard.underlineIsPressed ? Color.yellow : Color.gray)
+                        .background(  underlineIsPressed ? Color.yellow : Color.gray)
                         .cornerRadius(10)
                 }
                 Spacer()
                 
                 Button(action: {
-                    keyboard.strikeThroughIsPressed.toggle()
-                    keyboard.italicIsPressed = false
-                    keyboard.underlineIsPressed = false
-                    keyboard.boldIsPressed = false
+                      strikeThroughIsPressed.toggle()
+                      italicIsPressed = false
+                      underlineIsPressed = false
+                      boldIsPressed = false
                 }) {
                     Text("S")
                         .padding(5)
                         .font(.system(size: 28))
                         .strikethrough()
-                        .background(keyboard.strikeThroughIsPressed ? Color.yellow : Color.gray)
+                        .background(  strikeThroughIsPressed ? Color.yellow : Color.gray)
                         .cornerRadius(10)
                 }
                 
@@ -177,76 +194,76 @@ struct TextFormatter: View {
             HStack{
                 HStack{
                     Button(action: {
-                        keyboard.bulletIsPressed.toggle()
-                        keyboard.listIsPressed = false
-                        keyboard.numberIsPressed = false
-                        keyboard.alignLeftIsPressed = false
-                        keyboard.alignRightIsPressed = false
+                          bulletIsPressed.toggle()
+                          listIsPressed = false
+                          numberIsPressed = false
+                          alignLeftIsPressed = false
+                          alignRightIsPressed = false
                     }) {
                         Image(systemName: "list.bullet")
                             .padding(5)
                             .font(.system(size: 28))
                             .strikethrough()
-                            .background(keyboard.bulletIsPressed ? Color.yellow : Color.gray)
+                            .background(  bulletIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                     }
                     Button(action: {
-                        keyboard.listIsPressed.toggle()
-                        keyboard.bulletIsPressed = false
-                        keyboard.numberIsPressed = false
-                        keyboard.alignLeftIsPressed = false
-                        keyboard.alignRightIsPressed = false
+                          listIsPressed.toggle()
+                          bulletIsPressed = false
+                          numberIsPressed = false
+                          alignLeftIsPressed = false
+                          alignRightIsPressed = false
                     }) {
                         Image(systemName: "list.dash")
                             .padding(5)
                             .font(.system(size: 28))
                             .strikethrough()
-                            .background(keyboard.listIsPressed ? Color.yellow : Color.gray)
+                            .background(  listIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                     }
                     Button(action: {
-                        keyboard.numberIsPressed.toggle()
-                        keyboard.listIsPressed = false
-                        keyboard.bulletIsPressed = false
-                        keyboard.alignLeftIsPressed = false
-                        keyboard.alignRightIsPressed = false
+                        numberIsPressed.toggle()
+                          listIsPressed = false
+                          bulletIsPressed = false
+                          alignLeftIsPressed = false
+                          alignRightIsPressed = false
                     }) {
                         Image(systemName: "list.number")
                             .padding(5)
                             .font(.system(size: 28))
                             .strikethrough()
-                            .background(keyboard.numberIsPressed ? Color.yellow : Color.gray)
+                            .background(  numberIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                     }
                 }
                 Spacer()
                 HStack{
                     Button(action: {
-                        keyboard.alignLeftIsPressed.toggle()
-                        keyboard.listIsPressed = false
-                        keyboard.numberIsPressed = false
-                        keyboard.bulletIsPressed = false
-                        keyboard.alignRightIsPressed = false
+                          alignLeftIsPressed.toggle()
+                          listIsPressed = false
+                          numberIsPressed = false
+                          bulletIsPressed = false
+                          alignRightIsPressed = false
                     }) {
                         Image(systemName: "text.alignleft")
                             .padding(5)
                             .font(.system(size: 28))
                             .strikethrough()
-                            .background(keyboard.alignLeftIsPressed ? Color.yellow : Color.gray)
+                            .background(  alignLeftIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                     }
                     Button(action: {
-                        keyboard.alignRightIsPressed.toggle()
-                        keyboard.listIsPressed = false
-                        keyboard.numberIsPressed = false
-                        keyboard.alignLeftIsPressed = false
-                        keyboard.bulletIsPressed = false
+                          alignRightIsPressed.toggle()
+                          listIsPressed = false
+                          numberIsPressed = false
+                          alignLeftIsPressed = false
+                          bulletIsPressed = false
                     }) {
                         Image(systemName: "text.alignright")
                             .padding(5)
                             .font(.system(size: 28))
                             .strikethrough()
-                            .background(keyboard.alignRightIsPressed ? Color.yellow : Color.gray)
+                            .background(  alignRightIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                     }
                 }

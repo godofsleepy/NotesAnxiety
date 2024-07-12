@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B50347E32C40E04A00FC0B35 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B50347E12C40E04A00FC0B35 /* NotesContainer.xcdatamodeld */; };
+		B50347E52C40E09400FC0B35 /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50347E42C40E09400FC0B35 /* ListCellView.swift */; };
+		B50347E72C40E09E00FC0B35 /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B50347E62C40E09E00FC0B35 /* TextEditorView.swift */; };
 		B52819C62C3F8BB100520259 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52819C52C3F8BB100520259 /* Keyboard.swift */; };
 		B52819C92C3F8C2900520259 /* TextFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B52819C82C3F8C2900520259 /* TextFormatter.swift */; };
 		FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */; };
@@ -14,12 +17,9 @@
 		FB3BF6172C3BB29400A9406D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6162C3BB29400A9406D /* Assets.xcassets */; };
 		FB3BF61A2C3BB29400A9406D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6192C3BB29400A9406D /* Preview Assets.xcassets */; };
 		FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49272C3F692E0022F62C /* EditNotesView.swift */; };
-		FBCC492C2C3F692E0022F62C /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49282C3F692E0022F62C /* ListCellView.swift */; };
-		FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49292C3F692E0022F62C /* TextEditorView.swift */; };
 		FBCC492E2C3F692E0022F62C /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC492A2C3F692E0022F62C /* NotesView.swift */; };
 		FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC492F2C3F694B0022F62C /* Extensions.swift */; };
 		FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49312C3F695F0022F62C /* NotesViewModel.swift */; };
-		FBCC49392C3F6DD60022F62C /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49372C3F6DD60022F62C /* NotesContainer.xcdatamodeld */; };
 		FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC493A2C3F70F20022F62C /* AppError.swift */; };
 		FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD302C3D77D20089CEE8 /* HealthService.swift */; };
 		FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */; };
@@ -27,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B50347E22C40E04A00FC0B35 /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
+		B50347E42C40E09400FC0B35 /* ListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCellView.swift; sourceTree = "<group>"; };
+		B50347E62C40E09E00FC0B35 /* TextEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		B52819C52C3F8BB100520259 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		B52819C82C3F8C2900520259 /* TextFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatter.swift; sourceTree = "<group>"; };
 		FB3BF60F2C3BB29300A9406D /* NotesAnxiety.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesAnxiety.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -35,12 +38,9 @@
 		FB3BF6162C3BB29400A9406D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB3BF6192C3BB29400A9406D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FBCC49272C3F692E0022F62C /* EditNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNotesView.swift; sourceTree = "<group>"; };
-		FBCC49282C3F692E0022F62C /* ListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCellView.swift; sourceTree = "<group>"; };
-		FBCC49292C3F692E0022F62C /* TextEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		FBCC492A2C3F692E0022F62C /* NotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		FBCC492F2C3F694B0022F62C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FBCC49312C3F695F0022F62C /* NotesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
-		FBCC49382C3F6DD60022F62C /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		FBCC493A2C3F70F20022F62C /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
 		FBECCD302C3D77D20089CEE8 /* HealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthService.swift; sourceTree = "<group>"; };
 		FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
@@ -62,6 +62,8 @@
 		B52819C72C3F8BBE00520259 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B50347E62C40E09E00FC0B35 /* TextEditorView.swift */,
+				B50347E42C40E09400FC0B35 /* ListCellView.swift */,
 				B52819C52C3F8BB100520259 /* Keyboard.swift */,
 				B52819C82C3F8C2900520259 /* TextFormatter.swift */,
 			);
@@ -127,15 +129,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		FB3BF6222C3BB6C400A9406D /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				FBCC49282C3F692E0022F62C /* ListCellView.swift */,
-				FBCC49292C3F692E0022F62C /* TextEditorView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		FB3BF6232C3BB6D500A9406D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,7 +159,7 @@
 		FBCC49332C3F6CA70022F62C /* CoreData Container */ = {
 			isa = PBXGroup;
 			children = (
-				FBCC49372C3F6DD60022F62C /* NotesContainer.xcdatamodeld */,
+				B50347E12C40E04A00FC0B35 /* NotesContainer.xcdatamodeld */,
 			);
 			path = "CoreData Container";
 			sourceTree = "<group>";
@@ -242,20 +235,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */,
-				FBCC492C2C3F692E0022F62C /* ListCellView.swift in Sources */,
 				FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */,
-				FBCC49392C3F6DD60022F62C /* NotesContainer.xcdatamodeld in Sources */,
 				FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */,
+				B50347E52C40E09400FC0B35 /* ListCellView.swift in Sources */,
 				FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */,
 				FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */,
 				FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */,
+				B50347E72C40E09E00FC0B35 /* TextEditorView.swift in Sources */,
 				FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */,
 				FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */,
-				FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */,
 				B52819C62C3F8BB100520259 /* Keyboard.swift in Sources */,
 				B52819C92C3F8C2900520259 /* TextFormatter.swift in Sources */,
 				FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */,
 				FBCC492E2C3F692E0022F62C /* NotesView.swift in Sources */,
+				B50347E32C40E04A00FC0B35 /* NotesContainer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,14 +459,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FBCC49372C3F6DD60022F62C /* NotesContainer.xcdatamodeld */ = {
+		B50347E12C40E04A00FC0B35 /* NotesContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FBCC49382C3F6DD60022F62C /* NotesContainer.xcdatamodel */,
+				B50347E22C40E04A00FC0B35 /* NotesContainer.xcdatamodel */,
 			);
-			currentVersion = FBCC49382C3F6DD60022F62C /* NotesContainer.xcdatamodel */;
-			name = NotesContainer.xcdatamodeld;
-			path = "/Users/rifatkhadafy/Downloads/NotesAnxiety-filbert-test/NotesAnxiety/Model/NotesContainer.xcdatamodeld";
+			currentVersion = B50347E22C40E04A00FC0B35 /* NotesContainer.xcdatamodel */;
+			path = NotesContainer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
