@@ -12,7 +12,7 @@ struct ContentView: View {
     @EnvironmentObject var notesViewModel: NotesViewModel
 
     var body: some View {
-//        Keyboard()
+//        Keyboard(txtF: TextFormatter())
         
         Group {
             if notesViewModel.isDataLoaded {

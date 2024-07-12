@@ -9,33 +9,32 @@ struct Keyboard: View {
         TextEditor(text: $notes)
             .font(.body)
             .background(.white)
-            .toolbar{
-                ToolbarItemGroup(placement: .keyboard){
-                    Button(action:{
-                        textFormatter = true
-                    }){
-                        Image(systemName: "textformat")
-                    }
+//            .toolbar{
+//                ToolbarItemGroup(placement: .keyboard){
+//                    Button(action:{
+//                        textFormatter = true
+//                    }){
+//                        Image(systemName: "textformat")
+//                    }
+//                
+//                    Button(action: {
+//                        
+//                    }){
+//                        
+//                    }
+//                }
+//            }
+//            .sheet(isPresented: $textFormatter){
+//                TextFormatter()
+//                    .presentationDetents([.height(200)])
+//            }
+//            .onChange(of: notes){  newValue in
+//                if txtF.boldIsPressed == true{
+//                    let formattedNotes = "<b>\(newValue)</b>"
+//                    notes = formattedNotes
+//                }
                 
-                    Button(action: {
-                        
-                    }){
-                        
-                    }
-                }
-            }
-            .sheet(isPresented: $textFormatter){
-                TextFormatter()
-                    .presentationDetents([.height(200)])
-            }
-            .onChange(of: notes){  newValue in
-                
-                if txtF.boldIsPressed == true{
-                    notes = "<b>\(newValue)</b>"
-                    //notes = notes.bold
-                }
-                
-            }
+//            }
     }
 }
 
