@@ -6,16 +6,22 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct ContentView: View {
+    @EnvironmentObject var notesViewModel: NotesViewModel
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        Group {
+            if notesViewModel.isDataLoaded {
+                NotesView()
+            } else {
+                ProgressView("Loading...")
+            }
+        }.task {
+            await notesViewModel.fetchNotes()
         }
-        .padding()
     }
 }
 
