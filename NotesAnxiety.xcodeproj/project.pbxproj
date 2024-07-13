@@ -16,7 +16,7 @@
 		FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6142C3BB29300A9406D /* ContentView.swift */; };
 		FB3BF6172C3BB29400A9406D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6162C3BB29400A9406D /* Assets.xcassets */; };
 		FB3BF61A2C3BB29400A9406D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6192C3BB29400A9406D /* Preview Assets.xcassets */; };
-		FBB89FA32C40D84A003FCB6F /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBB89FA12C40D84A003FCB6F /* NotesContainer.xcdatamodeld */; };
+		FBB89FA32C40D84A003FCB6F /* (null) in Sources */ = {isa = PBXBuildFile; };
 		FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49272C3F692E0022F62C /* EditNotesView.swift */; };
 		FBCC492E2C3F692E0022F62C /* NotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC492A2C3F692E0022F62C /* NotesView.swift */; };
 		FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC492F2C3F694B0022F62C /* Extensions.swift */; };
@@ -38,7 +38,6 @@
 		FB3BF6142C3BB29300A9406D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FB3BF6162C3BB29400A9406D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB3BF6192C3BB29400A9406D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FBB89FA22C40D84A003FCB6F /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		FBCC49272C3F692E0022F62C /* EditNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNotesView.swift; sourceTree = "<group>"; };
 		FBCC492A2C3F692E0022F62C /* NotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesView.swift; sourceTree = "<group>"; };
 		FBCC492F2C3F694B0022F62C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -242,7 +241,7 @@
 				B50347E52C40E09400FC0B35 /* ListCellView.swift in Sources */,
 				FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */,
 				FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */,
-				FBB89FA32C40D84A003FCB6F /* NotesContainer.xcdatamodeld in Sources */,
+				FBB89FA32C40D84A003FCB6F /* (null) in Sources */,
 				FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */,
 				B50347E72C40E09E00FC0B35 /* TextEditorView.swift in Sources */,
 				FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */,
