@@ -18,6 +18,9 @@ struct HistoryNotesView: View {
     var groupedByDate: [Date: [NoteEntity]] {
         let calendar = Calendar.current
         return Dictionary(grouping: vm.notes) { noteEntity in
+            if (noteEntity.timestamp == nil ){
+                return Date()
+            }
             let dateComponents = calendar.dateComponents([.year, .month, .day], from: noteEntity.timestamp!)
             return calendar.date(from: dateComponents) ?? Date()
         }
@@ -28,10 +31,10 @@ struct HistoryNotesView: View {
     }
     
     var body: some View {
-        List(selection: $selectedNote) {
+        List {
             ForEach(headers, id: \.self) { header in
                 Section(header: Text(header, style: .date)) {
-                    ForEach(groupedByDate[header]!) { note in
+                    ForEach(groupedByDate[header] ?? []) { note in
                         HStack{
                             ListCellView(note: note)
                             Spacer()
@@ -65,11 +68,7 @@ struct HistoryNotesView: View {
             }
 
             ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    
-                } label: {
-                    Text("Edit")
-                }
+                EditButton()
             }
         }
     }

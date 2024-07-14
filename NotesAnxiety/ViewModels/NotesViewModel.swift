@@ -86,6 +86,10 @@ class NotesViewModel: ObservableObject {
     }
 
     func deleteNote(_ note: NoteEntity) async {
+        if selectedNote == note {
+            self.selectedNote = nil
+            self.updateProgressState = ProgressState.Default
+        }
         await localDataService.deleteNote(note)
         Task {
             await fetchNotes()

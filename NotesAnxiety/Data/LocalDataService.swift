@@ -21,10 +21,10 @@ class LocalDataServiceImpl : LocalDataService {
     init() {
         notesContainer = NSPersistentContainer(name: "NotesContainer")
         notesContainer.loadPersistentStores { (storeDescription, error) in
-                    if let error = error as NSError? {
-                        fatalError("Unresolved error \(error), \(error.userInfo)")
-                    }
-                }
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
     }
     
     func createNote() async -> NoteEntity {
