@@ -29,7 +29,6 @@ struct TextEditorView: View {
                 .border(.clear)
             
             if string.isEmpty {
-                
                 Text("Content")
                     .font(.title3)
                     .foregroundColor(.gray)
