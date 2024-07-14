@@ -7,6 +7,7 @@
 
 import SwiftUI
 import JournalingSuggestions
+import PhotosUI
 
 struct EditNotesView: View {
     
@@ -15,11 +16,31 @@ struct EditNotesView: View {
     @State var note: NoteEntity?
     @State private var title: String = ""
     @State private var journalingSuggestion: JournalingSuggestion?
-    @State private var content: String = ""
+    @State var content: String = ""
     @State private var textFormatter = false
     @State private var isShowingImagePicker = false
+    @State private var isShowingVoice = false
+    @State private var isShowingLocation = false
     @State private var selectedImage: UIImage?
-    var txtF : TextFormatter
+    @State private var imageItem: PhotosPickerItem?
+    @State var image: UIImage?
+    @State public var titleIsPressed = false
+    @State public var headingIsPressed = false
+    @State public var subHeadingIsPressed = false
+    @State public var bodyIsPressed = false
+    @State public var monostyledIsPressed = false
+    
+    @State public var boldIsPressed = false
+    @State public var italicIsPressed = false
+    @State public var underlineIsPressed = false
+    @State public var strikeThroughIsPressed = false
+    
+    @State public var bulletIsPressed = false
+    @State public var listIsPressed = false
+    @State public var numberIsPressed = false
+    @State public var alignLeftIsPressed = false
+    @State public var alignRightIsPressed = false
+    
     
     @FocusState private var contentEditorInFocus: Bool
 
@@ -52,8 +73,6 @@ struct EditNotesView: View {
                     .scrollDisabled(true)
                     .font(.title3)
                     .focused($contentEditorInFocus)
-                
-                
             }
             .padding(10)
         }
@@ -72,7 +91,8 @@ struct EditNotesView: View {
             ToolbarItem(placement: .keyboard) {
                 HStack {
                     Button(action:{
-                        textFormatter = true
+                        textFormatter.toggle()
+                        boldWords(content: content, isBold: textFormatter)
                     }){
                         Image(systemName: "textformat")
                     }
@@ -83,35 +103,48 @@ struct EditNotesView: View {
                         updateNote(title: title, content: content)
                     }
                     Button(action:{
-                        isShowingImagePicker = true
+//                        PhotosPicker("Select an image", selection: $imageItem, matching: .images)
+//                            .onChange(of: imageItem) {
+//                                Task {
+//                                    if let data = try? await selectedImage?.loadData(){
+//                                        image = UIImage(data: data)
+//                                    }
+//                                    print("Failed to load data image")
+//                                }
+//                            }
+//                        if let image{
+//                            content = Text(content) + Text(Image(uiImage: image))
+//                        }
                     }){
                         Image(systemName: "camera")
                     }
                     
                     Button(action:{
+                        isShowingVoice = true
                         
                     }){
                         Image(systemName: "waveform")
                     }
                     
                     Button(action:{
-                        textFormatter = true
+                        
                     }){
                         Image(systemName: "cloud.bolt.fill")
                     }
                     Button(action:{
-                        textFormatter = true
+                        isShowingLocation = true
+                        
                     }){
                         Image(systemName: "location")
                     }
                     
                     Button(action:{
-                        textFormatter = true
+                        
                     }){
                         Image(systemName: "doc")
                     }
                     Button(action:{
-                        textFormatter = true
+                        
                     }){
                         Image(systemName: "pencil.tip.crop.circle")
                     }
@@ -131,26 +164,26 @@ struct EditNotesView: View {
             TextFormatter()
                 .presentationDetents([.height(200)])
         }
-        .sheet(isPresented: $isShowingImagePicker, onDismiss: loadImage {
-        })
-        .onChange(of: content){  newValue in
-            if txtF.boldIsPressed == true{
-                let formattedNotes = "<b>\(newValue)</b>"
-                content = formattedNotes
-            }
+        .sheet(isPresented: $isShowingVoice){
+            TextFormatter()
+                .presentationDetents([.height(200)])
         }
+
+    }
+    
+    func boldWords(content: String, isBold: Bool){
+        if isBold{
+            self.content = content.capitalized
+        }else{
+            print("Is not bold")
+        }
+    }
+    
+    func getTitleIsPressed() -> Bool{
+        return titleIsPressed
     }
         
         // MARK: Core Data Operations
-        
-    func loadImage(){
-        if let image = selectedImage{
-            if let imageData = image.jpegData(compressionQuality: 1.0){
-                let base64String = imageData.base64EncodedString()
-                content += "\n![Image](data:image/jpeg;base64,\(base64String))"
-            }
-        }
-    }
         func updateNote(title: String, content: String) {
             
             if (title.isEmpty) && (content.isEmpty) {
