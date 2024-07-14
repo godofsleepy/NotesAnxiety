@@ -17,13 +17,13 @@ class NotesViewModel: ObservableObject {
     @Published var isDataLoaded = false
     @Published var preferredColumn = NavigationSplitViewColumn.detail
     @Published var updateProgressState = ProgressState.Default
-    private var updateNotesCancellable: AnyCancellable?
+    private var cancellables = Set<AnyCancellable>()
     private var noteUpdateSubject = PassthroughSubject<TemporaryNoteModel, Never>()
     
 
     init(localDataService: LocalDataService) {
         self.localDataService = localDataService
-        updateNotesCancellable = noteUpdateSubject
+        noteUpdateSubject
             .debounce(for: .milliseconds(1000), scheduler: DispatchQueue.main)
             .removeDuplicates { $0.title == $1.title && $0.content == $1.content }
             .sink { [weak self] noteUpdate in
@@ -32,6 +32,12 @@ class NotesViewModel: ObservableObject {
                     await self.updateNote(title: noteUpdate.title, content: noteUpdate.content)
                 }
             }
+            .store(in: &cancellables)
+        $selectedNote.sink(receiveValue: { note in
+            DispatchQueue.main.async {
+                self.updateProgressState = ProgressState.Default
+            }
+        }).store(in: &cancellables)
     }
     
     func performUpdate(title: String, content: String) {
