@@ -74,8 +74,9 @@ struct EditNotesView: View {
                 }
             }.padding(.trailing, 2)
             Menu {
-                Button(action: {}, label: {
-                    Label("Dd", systemImage: "ellipsis.circle")
+                
+                NavigationLink(destination: InsightView(), label: {
+                    Label("My Insight", systemImage: "chart.dots.scatter")
                 })
                 
             } label: {

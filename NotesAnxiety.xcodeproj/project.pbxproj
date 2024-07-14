@@ -24,6 +24,8 @@
 		FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD302C3D77D20089CEE8 /* HealthService.swift */; };
 		FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */; };
 		FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */; };
+		FBF68B8A2C44686100689EC2 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF68B892C44686100689EC2 /* InsightView.swift */; };
+		FBF68B8C2C446A8000689EC2 /* DataPointModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF68B8B2C446A8000689EC2 /* DataPointModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
 		FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataService.swift; sourceTree = "<group>"; };
 		FBECCD362C3E836D0089CEE8 /* NotesAnxiety.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotesAnxiety.entitlements; sourceTree = "<group>"; };
+		FBF68B892C44686100689EC2 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
+		FBF68B8B2C446A8000689EC2 /* DataPointModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPointModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 			children = (
 				FB5CBA092C441B2E003DF098 /* HistoryNotesView.swift */,
 				FBCC49272C3F692E0022F62C /* EditNotesView.swift */,
+				FBF68B892C44686100689EC2 /* InsightView.swift */,
 				FB3BF6142C3BB29300A9406D /* ContentView.swift */,
 				FB3BF6222C3BB6C400A9406D /* Components */,
 			);
@@ -152,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				FB5CBA0D2C443450003DF098 /* TemporaryNoteModel.swift */,
+				FBF68B8B2C446A8000689EC2 /* DataPointModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -244,9 +250,11 @@
 				FBB89FA62C40DC00003FCB6F /* NotesContainer.xcdatamodeld in Sources */,
 				FB5CBA0A2C441B2E003DF098 /* HistoryNotesView.swift in Sources */,
 				FB5CBA0C2C442E4A003DF098 /* ProgressState.swift in Sources */,
+				FBF68B8C2C446A8000689EC2 /* DataPointModel.swift in Sources */,
 				FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */,
 				FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */,
 				FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */,
+				FBF68B8A2C44686100689EC2 /* InsightView.swift in Sources */,
 				FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */,
 				FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */,
 			);
