@@ -73,7 +73,7 @@ struct NotesView: View {
         } detail: {
             // item details
             if let selectedNote {
-                EditNotesView(note: selectedNote, txtF: TextFormatter())
+                EditNotesView()
                     .id(selectedNote)
             } else {
                 Text("Select a Note.")

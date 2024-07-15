@@ -12,6 +12,11 @@ struct TextFormatter: View {
     private let editNotesView = EditNotesView()
     
     @Environment(\.presentationMode) var presentationMode
+    @Binding var boldIsPressed : Bool
+    @Binding var italicIsPressed : Bool
+    @Binding var monospaceIsPressed : Bool
+    @Binding var strikeIsPressed : Bool
+    @Binding var realContent: String
     
 //    var  :
     
@@ -38,6 +43,7 @@ struct TextFormatter: View {
                         editNotesView.subHeadingIsPressed = false
                         editNotesView.bodyIsPressed = false
                         editNotesView.monostyledIsPressed = false
+            
                     }) {
                         Text("Title")
                             .font(.system(size: 28))
@@ -46,6 +52,7 @@ struct TextFormatter: View {
                             .padding(5)
                             .background(editNotesView.titleIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
+                            .foregroundColor(.white)
                     }
                     
                     Button(action: {
@@ -63,6 +70,7 @@ struct TextFormatter: View {
                             .cornerRadius(10)
                             .font(.headline)
                             .fontWeight(.semibold)
+                            .foregroundColor(.white)
                     }
             
                     Button(action: {
@@ -79,6 +87,7 @@ struct TextFormatter: View {
                             .cornerRadius(10)
                             .font(.subheadline)
                             .fontWeight(.bold)
+                            .foregroundColor(.white)
                     }
                     
                     Button(action: {
@@ -95,14 +104,16 @@ struct TextFormatter: View {
                             .cornerRadius(10)
                             .font(.body)
                             .fontWeight(.regular)
+                            .foregroundColor(.white)
                     }
                     
                     Button(action: {
-                        editNotesView.monostyledIsPressed.toggle()
+                        self.monospaceIsPressed.toggle()
                         editNotesView.titleIsPressed = false
                         editNotesView.subHeadingIsPressed = false
                         editNotesView.bodyIsPressed = false
                         editNotesView.headingIsPressed = false
+                        formatText(content: editNotesView.content, isBold: self.boldIsPressed, isItalic: self.italicIsPressed, isStrike: self.strikeIsPressed, isMono: monospaceIsPressed)
                     }) {
                         Text("Monostyled")
 //                             frame(maxHeight:.)
@@ -112,17 +123,18 @@ struct TextFormatter: View {
                             .background(editNotesView.monostyledIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
                             .fontWeight(.bold)
+                            .foregroundColor(.white)
                     }
                     
                 }
             }
             HStack{
                 Button(action: {
-                    editNotesView.boldIsPressed.toggle()
+                    self.boldIsPressed.toggle()
                     editNotesView.italicIsPressed = false
                     editNotesView.underlineIsPressed = false
                     editNotesView.strikeThroughIsPressed = false
-                    
+                    formatText(content: editNotesView.content, isBold: self.boldIsPressed, isItalic: self.italicIsPressed, isStrike: self.strikeIsPressed, isMono: monospaceIsPressed)
                 }) {
                     Text("B")
                         .padding(5)
@@ -130,14 +142,16 @@ struct TextFormatter: View {
                         .fontWeight(.bold)
                         .background(editNotesView.boldIsPressed ? Color.yellow : Color.gray)
                         .cornerRadius(10)
+                        .foregroundColor(.white)
                 }
                 Spacer()
                 
                 Button(action: {
-                    editNotesView.italicIsPressed.toggle()
+                    self.italicIsPressed.toggle()
                     editNotesView.boldIsPressed = false
                     editNotesView.underlineIsPressed = false
                     editNotesView.strikeThroughIsPressed = false
+                    formatText(content: editNotesView.content, isBold: self.boldIsPressed, isItalic: self.italicIsPressed, isStrike: self.strikeIsPressed, isMono: self.monospaceIsPressed)
                 }) {
                     Text("I")
                         .padding(5)
@@ -145,6 +159,7 @@ struct TextFormatter: View {
                         .italic()
                         .background(editNotesView.italicIsPressed ? Color.yellow : Color.gray)
                         .cornerRadius(10)
+                        .foregroundColor(.white)
                 }
                 Spacer()
                 
@@ -160,14 +175,16 @@ struct TextFormatter: View {
                         .underline()
                         .background(editNotesView.underlineIsPressed ? Color.yellow : Color.gray)
                         .cornerRadius(10)
+                        .foregroundColor(.white)
                 }
                 Spacer()
                 
                 Button(action: {
-                    editNotesView.strikeThroughIsPressed.toggle()
+                    self.strikeIsPressed.toggle()
                     editNotesView.italicIsPressed = false
                     editNotesView.underlineIsPressed = false
                     editNotesView.boldIsPressed = false
+                    formatText(content: editNotesView.content, isBold: self.boldIsPressed, isItalic: self.italicIsPressed, isStrike: self.strikeIsPressed, isMono: monospaceIsPressed)
                 }) {
                     Text("S")
                         .padding(5)
@@ -175,6 +192,7 @@ struct TextFormatter: View {
                         .strikethrough()
                         .background(editNotesView.strikeThroughIsPressed ? Color.yellow : Color.gray)
                         .cornerRadius(10)
+                        .foregroundColor(.white)
                 }
                 
             }
@@ -193,6 +211,7 @@ struct TextFormatter: View {
                             .strikethrough()
                             .background(editNotesView.bulletIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
+                            .foregroundColor(.white)
                     }
                     Button(action: {
                         editNotesView.listIsPressed.toggle()
@@ -207,6 +226,7 @@ struct TextFormatter: View {
                             .strikethrough()
                             .background(editNotesView.listIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
+                            .foregroundColor(.white)
                     }
                     Button(action: {
                         editNotesView.numberIsPressed.toggle()
@@ -221,6 +241,7 @@ struct TextFormatter: View {
                             .strikethrough()
                             .background(editNotesView.numberIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
+                            .foregroundColor(.white)
                     }
                 }
                 Spacer()
@@ -238,6 +259,7 @@ struct TextFormatter: View {
                             .strikethrough()
                             .background(editNotesView.alignLeftIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
+                            .foregroundColor(.white)
                     }
                     Button(action: {
                         editNotesView.alignRightIsPressed.toggle()
@@ -252,6 +274,7 @@ struct TextFormatter: View {
                             .strikethrough()
                             .background(editNotesView.alignRightIsPressed ? Color.yellow : Color.gray)
                             .cornerRadius(10)
+                            .foregroundColor(.white)
                     }
                 }
         
@@ -261,6 +284,42 @@ struct TextFormatter: View {
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
 
+    }
+    
+    func formatText(content: String, isBold: Bool, isItalic: Bool, isStrike: Bool, isMono: Bool){
+        if isBold == true{
+                realContent = "**\(realContent)**"
+//            return realContent
+        }else if isBold == false{
+                var updatedContent = realContent
+            updatedContent = updatedContent.replacingOccurrences(of: "*", with: "")
+                realContent = updatedContent
+        }
+        if isItalic == true{
+                realContent = "_\(realContent)_"
+//            return realContent
+        }else if isItalic == false{
+                var updatedContent = realContent
+            updatedContent = updatedContent.replacingOccurrences(of: "_", with: "")
+                realContent = updatedContent
+        }
+        if isStrike == true{
+                realContent = "~~\(realContent)~~"
+//            return realContent
+        }else if isStrike == false{
+                var updatedContent = realContent
+            updatedContent = updatedContent.replacingOccurrences(of: "~", with: "")
+                realContent = updatedContent
+        }
+        if isMono == true{
+                realContent = "`\(realContent)`"
+//            return realContent
+        }else if isMono == false{
+                var updatedContent = realContent
+            updatedContent = updatedContent.replacingOccurrences(of: "`", with: "")
+                realContent = updatedContent
+        }
+        
     }
 
 }

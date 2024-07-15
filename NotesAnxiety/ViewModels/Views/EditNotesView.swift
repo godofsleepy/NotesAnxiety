@@ -18,9 +18,10 @@ struct EditNotesView: View {
     @State private var journalingSuggestion: JournalingSuggestion?
     @State var content: String = ""
     @State private var textFormatter = false
-    @State private var isShowingImagePicker = false
+    @State private var isShowingCamera = false
     @State private var isShowingVoice = false
     @State private var isShowingLocation = false
+    @State private var isShowingDoc = false
     @State private var selectedImage: UIImage?
     @State private var imageItem: PhotosPickerItem?
     @State var image: UIImage?
@@ -92,7 +93,6 @@ struct EditNotesView: View {
                 HStack {
                     Button(action:{
                         textFormatter.toggle()
-                        boldWords(content: content, isBold: textFormatter)
                     }){
                         Image(systemName: "textformat")
                     }
@@ -103,20 +103,10 @@ struct EditNotesView: View {
                         updateNote(title: title, content: content)
                     }
                     Button(action:{
-//                        PhotosPicker("Select an image", selection: $imageItem, matching: .images)
-//                            .onChange(of: imageItem) {
-//                                Task {
-//                                    if let data = try? await selectedImage?.loadData(){
-//                                        image = UIImage(data: data)
-//                                    }
-//                                    print("Failed to load data image")
-//                                }
-//                            }
-//                        if let image{
-//                            content = Text(content) + Text(Image(uiImage: image))
-//                        }
+                        isShowingCamera = true
                     }){
                         Image(systemName: "camera")
+                        
                     }
                     
                     Button(action:{
@@ -139,10 +129,26 @@ struct EditNotesView: View {
                     }
                     
                     Button(action:{
-                        
+                        isShowingDoc = true
                     }){
                         Image(systemName: "doc")
                     }
+                    .fileImporter(isPresented: $isShowingDoc, allowedContentTypes: [.item], allowsMultipleSelection: true, onCompletion: { results in
+                                    
+                                    switch results {
+                                    case .success(let fileurls):
+                                        print(fileurls.count)
+                                        
+                                        
+                                        for fileurl in fileurls {
+                                            print(fileurl.path)
+                                        }
+                                        
+                                    case .failure(let error):
+                                        print(error)
+                                    }
+                                    
+                                })
                     Button(action:{
                         
                     }){
@@ -161,22 +167,17 @@ struct EditNotesView: View {
             }
         }
         .sheet(isPresented: $textFormatter){
-            TextFormatter()
+            TextFormatter(boldIsPressed: $boldIsPressed, italicIsPressed: $italicIsPressed, monospaceIsPressed: $monostyledIsPressed, strikeIsPressed: $strikeThroughIsPressed, realContent: $content)
                 .presentationDetents([.height(200)])
         }
         .sheet(isPresented: $isShowingVoice){
-            TextFormatter()
+            TextFormatter(boldIsPressed: $boldIsPressed, italicIsPressed: $italicIsPressed, monospaceIsPressed: $monostyledIsPressed, strikeIsPressed: $strikeThroughIsPressed, realContent: $content)
                 .presentationDetents([.height(200)])
         }
+        .sheet(isPresented: $isShowingCamera, onDismiss: {self.isShowingCamera = false}) {
+                    CameraViewController(photo: $image)
+                }
 
-    }
-    
-    func boldWords(content: String, isBold: Bool){
-        if isBold{
-            self.content = content.capitalized
-        }else{
-            print("Is not bold")
-        }
     }
     
     func getTitleIsPressed() -> Bool{

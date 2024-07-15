@@ -16,17 +16,19 @@ struct TextEditorView: View {
         
         ZStack(alignment: .leading) {
             
-            Text(string)
+            TextEditor(text: $string)
+                .frame(height: max(20,textEditorHeight))
+                .border(.clear)
                 .foregroundColor(.clear)
+            
+            Text(.init(string))
+                .foregroundColor(.white)
                 .padding(10)
                 .background(GeometryReader {
                     Color.clear.preference(key: ViewHeightKey.self,
                                            value: $0.frame(in: .local).size.height)
                 })
-            
-            TextEditor(text: $string)
-                .frame(height: max(20,textEditorHeight))
-                .border(.clear)
+                .offset(x: -10.0)
             
             if string.isEmpty {
                 

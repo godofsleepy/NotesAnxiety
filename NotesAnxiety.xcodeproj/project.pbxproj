@@ -16,6 +16,7 @@
 		B58C0E6D2C4242CC00A53F56 /* VoiceRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C0E6C2C4242CC00A53F56 /* VoiceRecorder.swift */; };
 		B58C0E732C4263C300A53F56 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C0E722C4263C300A53F56 /* LocationManager.swift */; };
 		B58C0E752C42666900A53F56 /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58C0E742C42666900A53F56 /* LocationView.swift */; };
+		B58D0BDB2C442F7700C1E639 /* CameraViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B58D0BDA2C442F7700C1E639 /* CameraViewController.swift */; };
 		FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */; };
 		FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6142C3BB29300A9406D /* ContentView.swift */; };
 		FB3BF6172C3BB29400A9406D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6162C3BB29400A9406D /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		B58C0E6C2C4242CC00A53F56 /* VoiceRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorder.swift; sourceTree = "<group>"; };
 		B58C0E722C4263C300A53F56 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B58C0E742C42666900A53F56 /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		B58D0BDA2C442F7700C1E639 /* CameraViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraViewController.swift; sourceTree = "<group>"; };
 		FB3BF60F2C3BB29300A9406D /* NotesAnxiety.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesAnxiety.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAnxietyApp.swift; sourceTree = "<group>"; };
 		FB3BF6142C3BB29300A9406D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 		FB3BF6202C3BB5E700A9406D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				B58D0BDA2C442F7700C1E639 /* CameraViewController.swift */,
 				B58C0E742C42666900A53F56 /* LocationView.swift */,
 				B58C0E722C4263C300A53F56 /* LocationManager.swift */,
 				B58C0E6C2C4242CC00A53F56 /* VoiceRecorder.swift */,
@@ -258,6 +261,7 @@
 				B58C0E6D2C4242CC00A53F56 /* VoiceRecorder.swift in Sources */,
 				B50347E72C40E09E00FC0B35 /* TextEditorView.swift in Sources */,
 				B58C0E6B2C42392E00A53F56 /* VoiceRecorderView.swift in Sources */,
+				B58D0BDB2C442F7700C1E639 /* CameraViewController.swift in Sources */,
 				FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */,
 				FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */,
 				B52819C62C3F8BB100520259 /* Keyboard.swift in Sources */,
@@ -403,6 +407,7 @@
 				DEVELOPMENT_TEAM = VNG2A57GP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "to open camera bro";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You need to allow microphone ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -435,6 +440,7 @@
 				DEVELOPMENT_TEAM = VNG2A57GP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "to open camera bro";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "You need to allow microphone ";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
