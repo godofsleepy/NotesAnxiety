@@ -29,7 +29,7 @@ class NotesViewModel: ObservableObject {
             .sink { [weak self] noteUpdate in
                 guard let self = self else { return }
                 Task {
-                    await self.updateNote(title: noteUpdate.title, content: noteUpdate.content)
+                    await self.updateNote(noteUpdate)
                 }
             }
             .store(in: &cancellables)
@@ -40,16 +40,23 @@ class NotesViewModel: ObservableObject {
         }).store(in: &cancellables)
     }
     
-    func performUpdate(title: String, content: String) {
-        if title == selectedNote?.title && content == selectedNote?.content {
+    func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool) {
+        if title == selectedNote?.title && content == selectedNote?.content, audioPath == selectedNote?.audioPath && videoPath == selectedNote?.videoPath && photoPath == selectedNote?.photoPath && pinned == selectedNote?.pinned {
             return
         }
         updateProgressState = ProgressState.Loading
-        let noteUpdate = TemporaryNoteModel(title: title, content: content)
+        let noteUpdate = TemporaryNoteModel(
+            title: title,
+            content: content,
+            photoPath: photoPath,
+            videoPath: videoPath,
+            audiotPath: audioPath,
+            pinned: pinned
+        )
         noteUpdateSubject.send(noteUpdate)
     }
     
-    func updateNote(title: String, content: String) async {
+    func updateNote(_ temporaryNote: TemporaryNoteModel) async {
         let note = if selectedNote == nil {
             await createNote()
         } else {
@@ -58,12 +65,14 @@ class NotesViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.selectedNote = note
         }
-        await localDataService.updateNote(note!, title: title, content: content)
+        await localDataService.updateNote(note!, temporaryNote: temporaryNote)
         DispatchQueue.main.async {
             self.updateProgressState = ProgressState.Complete
         }
         await fetchNotes()
     }
+    
+    
        
     func fetchNotes(with searchText: String = "") async  {
         do {

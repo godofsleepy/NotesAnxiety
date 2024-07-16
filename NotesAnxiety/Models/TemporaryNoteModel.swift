@@ -10,4 +10,8 @@ import Foundation
 struct TemporaryNoteModel {
     var title: String = ""
     var content: String = ""
+    var photoPath: String?
+    var videoPath: String?
+    var audiotPath: String?
+    var pinned: Bool = false
 }

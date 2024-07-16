@@ -21,13 +21,15 @@ struct InsightView: View {
     
     var body: some View {
         VStack {
-            Picker("What is your favorite color?", selection: $favoriteColor) {
-                           Text("Week").tag(0)
-                           Text("Month").tag(1)
-                           Text("6M").tag(2)
-                            Text("Year").tag(2)
-                       }
-                       .pickerStyle(.segmented)
+            Picker("What is your favorite color?",
+                   selection: $favoriteColor
+            ) {
+                Text("Week").tag(0)
+                Text("Month").tag(1)
+                Text("6M").tag(2)
+                Text("Year").tag(2)
+            }
+                   .pickerStyle(.segmented)
             Chart(dataPoints) { dataPoint in
                 PointMark(
                     x: .value("Label", dataPoint.label),

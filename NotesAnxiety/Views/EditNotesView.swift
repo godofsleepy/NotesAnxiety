@@ -15,6 +15,11 @@ struct EditNotesView: View {
     //    @State var suggestionPhotos = [JournalingSuggestion.Photo]()
     @State private var title: String = ""
     @State private var content: String = ""
+    @State private var showImagePicker = false
+    @State private var showCamera = false
+    @State private var showAudioRecorder = false
+    @State private var image: UIImage?
+    @State private var audioFilename: URL?
     
     @FocusState private var contentEditorInFocus: Bool
     
@@ -52,7 +57,12 @@ struct EditNotesView: View {
                         self.updateNote(title: title, content: content)
                     }
                 
-                
+                if let image = image {
+                    Image(uiImage: image)
+                        .resizable()
+                        .scaledToFit()
+                }
+
             }
             .padding(10)
         }
@@ -86,6 +96,15 @@ struct EditNotesView: View {
         .toolbar {
             ToolbarItem(placement: .keyboard) {
                 HStack {
+                    Button(action: { showImagePicker = true }) {
+                        Image(systemName: "paperclip")
+                    }
+                    Button(action: { showCamera = true }) {
+                        Image(systemName: "camera")
+                    }
+                    Button(action: { showAudioRecorder = true }) {
+                        Image(systemName: "mic")
+                    }
                     Spacer()
                     Button("Done") {
                         self.hideKeyboard()
@@ -104,9 +123,38 @@ struct EditNotesView: View {
             if let note = vm.selectedNote {
                 self.title = note.title ?? ""
                 self.content = note.content ?? ""
+                
+                if let photoPath = note.photoPath, let imageData = try? Data(contentsOf: URL(fileURLWithPath: photoPath)) {
+                    self.image = UIImage(data: imageData)
+                }
+                if let audioPath = note.audioPath {
+                    self.audioFilename = URL(fileURLWithPath: audioPath)
+                }
+
             }
         }
+        .sheet(isPresented: $showImagePicker) {
+            ImagePickerComponent(sourceType: .photoLibrary, selectedImage: $image)
+        }
+        .sheet(isPresented: $showCamera) {
+            ImagePickerComponent(sourceType: .camera, selectedImage: $image)
+        }
+        .sheet(isPresented: $showAudioRecorder) {
+            AudioRecorderComponent(audioFilename: $audioFilename)
+        }
         
+    }
+    
+    func saveImage(_ image: UIImage?) -> String? {
+        guard let image = image, let data = image.jpegData(compressionQuality: 1.0) else { return nil }
+        let filename = getDocumentsDirectory().appendingPathComponent(UUID().uuidString + ".jpg")
+        try? data.write(to: filename)
+        return filename.path
+    }
+
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
     }
     
     func updateNote(title: String, content: String) {
@@ -115,6 +163,9 @@ struct EditNotesView: View {
             return
         }
         
-        vm.performUpdate(title: title, content: content)
+        let photoPath = saveImage(image)
+        let audioPath = audioFilename?.path
+        
+        vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: false)
     }
 }
