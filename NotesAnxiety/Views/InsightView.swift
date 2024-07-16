@@ -9,6 +9,7 @@ import SwiftUI
 import Charts
 
 struct InsightView: View {
+    @State private var favoriteColor = 0
     var dataPoints = [
         DataPointModel(value: 1, label: "Jan"),
         DataPointModel(value: 3, label: "Feb"),
@@ -20,6 +21,13 @@ struct InsightView: View {
     
     var body: some View {
         VStack {
+            Picker("What is your favorite color?", selection: $favoriteColor) {
+                           Text("Week").tag(0)
+                           Text("Month").tag(1)
+                           Text("6M").tag(2)
+                            Text("Year").tag(2)
+                       }
+                       .pickerStyle(.segmented)
             Chart(dataPoints) { dataPoint in
                 PointMark(
                     x: .value("Label", dataPoint.label),
@@ -28,10 +36,12 @@ struct InsightView: View {
                 .foregroundStyle(Color.red)
                 .symbol(Circle())
             }
-            .chartYScale(domain: 0...10) // Adjust this as per your data range
-            .padding()
+            .chartYScale(domain: 0...10)             .padding()
             .frame(height: 300, alignment: .top)
+            Spacer()
         }
+        
+        .padding(.horizontal, 10)
         .navigationTitle("My Insight")
     }
 }
