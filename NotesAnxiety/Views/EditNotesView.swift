@@ -94,6 +94,21 @@ struct EditNotesView: View {
             }
         })
         .toolbar {
+            ToolbarItem(placement: .bottomBar, content: {
+                HStack{
+                    Spacer()
+                    Button(action: {
+                        vm.selectedNote = nil
+                        title = ""
+                        content = ""
+                        image = nil
+                        audioFilename = nil
+                        contentEditorInFocus = false
+                    }) {
+                        Image(systemName: "square.and.pencil")
+                    }
+                }
+            })
             ToolbarItem(placement: .keyboard) {
                 HStack {
                     Button(action: { showImagePicker = true }) {
@@ -106,6 +121,7 @@ struct EditNotesView: View {
                         Image(systemName: "mic")
                     }
                     Spacer()
+                   
                     Button("Done") {
                         self.hideKeyboard()
                     }
