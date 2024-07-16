@@ -40,6 +40,11 @@ class NotesViewModel: ObservableObject {
         }).store(in: &cancellables)
     }
     
+    func togglePin(for note: NoteEntity) {
+        Task {
+            await localDataService.togglePin(for: note)
+        }
+    }
     func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool) {
         if title == selectedNote?.title && content == selectedNote?.content, audioPath == selectedNote?.audioPath && videoPath == selectedNote?.videoPath && photoPath == selectedNote?.photoPath && pinned == selectedNote?.pinned {
             return
@@ -71,7 +76,6 @@ class NotesViewModel: ObservableObject {
         }
         await fetchNotes()
     }
-    
     
        
     func fetchNotes(with searchText: String = "") async  {

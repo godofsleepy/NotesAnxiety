@@ -15,41 +15,58 @@ struct HistoryNotesView: View {
     
     @State private var selectedNote: NoteEntity?
     
-    var groupedByDate: [Date: [NoteEntity]] {
+    var groupedByDate: [String: [NoteEntity]] {
         let calendar = Calendar.current
+        let today = calendar.startOfDay(for: Date())
+        let last7Days = calendar.date(byAdding: .day, value: -7, to: today)!
+        let last30Days = calendar.date(byAdding: .day, value: -30, to: today)!
+        
         return Dictionary(grouping: vm.notes) { noteEntity in
-            if (noteEntity.timestamp == nil ){
-                return Date()
+            let noteDate = calendar.startOfDay(for: noteEntity.timestamp!)
+            if noteEntity.pinned {
+                return "Pinned"
+            } else if noteDate == today {
+                return "Today"
+            } else if noteDate >= last7Days {
+                return "Last 7 Days"
+            } else if noteDate >= last30Days {
+                return "Last 30 Days"
+            } else {
+                return "Older"
             }
-            let dateComponents = calendar.dateComponents([.year, .month, .day], from: noteEntity.timestamp!)
-            return calendar.date(from: dateComponents) ?? Date()
         }
     }
-    
-    var headers: [Date] {
-        groupedByDate.map { $0.key }.sorted(by: { $0 > $1 })
+
+    var headers: [String] {
+        ["Pinned", "Today", "Last 7 Days", "Last 30 Days", "Older"]
     }
-    
+
     var body: some View {
         List {
             ForEach(headers, id: \.self) { header in
-                Section(header: Text(header, style: .date)) {
-                    ForEach(groupedByDate[header] ?? []) { note in
-                        HStack{
-                            ListCellView(note: note)
-                            Spacer()
+                if let notes = groupedByDate[header], !notes.isEmpty {
+                    Section(header: Text(header)) {
+                        ForEach(notes) { note in
+                            HStack{
+                                ListCellView(note: note)
+                                Spacer()
+                            }
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                vm.selectedNote = note
+                                vm.preferredColumn = NavigationSplitViewColumn.detail
+                            }
+                            .swipeActions(edge: .leading, allowsFullSwipe: false) {
+//                                CellButtonEdit(note: note)
+                            }
                         }
-                        .contentShape(Rectangle())
-                        .onTapGesture {
-                            vm.selectedNote = note
-                            vm.preferredColumn = NavigationSplitViewColumn.detail
+                        .onDelete { indexSet in
+                            deleteNote(in: header, at: indexSet)
                         }
-                        
                     }
-                    .onDelete(perform: { indexSet in
-                        deleteNote(in: header, at: indexSet)
-                    })
                 }
+
+                
             }
         }
         .id(UUID())
@@ -80,9 +97,10 @@ struct HistoryNotesView: View {
         }
     }
     
-    private func deleteNote(in header: Date, at offsets: IndexSet) {
-        offsets.forEach { index in
-            if let noteToDelete = groupedByDate[header]?[index] {
+    private func deleteNote(in header: String, at offsets: IndexSet) {
+        if let notes = groupedByDate[header] {
+            offsets.forEach { index in
+                let noteToDelete = notes[index]
                 
                 if noteToDelete == selectedNote {
                     selectedNote = nil
