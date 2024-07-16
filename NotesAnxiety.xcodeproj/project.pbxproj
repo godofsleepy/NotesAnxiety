@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E5575A22C46346C005197CE /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E5575A02C46346C005197CE /* NotesContainer.xcdatamodeld */; };
+		0E5575A32C463471005197CE /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E5575A02C46346C005197CE /* NotesContainer.xcdatamodeld */; };
 		FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */; };
 		FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6142C3BB29300A9406D /* ContentView.swift */; };
 		FB3BF6172C3BB29400A9406D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6162C3BB29400A9406D /* Assets.xcassets */; };
@@ -14,7 +16,6 @@
 		FB5CBA0A2C441B2E003DF098 /* HistoryNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5CBA092C441B2E003DF098 /* HistoryNotesView.swift */; };
 		FB5CBA0C2C442E4A003DF098 /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5CBA0B2C442E4A003DF098 /* ProgressState.swift */; };
 		FB5CBA0E2C443450003DF098 /* TemporaryNoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5CBA0D2C443450003DF098 /* TemporaryNoteModel.swift */; };
-		FBA9D69C2C4620A100BF7988 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D69A2C4620A100BF7988 /* NotesContainer.xcdatamodeld */; };
 		FBA9D6CA2C46215B00BF7988 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9D6B02C46213500BF7988 /* WidgetKit.framework */; };
 		FBA9D6CB2C46215B00BF7988 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9D6B22C46213500BF7988 /* SwiftUI.framework */; };
 		FBA9D6CE2C46215B00BF7988 /* NotesWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6CD2C46215B00BF7988 /* NotesWidgetBundle.swift */; };
@@ -24,7 +25,6 @@
 		FBA9D6DF2C46218D00BF7988 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6DE2C46218D00BF7988 /* PersistenceController.swift */; };
 		FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E02C46268700BF7988 /* ImagePickerComponent.swift */; };
 		FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E22C4626AB00BF7988 /* AudioRecorderComponent.swift */; };
-		FBA9D6E72C462DEF00BF7988 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D69A2C4620A100BF7988 /* NotesContainer.xcdatamodeld */; };
 		FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49272C3F692E0022F62C /* EditNotesView.swift */; };
 		FBCC492C2C3F692E0022F62C /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49282C3F692E0022F62C /* ListCellView.swift */; };
 		FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49292C3F692E0022F62C /* TextEditorView.swift */; };
@@ -63,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E5575A12C46346C005197CE /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		FB3BF60F2C3BB29300A9406D /* NotesAnxiety.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesAnxiety.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAnxietyApp.swift; sourceTree = "<group>"; };
 		FB3BF6142C3BB29300A9406D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		FB5CBA092C441B2E003DF098 /* HistoryNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNotesView.swift; sourceTree = "<group>"; };
 		FB5CBA0B2C442E4A003DF098 /* ProgressState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressState.swift; sourceTree = "<group>"; };
 		FB5CBA0D2C443450003DF098 /* TemporaryNoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryNoteModel.swift; sourceTree = "<group>"; };
-		FBA9D69B2C4620A100BF7988 /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		FBA9D6B02C46213500BF7988 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		FBA9D6B22C46213500BF7988 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		FBA9D6C92C46215B00BF7988 /* NotesWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotesWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,7 +246,7 @@
 		FBCC49332C3F6CA70022F62C /* CoreData Container */ = {
 			isa = PBXGroup;
 			children = (
-				FBA9D69A2C4620A100BF7988 /* NotesContainer.xcdatamodeld */,
+				0E5575A02C46346C005197CE /* NotesContainer.xcdatamodeld */,
 			);
 			path = "CoreData Container";
 			sourceTree = "<group>";
@@ -352,6 +352,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E5575A22C46346C005197CE /* NotesContainer.xcdatamodeld in Sources */,
 				FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */,
 				FB5CBA0E2C443450003DF098 /* TemporaryNoteModel.swift in Sources */,
 				FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */,
@@ -359,7 +360,6 @@
 				FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */,
 				FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */,
 				FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */,
-				FBA9D69C2C4620A100BF7988 /* NotesContainer.xcdatamodeld in Sources */,
 				FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */,
 				FB5CBA0A2C441B2E003DF098 /* HistoryNotesView.swift in Sources */,
 				FB5CBA0C2C442E4A003DF098 /* ProgressState.swift in Sources */,
@@ -379,9 +379,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBA9D6E72C462DEF00BF7988 /* NotesContainer.xcdatamodeld in Sources */,
 				FBA9D6CE2C46215B00BF7988 /* NotesWidgetBundle.swift in Sources */,
 				FBA9D6D22C46215B00BF7988 /* AppIntent.swift in Sources */,
+				0E5575A32C463471005197CE /* NotesContainer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -525,10 +525,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NotesAnxiety/Preview Content\"";
-				DEVELOPMENT_TEAM = 68FP6TZ275;
+				DEVELOPMENT_TEAM = 56MX8FP3GC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesAnxiety/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera Permission";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone Permission";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Gallery Permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -539,7 +542,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = yellow3.NotesAnxiety;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow32.NotesAnxiety;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -557,10 +560,13 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NotesAnxiety/Preview Content\"";
-				DEVELOPMENT_TEAM = 68FP6TZ275;
+				DEVELOPMENT_TEAM = 56MX8FP3GC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesAnxiety/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Camera Permission";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone Permission";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Gallery Permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -571,7 +577,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = yellow3.NotesAnxiety;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow32.NotesAnxiety;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -586,7 +592,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 68FP6TZ275;
+				DEVELOPMENT_TEAM = 56MX8FP3GC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
@@ -597,7 +603,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = yellow3.NotesAnxiety.NotesWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow32.NotesAnxiety.NotesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -613,7 +619,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 68FP6TZ275;
+				DEVELOPMENT_TEAM = 56MX8FP3GC;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
@@ -624,7 +630,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = yellow3.NotesAnxiety.NotesWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow32.NotesAnxiety.NotesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -666,14 +672,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FBA9D69A2C4620A100BF7988 /* NotesContainer.xcdatamodeld */ = {
+		0E5575A02C46346C005197CE /* NotesContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FBA9D69B2C4620A100BF7988 /* NotesContainer.xcdatamodel */,
+				0E5575A12C46346C005197CE /* NotesContainer.xcdatamodel */,
 			);
-			currentVersion = FBA9D69B2C4620A100BF7988 /* NotesContainer.xcdatamodel */;
+			currentVersion = 0E5575A12C46346C005197CE /* NotesContainer.xcdatamodel */;
 			name = NotesContainer.xcdatamodeld;
-			path = "/Users/rifatkhadafy/Project/NotesAnxiety/NotesAnxiety/Data/CoreData Container/NotesContainer.xcdatamodeld";
+			path = "/Users/filbert/Documents/NotesAnxiety/NotesAnxiety/Data/CoreData Container/NotesContainer.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
