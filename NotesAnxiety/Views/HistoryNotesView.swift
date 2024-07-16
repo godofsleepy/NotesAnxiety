@@ -57,7 +57,7 @@ struct HistoryNotesView: View {
                                 vm.preferredColumn = NavigationSplitViewColumn.detail
                             }
                             .swipeActions(edge: .leading, allowsFullSwipe: false) {
-//                                CellButtonEdit(note: note)
+                                CellButtonEdit(note: note)
                             }
                         }
                         .onDelete { indexSet in
