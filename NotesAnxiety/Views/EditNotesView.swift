@@ -104,6 +104,7 @@ struct EditNotesView: View {
             if let note = vm.selectedNote {
                 self.title = note.title ?? ""
                 self.content = note.content ?? ""
+                NotificationManager.shared.clearNotification()
             }
         }
         
