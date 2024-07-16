@@ -9,6 +9,7 @@ import SwiftUI
 //import JournalingSuggestions
 
 struct EditNotesView: View {
+    @Environment(\.dismiss) private var dismiss
     
     @EnvironmentObject var vm: NotesViewModel
     //    @State var suggestionPhotos = [JournalingSuggestion.Photo]()
@@ -74,7 +75,6 @@ struct EditNotesView: View {
                 }
             }.padding(.trailing, 2)
             Menu {
-                
                 NavigationLink(destination: InsightView(), label: {
                     Label("My Insight", systemImage: "chart.dots.scatter")
                 })
@@ -94,7 +94,7 @@ struct EditNotesView: View {
             }
             ToolbarItem(placement: .navigationBarLeading) {
                 Button(action: {
-                    vm.preferredColumn = NavigationSplitViewColumn.sidebar
+                    dismiss()
                 }) {
                     Image(systemName: "sidebar.leading")
                 }
