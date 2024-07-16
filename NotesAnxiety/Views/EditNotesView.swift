@@ -12,7 +12,6 @@ struct EditNotesView: View {
     @Environment(\.dismiss) private var dismiss
     
     @EnvironmentObject var vm: NotesViewModel
-    //    @State var suggestionPhotos = [JournalingSuggestion.Photo]()
     @State private var title: String = ""
     @State private var content: String = ""
     @State private var showImagePicker = false
@@ -27,16 +26,6 @@ struct EditNotesView: View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                HStack{
-                    //                    ForEach(suggestionPhotos, id: \.photo) { item in
-                    //                        AsyncImage(url: item.photo) { image in
-                    //                            image.image?
-                    //                                .resizable ()
-                    //                                .aspectRatio(contentMode: .fit)
-                    //                        }
-                    //                        .frame(maxHeight: 200)
-                    //                    }
-                }
                 TextField("Title", text: $title, axis: .vertical)
                     .font(.title.bold())
                     .submitLabel(.next)
@@ -66,12 +55,6 @@ struct EditNotesView: View {
             }
             .padding(10)
         }
-        //        .navigationBarItems(trailing:JournalingSuggestionsPicker {
-        //            Text("Picker Label")
-        //        } onCompletion: { suggestion in
-        //            suggestionPhotos = await suggestion.content(forType: JournalingSuggestion.Photo.self)
-        //            print(suggestionPhotos.count)
-        //        })
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(trailing: HStack {

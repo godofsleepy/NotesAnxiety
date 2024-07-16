@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E5575AE2C4697DA005197CE /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E5575AC2C4697DA005197CE /* NotesContainer.xcdatamodeld */; };
+		0E5575AF2C4697DA005197CE /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0E5575AC2C4697DA005197CE /* NotesContainer.xcdatamodeld */; };
 		FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */; };
 		FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6142C3BB29300A9406D /* ContentView.swift */; };
 		FB3BF6172C3BB29400A9406D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6162C3BB29400A9406D /* Assets.xcassets */; };
@@ -23,8 +25,6 @@
 		FBA9D6DF2C46218D00BF7988 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6DE2C46218D00BF7988 /* PersistenceController.swift */; };
 		FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E02C46268700BF7988 /* ImagePickerComponent.swift */; };
 		FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E22C4626AB00BF7988 /* AudioRecorderComponent.swift */; };
-		FBA9D6EA2C4659FD00BF7988 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E82C4659FD00BF7988 /* NotesContainer.xcdatamodeld */; };
-		FBA9D6EB2C4659FD00BF7988 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E82C4659FD00BF7988 /* NotesContainer.xcdatamodeld */; };
 		FBA9D6ED2C467AD700BF7988 /* CellButtonEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */; };
 		FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49272C3F692E0022F62C /* EditNotesView.swift */; };
 		FBCC492C2C3F692E0022F62C /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49282C3F692E0022F62C /* ListCellView.swift */; };
@@ -64,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E5575AD2C4697DA005197CE /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		FB3BF60F2C3BB29300A9406D /* NotesAnxiety.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesAnxiety.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAnxietyApp.swift; sourceTree = "<group>"; };
 		FB3BF6142C3BB29300A9406D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -83,7 +84,6 @@
 		FBA9D6E02C46268700BF7988 /* ImagePickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerComponent.swift; sourceTree = "<group>"; };
 		FBA9D6E22C4626AB00BF7988 /* AudioRecorderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderComponent.swift; sourceTree = "<group>"; };
 		FBA9D6E42C4627ED00BF7988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		FBA9D6E92C4659FD00BF7988 /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButtonEdit.swift; sourceTree = "<group>"; };
 		FBCC49272C3F692E0022F62C /* EditNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNotesView.swift; sourceTree = "<group>"; };
 		FBCC49282C3F692E0022F62C /* ListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCellView.swift; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 		FBCC49332C3F6CA70022F62C /* CoreData Container */ = {
 			isa = PBXGroup;
 			children = (
-				FBA9D6E82C4659FD00BF7988 /* NotesContainer.xcdatamodeld */,
+				0E5575AC2C4697DA005197CE /* NotesContainer.xcdatamodeld */,
 			);
 			path = "CoreData Container";
 			sourceTree = "<group>";
@@ -355,7 +355,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FBA9D6EA2C4659FD00BF7988 /* NotesContainer.xcdatamodeld in Sources */,
 				FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */,
 				FB5CBA0E2C443450003DF098 /* TemporaryNoteModel.swift in Sources */,
 				FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */,
@@ -366,6 +365,7 @@
 				FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */,
 				FB5CBA0A2C441B2E003DF098 /* HistoryNotesView.swift in Sources */,
 				FB5CBA0C2C442E4A003DF098 /* ProgressState.swift in Sources */,
+				0E5575AE2C4697DA005197CE /* NotesContainer.xcdatamodeld in Sources */,
 				FBF68B8C2C446A8000689EC2 /* DataPointModel.swift in Sources */,
 				FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */,
 				FBA9D6DF2C46218D00BF7988 /* PersistenceController.swift in Sources */,
@@ -385,7 +385,7 @@
 			files = (
 				FBA9D6CE2C46215B00BF7988 /* NotesWidgetBundle.swift in Sources */,
 				FBA9D6D22C46215B00BF7988 /* AppIntent.swift in Sources */,
-				FBA9D6EB2C4659FD00BF7988 /* NotesContainer.xcdatamodeld in Sources */,
+				0E5575AF2C4697DA005197CE /* NotesContainer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -676,14 +676,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FBA9D6E82C4659FD00BF7988 /* NotesContainer.xcdatamodeld */ = {
+		0E5575AC2C4697DA005197CE /* NotesContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FBA9D6E92C4659FD00BF7988 /* NotesContainer.xcdatamodel */,
+				0E5575AD2C4697DA005197CE /* NotesContainer.xcdatamodel */,
 			);
-			currentVersion = FBA9D6E92C4659FD00BF7988 /* NotesContainer.xcdatamodel */;
+			currentVersion = 0E5575AD2C4697DA005197CE /* NotesContainer.xcdatamodel */;
 			name = NotesContainer.xcdatamodeld;
-			path = "/Users/rifatkhadafy/Project/NotesAnxiety/NotesAnxiety/Data/CoreData Container/NotesContainer.xcdatamodeld";
+			path = "/Users/filbert/Documents/Nano Challenge 3/NotesAnxiety/NotesAnxiety/Data/CoreData Container/NotesContainer.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

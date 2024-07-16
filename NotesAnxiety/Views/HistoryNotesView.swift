@@ -1,19 +1,9 @@
-//
-//  HistoryNotesView.swift
-//  NotesAnxiety
-//
-//  Created by Rifat Khadafy on 14/07/24.
-//
-
 import SwiftUI
 
 struct HistoryNotesView: View {
     @EnvironmentObject var vm: NotesViewModel
-    @State var showConfirmationDialogue: Bool = false
-    @State var showOverlay: Bool = false
     @State private var searchText = ""
-    
-    @State private var selectedNote: NoteEntity?
+    @State private var showEditView = false
     
     var groupedByDate: [String: [NoteEntity]] {
         let calendar = Calendar.current
@@ -36,64 +26,89 @@ struct HistoryNotesView: View {
             }
         }
     }
-
+    
     var headers: [String] {
         ["Pinned", "Today", "Last 7 Days", "Last 30 Days", "Older"]
     }
-
+    
     var body: some View {
-        List {
-            ForEach(headers, id: \.self) { header in
-                if let notes = groupedByDate[header], !notes.isEmpty {
-                    Section(header: Text(header)) {
-                        ForEach(notes) { note in
-                            HStack{
-                                ListCellView(note: note)
-                                Spacer()
+        NavigationStack {
+            List {
+                ForEach(headers, id: \.self) { header in
+                    if let notes = groupedByDate[header], !notes.isEmpty {
+                        Section(header: Text(header)) {
+                            ForEach(notes) { note in
+                                HStack {
+                                    ListCellView(note: note)
+                                    Spacer()
+                                }
+                                .contentShape(Rectangle())
+                                .onTapGesture {
+                                    vm.selectedNote = note
+                                    vm.preferredColumn = NavigationSplitViewColumn.detail
+                                }
+                                .swipeActions(edge: .trailing, allowsFullSwipe: true) {
+                                    Button(role: .destructive) {
+                                        deleteNote(in: header, at: IndexSet(integer: notes.firstIndex(of: note)!))
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
+                                }
+                                .swipeActions(edge: .leading, allowsFullSwipe: false) {
+                                    Button {
+                                        togglePin(for: note)
+                                    } label: {
+                                        Label(note.pinned ? "Unpin" : "Pin", systemImage: note.pinned ? "pin.slash" : "pin")
+                                    }
+                                    .tint(note.pinned ? .gray : .orange)
+                                }
                             }
-                            .contentShape(Rectangle())
-                            .onTapGesture {
-                                vm.selectedNote = note
-                                vm.preferredColumn = NavigationSplitViewColumn.detail
+                            .onDelete { indexSet in
+                                deleteNote(in: header, at: indexSet)
                             }
-                            .swipeActions(edge: .leading, allowsFullSwipe: false) {
-                                CellButtonEdit(note: note)
-                            }
-                        }
-                        .onDelete { indexSet in
-                            deleteNote(in: header, at: indexSet)
                         }
                     }
                 }
-
-                
             }
-        }
-        .id(UUID())
-        .navigationTitle("History")
-        .searchable(text: $searchText)
-        .onChange(of: searchText) {
-            vm.searchNotes(with: searchText)
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    vm.preferredColumn = NavigationSplitViewColumn.detail
-                }) {
-                    Image(systemName: "sidebar.leading")
+            .id(UUID())
+            .navigationTitle("History")
+            .searchable(text: $searchText)
+            .onChange(of: searchText) {
+                vm.searchNotes(with: searchText)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        vm.preferredColumn = NavigationSplitViewColumn.detail
+                    }) {
+                        Image(systemName: "sidebar.leading")
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+
+                ToolbarItem(placement: .bottomBar) {
+                    HStack {
+                        Spacer()
+                        Button(action: {
+                            createNewNote()
+                        }) {
+                            Image(systemName: "square.and.pencil")
+                        }
+                    }
                 }
             }
-
-            ToolbarItem(placement: .navigationBarTrailing) {
-                EditButton()
+            .navigationDestination(isPresented: $showEditView) {
+                EditNotesView()
             }
         }
     }
     
     private func createNewNote() {
         Task {
-            selectedNote = nil
-            selectedNote = await vm.createNote()
+            showEditView = true
         }
     }
     
@@ -102,8 +117,8 @@ struct HistoryNotesView: View {
             offsets.forEach { index in
                 let noteToDelete = notes[index]
                 
-                if noteToDelete == selectedNote {
-                    selectedNote = nil
+                if noteToDelete == vm.selectedNote {
+                    vm.selectedNote = nil
                 }
                 
                 Task {
@@ -113,8 +128,7 @@ struct HistoryNotesView: View {
         }
     }
     
-}
-
-#Preview {
-    HistoryNotesView()
+    private func togglePin(for note: NoteEntity) {
+        vm.togglePin(for: note)
+    }
 }
