@@ -12,10 +12,10 @@ struct ListCellView: View {
     
     var body: some View {
         HStack {
-            if note.pinned {
-                Image(systemName: "pin.fill")
-                    .foregroundColor(.orange)
-            }
+//            if note.pinned {
+//                Image(systemName: "pin.fill")
+//                    .foregroundColor(.orange)
+//            }
             VStack(alignment: .leading, spacing: 5) {
                 Text(note.title ?? "New Note")
                     .lineLimit(1)

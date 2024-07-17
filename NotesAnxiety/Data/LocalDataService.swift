@@ -56,6 +56,7 @@ class LocalDataServiceImpl : LocalDataService {
             note.photoPath = temporaryNote.photoPath
             note.videoPath = temporaryNote.videoPath
             note.pinned = temporaryNote.pinned
+            note.anxietyLevel = temporaryNote.anxietyLevel
             saveContext()
         }
     }

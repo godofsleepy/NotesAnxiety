@@ -6,44 +6,31 @@
 //
 
 import SwiftUI
-import Charts
 
 struct InsightView: View {
-    @State private var favoriteColor = 0
-    var dataPoints = [
-        DataPointModel(value: 1, label: "Jan"),
-        DataPointModel(value: 3, label: "Feb"),
-        DataPointModel(value: 2, label: "Mar"),
-        DataPointModel(value: 4, label: "Apr"),
-        DataPointModel(value: 6, label: "May"),
-        DataPointModel(value: 5, label: "Jun")
-    ]
+    @EnvironmentObject var vm: NotesViewModel
+    
+    @State private var selectedPeriod: TimePeriod = .lastWeek
     
     var body: some View {
-        VStack {
-            Picker("What is your favorite color?",
-                   selection: $favoriteColor
-            ) {
-                Text("Week").tag(0)
-                Text("Month").tag(1)
-                Text("6M").tag(2)
-                Text("Year").tag(2)
+        ScrollView {
+            VStack {
+                Picker("Select Period", selection: $selectedPeriod) {
+                    ForEach(TimePeriod.allCases, id: \.self) { period in
+                        Text(period.rawValue).tag(period)
+                    }
+                }
+                .pickerStyle(SegmentedPickerStyle())
+                .padding()
+                
+                
+                ChartView(data: vm.notes, period: selectedPeriod)
+                AnalyticsView(data: vm.notes.filter{ (!($0.categoryAnxiety?.isEmpty ?? true) && $0.anxietyLevel >= 1) }, period: selectedPeriod)
+                    .padding(.top)
+                Spacer()
             }
-                   .pickerStyle(.segmented)
-            Chart(dataPoints) { dataPoint in
-                PointMark(
-                    x: .value("Label", dataPoint.label),
-                    y: .value("Value", dataPoint.value)
-                )
-                .foregroundStyle(Color.red)
-                .symbol(Circle())
-            }
-            .chartYScale(domain: 0...10)             .padding()
-            .frame(height: 300, alignment: .top)
-            Spacer()
+            .padding(.horizontal, 10)
         }
-        
-        .padding(.horizontal, 10)
         .navigationTitle("My Insight")
     }
 }

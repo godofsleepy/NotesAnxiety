@@ -19,6 +19,7 @@ struct EditNotesView: View {
     @State private var showAudioRecorder = false
     @State private var image: UIImage?
     @State private var audioFilename: URL?
+    @State private var pinned = false
     
     @State private var isShowingTextFormatter = false
     @State private var isShowingVoice = false
@@ -109,6 +110,7 @@ struct EditNotesView: View {
                         image = nil
                         audioFilename = nil
                         contentEditorInFocus = false
+                        pinned = false
                     }) {
                         Image(systemName: "square.and.pencil")
                     }
@@ -160,6 +162,7 @@ struct EditNotesView: View {
             if let note = vm.selectedNote {
                 self.title = note.title ?? ""
                 self.content = note.content ?? ""
+                self.pinned = note.pinned ?? false
                 
                 if let photoPath = note.photoPath, let imageData = try? Data(contentsOf: URL(fileURLWithPath: photoPath)) {
                     self.image = UIImage(data: imageData)
@@ -168,6 +171,7 @@ struct EditNotesView: View {
                     self.audioFilename = URL(fileURLWithPath: audioPath)
                 }
 
+                NotificationManager.shared.clearNotification()
             }
         }
         .sheet(isPresented: $showImagePicker) {
@@ -203,6 +207,6 @@ struct EditNotesView: View {
         let photoPath = saveImage(image)
         let audioPath = audioFilename?.path
         
-        vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: false)
+        vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: pinned )
     }
 }

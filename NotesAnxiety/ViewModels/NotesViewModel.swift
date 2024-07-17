@@ -42,11 +42,11 @@ class NotesViewModel: ObservableObject {
     func togglePin(for note: NoteEntity) {
         Task {
             await localDataService.togglePin(for: note)
-            await fetchNotes() // Ensure the notes array is updated after pinning/unpinning
+            await fetchNotes()
         }
     }
 
-    func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool) {
+    func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool?) {
         if title == selectedNote?.title && content == selectedNote?.content, audioPath == selectedNote?.audioPath && videoPath == selectedNote?.videoPath && photoPath == selectedNote?.photoPath && pinned == selectedNote?.pinned {
             return
         }
@@ -57,9 +57,16 @@ class NotesViewModel: ObservableObject {
             photoPath: photoPath,
             videoPath: videoPath,
             audiotPath: audioPath,
-            pinned: pinned
+            anxietyLevel: generateRandomDecimal(),
+            categoryAnxiety: [],
+            pinned: pinned == nil ? (selectedNote?.pinned ?? false) : pinned!
         )
         noteUpdateSubject.send(noteUpdate)
+    }
+    
+    func generateRandomDecimal() -> Double {
+        let randomNumber = Double(arc4random_uniform(41)) / 10.0
+        return randomNumber
     }
 
     func updateNote(_ temporaryNote: TemporaryNoteModel) async {
