@@ -26,7 +26,6 @@ class NotesViewModel: ObservableObject {
         self.localDataService = localDataService
         noteUpdateSubject
             .debounce(for: .milliseconds(1000), scheduler: DispatchQueue.main)
-            .removeDuplicates { $0.title == $1.title && $0.content == $1.content }
             .sink { [weak self] noteUpdate in
                 guard let self = self else { return }
                 Task {
@@ -48,7 +47,7 @@ class NotesViewModel: ObservableObject {
         }
     }
 
-    func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool?) {
+    func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool?, anxiety: AnxietyTemporaryModel?) {
         if title == selectedNote?.title && content == selectedNote?.content, audioPath == selectedNote?.audioPath && videoPath == selectedNote?.videoPath && photoPath == selectedNote?.photoPath && pinned == selectedNote?.pinned {
             return
         }
@@ -59,8 +58,8 @@ class NotesViewModel: ObservableObject {
             photoPath: photoPath,
             videoPath: videoPath,
             audiotPath: audioPath,
-            anxietyLevel: 0,
-            categoryAnxiety: [],
+            anxietyLevel: anxiety?.anxietyLevel ?? 0,
+            categoryAnxiety: anxiety?.categoryAnxiety ?? [],
             pinned: pinned == nil ? (selectedNote?.pinned ?? false) : pinned!
         )
         noteUpdateSubject.send(noteUpdate)
@@ -78,9 +77,8 @@ class NotesViewModel: ObservableObject {
             selectedNote
         }
         
-        let result = await localDataService.updateNote(note!, temporaryNote: temporaryNote)
+        await localDataService.updateNote(note!, temporaryNote: temporaryNote)
         DispatchQueue.main.async {
-            self.selectedNote = result
             self.updateProgressState = ProgressState.Complete
         }
         await fetchNotes()

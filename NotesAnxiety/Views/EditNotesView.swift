@@ -21,6 +21,7 @@ struct EditNotesView: View {
     @State private var image: UIImage?
     @State private var audioFilename: URL?
     @State private var pinned = false
+    @State private var anxietyLevel: AnxietyTemporaryModel?
     
     @State private var isShowingTextFormatter = false
     @State private var isShowingVoice = false
@@ -60,8 +61,9 @@ struct EditNotesView: View {
 //                        .frame(maxHeight: 200)
 //                    }
                 }
-                if vm.temporaryAnxiety != nil {
-                    StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
+                if anxietyLevel != nil {
+                    StatusView(date: anxietyLevel!.createdAt, anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: AnxietyLevelType.from(average: anxietyLevel!.anxietyLevel).rawValue, anxietyCategory: anxietyLevel!.categoryAnxiety,
+                               bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
                 }
                 TextField("Title", text: $title, axis: .vertical)
                     .font(.title.bold())
@@ -127,6 +129,7 @@ struct EditNotesView: View {
                         audioFilename = nil
                         contentEditorInFocus = false
                         pinned = false
+                        anxietyLevel = nil
                     }) {
                         Image(systemName: "square.and.pencil")
                     }
@@ -185,6 +188,11 @@ struct EditNotesView: View {
                 self.title = note.title ?? ""
                 self.content = note.content ?? ""
                 self.pinned = note.pinned
+                self.anxietyLevel = note.anxietyLevel != 0.0 ?
+                    AnxietyTemporaryModel(
+                        anxietyLevel: note.anxietyLevel,
+                        categoryAnxiety: note.categoryAnxiety?.isEmpty == false ? note.categoryAnxiety!.split(separator: ",").map(String.init) : []
+                    ) : nil
                 
                 if let photoPath = note.photoPath, let imageData = try? Data(contentsOf: URL(fileURLWithPath: photoPath)) {
                     self.image = UIImage(data: imageData)
@@ -199,9 +207,7 @@ struct EditNotesView: View {
         .sheet(isPresented: $showAnxiety) {
             NavigationStack{
                 LogView(showAnxiety: $showAnxiety)
-                    
             }
-        
             .presentationDetents([.medium])
         }
         .sheet(isPresented: $showImagePicker) {
@@ -213,6 +219,12 @@ struct EditNotesView: View {
         .sheet(isPresented: $showAudioRecorder) {
             AudioRecorderComponent(audioFilename: $audioFilename)
         }
+        .onReceive(vm.$temporaryAnxiety, perform: { v in
+            if v != nil {
+                self.anxietyLevel = v
+                self.updateNote(title: title, content: content)
+            }
+        })
         
     }
     
@@ -237,6 +249,6 @@ struct EditNotesView: View {
         let photoPath = saveImage(image)
         let audioPath = audioFilename?.path
         
-        vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: pinned )
+        vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: pinned, anxiety: anxietyLevel)
     }
 }

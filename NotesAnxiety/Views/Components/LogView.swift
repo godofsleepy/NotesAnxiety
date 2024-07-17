@@ -51,7 +51,7 @@ struct LogView: View {
                 .padding(EdgeInsets(top: 15, leading: 0, bottom: 10, trailing: 0))
                 
                 
-                NavigationLink(destination: CategoryView(bgRed: self.bgRed, bgGreen: self.bgGreen, bgBlue: self.bgBlue, anxietyLevel: $value), label: {
+                NavigationLink(destination: CategoryView(anxietyLevel: $value, bgRed: self.bgRed, bgGreen: self.bgGreen, bgBlue: self.bgBlue), label: {
                     Text("Next")
                         .padding()
                         .frame(maxWidth: .infinity)

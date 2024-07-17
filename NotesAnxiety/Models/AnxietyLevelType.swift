@@ -45,19 +45,4 @@ extension AnxietyLevelType {
             return .empty
         }
     }
-    
-    static func label(for value: Int) -> String {
-        switch value {
-        case 1:
-            return "Minimal"
-        case 2:
-            return "Mild"
-        case 3:
-            return "Moderate"
-        case 4:
-            return "Severe"
-        default:
-            return "Empty"
-        }
-    }
 }
