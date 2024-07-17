@@ -10,7 +10,7 @@ import SwiftUI
 import Charts
 
 struct ChartView: View {
-    let data: [JournalEntry]
+    let data: [NoteEntity]
     let period: TimePeriod
     
     var body: some View {
@@ -33,7 +33,7 @@ struct ChartView: View {
         
             Chart(filteredData) { entry in
                 PointMark(
-                    x: .value("Period", entry.createdAt),
+                    x: .value("Period", entry.timestamp!),
                     y: .value("Average Anxiety", entry.anxietyLevel)
                 )
                 .foregroundStyle(Color.blue)
@@ -78,22 +78,24 @@ struct ChartView: View {
         
     }
     
-    func filterEntries(_ entries: [JournalEntry], for period: TimePeriod) -> [JournalEntry] {
+    func filterEntries(_ entries: [NoteEntity], for period: TimePeriod) -> [NoteEntity] {
         let dateRange = Calendar.current.dateRange(for: period)
         return entries.filter { value in
-            dateRange.contains(value.createdAt)
+            dateRange.contains(value.timestamp!)
         }
     }
 
     func formattedDateInterval(interval: DateInterval) -> String {
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd MMM yyyy"
-            let endDate = formatter.string(from: interval.end)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMM yyyy"
+        let formatterStart = DateFormatter()
+        formatterStart.dateFormat = "dd MMM"
         
-            let startDay = Calendar.current.component(.day, from: interval.start)
-            
-            return "\(startDay) - \(endDate)"
-        }
+        let endDate = formatter.string(from: interval.end)
+        let startDate = formatterStart.string(from: interval.start)
+        
+        return "\(startDate) - \(endDate)"
+    }
     
     private func getFormattedLabel(for date: Date, period: TimePeriod) -> String {
         let calendar = Calendar.current

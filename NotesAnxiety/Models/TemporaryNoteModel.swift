@@ -13,5 +13,7 @@ struct TemporaryNoteModel {
     var photoPath: String?
     var videoPath: String?
     var audiotPath: String?
+    var anxietyLevel: Double = 0
+    var categoryAnxiety: [String] = []
     var pinned: Bool = false
 }

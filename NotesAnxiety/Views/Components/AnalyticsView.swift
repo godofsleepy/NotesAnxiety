@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AnalyticsView: View {
-    let data: [JournalEntry]
+    let data: [NoteEntity]
     let period: TimePeriod
     
     var body: some View {
@@ -76,14 +76,15 @@ struct AnalyticsView: View {
             }
         }
     }
-    func getTop3CategoryAnxiety(from entries: [JournalEntry]) -> [(category: String, percentage: Int)] {
+    func getTop3CategoryAnxiety(from entries: [NoteEntity]) -> [(category: String, percentage: Int)] {
         // Create a dictionary to count occurrences of each category
         var categoryCount: [String: Int] = [:]
         
         // Count occurrences of each category
         for entry in entries {
-            for category in entry.categoryAnxiety {
-                categoryCount[category, default: 0] += 1
+            let categoryAnxiety = entry.categoryAnxiety!.split(separator: ",")
+            for category in categoryAnxiety {
+                categoryCount[String(category), default: 0] += 1
             }
         }
         
