@@ -9,14 +9,14 @@ import SwiftUI
 
 struct CategoryView: View {
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject() var vm: NotesViewModel
+    @Binding var anxietyLevel: Double
+    @State var valueCategory: [String] = []
+    
     var bgRed: Double
     var bgGreen: Double
     var bgBlue: Double
-//    var contoh = Color(red: 118/255, green: 118/255, blue: 128/255).opacity(0.32)
-    
-    let categories = [
-        "Health", "Fitness", "Self-Care", "Hobbies", "Identity", "Spirituality", "Community", "Family", "Friends", "Partner", "Dating", "Tasks", "Work", "Education", "Travel", "Weather", "Current", "Events", "Money"
-    ]
+
     var body: some View {
         VStack(alignment: .center){
             
@@ -35,50 +35,46 @@ struct CategoryView: View {
                 
             }
             VStack{
-//                LazyVGrid(columns: [GridItem(.adaptive(minimum: 80, maximum: 110))], spacing: 10) {
-//                    ForEach(categories, id: \.self){
-//                        category in
-//                        CategoryComponent(title: category)
-//                    }
-//                }
                 VStackLayout(alignment: .center, spacing: 12){
                     VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 12 ){
                         HStack(alignment: .center, spacing: 12) {
-                            CategoryComponent(title: "Health")
-                            CategoryComponent(title: "Fitness")
-                            CategoryComponent(title: "Self-Care")
+                            CategoryComponent(value: $valueCategory, title: "Health")
+                            CategoryComponent(value: $valueCategory, title: "Fitness")
+                            CategoryComponent(value: $valueCategory, title: "Self-Care")
                         }
                         HStack(alignment: .center, spacing: 12) {
-                            CategoryComponent(title: "Hobbies")
-                            CategoryComponent(title: "Identity")
-                            CategoryComponent(title: "Spirituality")
+                            CategoryComponent(value: $valueCategory,title: "Hobbies")
+                            CategoryComponent(value: $valueCategory,title: "Identity")
+                            CategoryComponent(value: $valueCategory,title: "Spirituality")
                         }
                         HStack(alignment: .center, spacing: 12) {
-                            CategoryComponent(title: "Community")
-                            CategoryComponent(title: "Family")
-                            CategoryComponent(title: "Friends")
+                            CategoryComponent(value: $valueCategory,title: "Community")
+                            CategoryComponent(value: $valueCategory,title: "Family")
+                            CategoryComponent(value: $valueCategory,title: "Friends")
                         }
                         HStack(alignment: .center, spacing: 12) {
-                            CategoryComponent(title: "Weather")
-                            CategoryComponent(title: "Partner")
-                            CategoryComponent(title: "Dating")
-                            CategoryComponent(title: "Tasks")
+                            CategoryComponent(value: $valueCategory,title: "Weather")
+                            CategoryComponent(value: $valueCategory,title: "Partner")
+                            CategoryComponent(value: $valueCategory,title: "Dating")
+                            CategoryComponent(value: $valueCategory,title: "Tasks")
                         }
                         HStack(alignment: .center, spacing: 12) {
-                            CategoryComponent(title: "Work")
-                            CategoryComponent(title: "Education")
-                            CategoryComponent(title: "Travel")
+                            CategoryComponent(value: $valueCategory,title: "Work")
+                            CategoryComponent(value: $valueCategory,title: "Education")
+                            CategoryComponent(value: $valueCategory,title: "Travel")
                         }
                         HStack(alignment: .center, spacing: 12) {
-                            CategoryComponent(title: "Current")
-                            CategoryComponent(title: "Events")
-                            CategoryComponent(title: "Money")
+                            CategoryComponent(value: $valueCategory,title: "Current")
+                            CategoryComponent(value: $valueCategory,title: "Events")
+                            CategoryComponent(value: $valueCategory,title: "Money")
                         }
                     }
                 }
                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 40, trailing: 0))
                 Button(action: {
-                
+                    vm.temporaryAnxiety = AnxietyTemporaryModel(anxietyLevel: anxietyLevel, categoryAnxiety: valueCategory)
+                    dismiss()
+                    dismiss()
                 }, label: {
                     Text("Done")
                         .padding()
@@ -87,7 +83,7 @@ struct CategoryView: View {
                         .fontWeight(.semibold)
                         .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 10))
-                        
+                    
                 })
             }.padding()
         }
@@ -99,6 +95,6 @@ struct CategoryView: View {
     }
 }
 
-#Preview {
-    CategoryView(bgRed: 140, bgGreen: 165, bgBlue: 223)
-}
+//#Preview {
+//    CategoryView(bgRed: 140, bgGreen: 165, bgBlue: 223)
+//}

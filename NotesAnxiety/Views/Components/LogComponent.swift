@@ -19,10 +19,10 @@ struct LogComponent: View {
     var state: AnxietyState
     var body: some View {
         Image(systemName: imageName(for: state))
-            .resizable()
-            .scaledToFit()
+            .font(.system(size: 58))
+            .padding(.bottom)
             .foregroundColor(Color.white)
-            .frame(width: 128)
+            .animation(Animation.linear, value: state)
         HStack{
             Text(label)
                 .foregroundStyle(Color.white)

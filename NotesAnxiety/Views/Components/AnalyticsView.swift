@@ -13,7 +13,6 @@ struct AnalyticsView: View {
     let period: TimePeriod
     
     var body: some View {
-        let top3CategoriesWithPercentages = getTop3CategoryAnxiety(from: data)
         
         HStack( spacing: 16) {
             VStack(alignment: .leading) {
@@ -24,7 +23,7 @@ struct AnalyticsView: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .lineLimit(nil)
                 
-                ForEach(top3CategoriesWithPercentages, id: \.category){ v in
+                ForEach(getTop3CategoryAnxiety(from: data), id: \.category){ v in
                     HStack(spacing: 8) {
                         Text("\(v.percentage)%")
                             .font(.largeTitle)

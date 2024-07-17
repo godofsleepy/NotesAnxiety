@@ -60,7 +60,9 @@ struct EditNotesView: View {
 //                        .frame(maxHeight: 200)
 //                    }
                 }
-                StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
+                if vm.temporaryAnxiety != nil {
+                    StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
+                }
                 TextField("Title", text: $title, axis: .vertical)
                     .font(.title.bold())
                     .submitLabel(.next)
@@ -117,6 +119,7 @@ struct EditNotesView: View {
                 HStack{
                     Spacer()
                     Button(action: {
+                        // Create New Note
                         vm.selectedNote = nil
                         title = ""
                         content = ""
@@ -195,7 +198,7 @@ struct EditNotesView: View {
         }
         .sheet(isPresented: $showAnxiety) {
             NavigationStack{
-                LogView(showAnxiety: $showAnxiety,value: $currentValue1, labels: "minimal")
+                LogView(showAnxiety: $showAnxiety)
                     
             }
         

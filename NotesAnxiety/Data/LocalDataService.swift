@@ -11,7 +11,7 @@ import CoreData
 protocol LocalDataService {
     func fetchNotes(searchText: String) async throws -> [NoteEntity]
     func createNote() async -> NoteEntity
-    func updateNote(_ note: NoteEntity, temporaryNote: TemporaryNoteModel) async
+    func updateNote(_ note: NoteEntity, temporaryNote: TemporaryNoteModel) async -> NoteEntity
     func togglePin(for note: NoteEntity) async
     func deleteNote(_ note: NoteEntity) async
 }
@@ -48,8 +48,8 @@ class LocalDataServiceImpl : LocalDataService {
         }
     }
     
-    func updateNote(_ note: NoteEntity, temporaryNote: TemporaryNoteModel) async {
-        notesContainer.viewContext.performAndWait {
+    func updateNote(_ note: NoteEntity, temporaryNote: TemporaryNoteModel) async -> NoteEntity {
+        return notesContainer.viewContext.performAndWait {
             note.title = temporaryNote.title
             note.content = temporaryNote.content
             note.audioPath = temporaryNote.audiotPath
@@ -58,6 +58,7 @@ class LocalDataServiceImpl : LocalDataService {
             note.pinned = temporaryNote.pinned
             note.anxietyLevel = temporaryNote.anxietyLevel
             saveContext()
+            return note
         }
     }
     

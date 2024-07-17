@@ -17,8 +17,10 @@ class NotesViewModel: ObservableObject {
     @Published var isDataLoaded = false
     @Published var preferredColumn = NavigationSplitViewColumn.detail
     @Published var updateProgressState = ProgressState.Default
+    @Published var temporaryAnxiety: AnxietyTemporaryModel?
     private var cancellables = Set<AnyCancellable>()
     private var noteUpdateSubject = PassthroughSubject<TemporaryNoteModel, Never>()
+    
 
     init(localDataService: LocalDataService) {
         self.localDataService = localDataService
@@ -57,7 +59,7 @@ class NotesViewModel: ObservableObject {
             photoPath: photoPath,
             videoPath: videoPath,
             audiotPath: audioPath,
-            anxietyLevel: generateRandomDecimal(),
+            anxietyLevel: 0,
             categoryAnxiety: [],
             pinned: pinned == nil ? (selectedNote?.pinned ?? false) : pinned!
         )
@@ -75,11 +77,10 @@ class NotesViewModel: ObservableObject {
         } else {
             selectedNote
         }
+        
+        let result = await localDataService.updateNote(note!, temporaryNote: temporaryNote)
         DispatchQueue.main.async {
-            self.selectedNote = note
-        }
-        await localDataService.updateNote(note!, temporaryNote: temporaryNote)
-        DispatchQueue.main.async {
+            self.selectedNote = result
             self.updateProgressState = ProgressState.Complete
         }
         await fetchNotes()
