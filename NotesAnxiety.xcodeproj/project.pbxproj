@@ -14,6 +14,13 @@
 		B56198342C4761210050A8A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56198332C4761210050A8A1 /* ContentView.swift */; };
 		B56198362C47613C0050A8A1 /* HistoryNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56198352C47613C0050A8A1 /* HistoryNotesView.swift */; };
 		B56198382C4761560050A8A1 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56198372C4761560050A8A1 /* InsightView.swift */; };
+		B561983A2C4763010050A8A1 /* AnxietyTrackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56198392C4763010050A8A1 /* AnxietyTrackerView.swift */; };
+		B561983C2C4763390050A8A1 /* AnxietyStatusComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561983B2C4763390050A8A1 /* AnxietyStatusComponent.swift */; };
+		B561983E2C4763620050A8A1 /* AnxietyLevelComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561983D2C4763620050A8A1 /* AnxietyLevelComponent.swift */; };
+		B56198402C4763890050A8A1 /* AnxietyCategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B561983F2C4763890050A8A1 /* AnxietyCategoryView.swift */; };
+		B56198422C4763B70050A8A1 /* AnxietyCategoryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56198412C4763B70050A8A1 /* AnxietyCategoryComponent.swift */; };
+		B56198442C4763D70050A8A1 /* TextFormatterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B56198432C4763D70050A8A1 /* TextFormatterView.swift */; };
+		B56198472C4764630050A8A1 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B56198452C4764630050A8A1 /* NotesContainer.xcdatamodeld */; };
 		FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */; };
 		FB3BF6172C3BB29400A9406D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6162C3BB29400A9406D /* Assets.xcassets */; };
 		FB3BF61A2C3BB29400A9406D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6192C3BB29400A9406D /* Preview Assets.xcassets */; };
@@ -26,8 +33,6 @@
 		FBA9D6D42C46215C00BF7988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBA9D6D32C46215C00BF7988 /* Assets.xcassets */; };
 		FBA9D6D82C46215C00BF7988 /* NotesWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBA9D6C92C46215B00BF7988 /* NotesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FBA9D6DF2C46218D00BF7988 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6DE2C46218D00BF7988 /* PersistenceController.swift */; };
-		FBA9D6F02C46A39500BF7988 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6EE2C46A39500BF7988 /* NotesContainer.xcdatamodeld */; };
-		FBA9D6F12C46A39500BF7988 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6EE2C46A39500BF7988 /* NotesContainer.xcdatamodeld */; };
 		FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49272C3F692E0022F62C /* EditNotesView.swift */; };
 		FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49292C3F692E0022F62C /* TextEditorView.swift */; };
 		FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC492F2C3F694B0022F62C /* Extensions.swift */; };
@@ -71,6 +76,13 @@
 		B56198332C4761210050A8A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		B56198352C47613C0050A8A1 /* HistoryNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNotesView.swift; sourceTree = "<group>"; };
 		B56198372C4761560050A8A1 /* InsightView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightView.swift; sourceTree = "<group>"; };
+		B56198392C4763010050A8A1 /* AnxietyTrackerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyTrackerView.swift; sourceTree = "<group>"; };
+		B561983B2C4763390050A8A1 /* AnxietyStatusComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyStatusComponent.swift; sourceTree = "<group>"; };
+		B561983D2C4763620050A8A1 /* AnxietyLevelComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyLevelComponent.swift; sourceTree = "<group>"; };
+		B561983F2C4763890050A8A1 /* AnxietyCategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyCategoryView.swift; sourceTree = "<group>"; };
+		B56198412C4763B70050A8A1 /* AnxietyCategoryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyCategoryComponent.swift; sourceTree = "<group>"; };
+		B56198432C4763D70050A8A1 /* TextFormatterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFormatterView.swift; sourceTree = "<group>"; };
+		B56198462C4764630050A8A1 /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		FB3BF60F2C3BB29300A9406D /* NotesAnxiety.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesAnxiety.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAnxietyApp.swift; sourceTree = "<group>"; };
 		FB3BF6162C3BB29400A9406D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -86,7 +98,6 @@
 		FBA9D6D52C46215C00BF7988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FBA9D6DE2C46218D00BF7988 /* PersistenceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 		FBA9D6E42C4627ED00BF7988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		FBA9D6EF2C46A39500BF7988 /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		FBCC49272C3F692E0022F62C /* EditNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNotesView.swift; sourceTree = "<group>"; };
 		FBCC49292C3F692E0022F62C /* TextEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		FBCC492F2C3F694B0022F62C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -122,6 +133,7 @@
 		FB3BF6062C3BB29300A9406D = {
 			isa = PBXGroup;
 			children = (
+				B56198432C4763D70050A8A1 /* TextFormatterView.swift */,
 				FB3BF6112C3BB29300A9406D /* NotesAnxiety */,
 				FBA9D6CC2C46215B00BF7988 /* NotesWidget */,
 				FBA9D6AF2C46213500BF7988 /* Frameworks */,
@@ -186,6 +198,11 @@
 		FB3BF6222C3BB6C400A9406D /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B56198412C4763B70050A8A1 /* AnxietyCategoryComponent.swift */,
+				B561983D2C4763620050A8A1 /* AnxietyLevelComponent.swift */,
+				B561983B2C4763390050A8A1 /* AnxietyStatusComponent.swift */,
+				B561983F2C4763890050A8A1 /* AnxietyCategoryView.swift */,
+				B56198392C4763010050A8A1 /* AnxietyTrackerView.swift */,
 				FBCC49292C3F692E0022F62C /* TextEditorView.swift */,
 				B561982D2C4760AA0050A8A1 /* CellButtonEdit.swift */,
 				B56198312C4760E30050A8A1 /* ListCellView.swift */,
@@ -249,7 +266,7 @@
 		FBCC49332C3F6CA70022F62C /* CoreData Container */ = {
 			isa = PBXGroup;
 			children = (
-				FBA9D6EE2C46A39500BF7988 /* NotesContainer.xcdatamodeld */,
+				B56198452C4764630050A8A1 /* NotesContainer.xcdatamodeld */,
 			);
 			path = "CoreData Container";
 			sourceTree = "<group>";
@@ -364,18 +381,24 @@
 				FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */,
 				FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */,
 				FB5CBA0C2C442E4A003DF098 /* ProgressState.swift in Sources */,
+				B56198402C4763890050A8A1 /* AnxietyCategoryView.swift in Sources */,
 				B56198342C4761210050A8A1 /* ContentView.swift in Sources */,
 				B56198322C4760E30050A8A1 /* ListCellView.swift in Sources */,
-				FBA9D6F02C46A39500BF7988 /* NotesContainer.xcdatamodeld in Sources */,
 				FBF68B8C2C446A8000689EC2 /* DataPointModel.swift in Sources */,
 				FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */,
 				FBA9D6DF2C46218D00BF7988 /* PersistenceController.swift in Sources */,
+				B56198472C4764630050A8A1 /* NotesContainer.xcdatamodeld in Sources */,
 				B56198302C4760C40050A8A1 /* ImagePickerComponent.swift in Sources */,
+				B561983A2C4763010050A8A1 /* AnxietyTrackerView.swift in Sources */,
+				B56198422C4763B70050A8A1 /* AnxietyCategoryComponent.swift in Sources */,
 				B56198362C47613C0050A8A1 /* HistoryNotesView.swift in Sources */,
 				FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */,
+				B561983E2C4763620050A8A1 /* AnxietyLevelComponent.swift in Sources */,
 				FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */,
 				FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */,
 				FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */,
+				B56198442C4763D70050A8A1 /* TextFormatterView.swift in Sources */,
+				B561983C2C4763390050A8A1 /* AnxietyStatusComponent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -385,7 +408,6 @@
 			files = (
 				FBA9D6CE2C46215B00BF7988 /* NotesWidgetBundle.swift in Sources */,
 				FBA9D6D22C46215B00BF7988 /* AppIntent.swift in Sources */,
-				FBA9D6F12C46A39500BF7988 /* NotesContainer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -529,7 +551,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NotesAnxiety/Preview Content\"";
-				DEVELOPMENT_TEAM = 56MX8FP3GC;
+				DEVELOPMENT_TEAM = VNG2A57GP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesAnxiety/Info.plist;
@@ -541,12 +563,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yellow32.NotesAnxiety;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow34.NotesAnxiety;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -564,7 +587,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NotesAnxiety/Preview Content\"";
-				DEVELOPMENT_TEAM = 56MX8FP3GC;
+				DEVELOPMENT_TEAM = VNG2A57GP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesAnxiety/Info.plist;
@@ -576,12 +599,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yellow32.NotesAnxiety;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow34.NotesAnxiety;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -596,18 +620,19 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 56MX8FP3GC;
+				DEVELOPMENT_TEAM = VNG2A57GP5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yellow32.NotesAnxiety.NotesWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow34.NotesAnxiety.NotesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -623,18 +648,19 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 56MX8FP3GC;
+				DEVELOPMENT_TEAM = VNG2A57GP5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yellow32.NotesAnxiety.NotesWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow34.NotesAnxiety.NotesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -676,14 +702,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		FBA9D6EE2C46A39500BF7988 /* NotesContainer.xcdatamodeld */ = {
+		B56198452C4764630050A8A1 /* NotesContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				FBA9D6EF2C46A39500BF7988 /* NotesContainer.xcdatamodel */,
+				B56198462C4764630050A8A1 /* NotesContainer.xcdatamodel */,
 			);
-			currentVersion = FBA9D6EF2C46A39500BF7988 /* NotesContainer.xcdatamodel */;
-			name = NotesContainer.xcdatamodeld;
-			path = "/Users/rifatkhadafy/Project/NotesAnxiety/NotesAnxiety/Data/CoreData Container/NotesContainer.xcdatamodeld";
+			currentVersion = B56198462C4764630050A8A1 /* NotesContainer.xcdatamodel */;
+			path = NotesContainer.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

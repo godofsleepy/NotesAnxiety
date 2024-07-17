@@ -13,12 +13,33 @@ struct EditNotesView: View {
     
     @EnvironmentObject var vm: NotesViewModel
     @State private var title: String = ""
-    @State private var content: String = ""
+    @State var content: String = ""
     @State private var showImagePicker = false
     @State private var showCamera = false
     @State private var showAudioRecorder = false
     @State private var image: UIImage?
     @State private var audioFilename: URL?
+    
+    @State private var isShowingTextFormatter = false
+    @State private var isShowingVoice = false
+    @State private var isShowingLocation = false
+    
+    @State var titleIsPressed = false
+    @State var headingIsPressed = false
+    @State var subHeadingIsPressed = false
+    @State var bodyIsPressed = false
+    @State var monostyledIsPressed = false
+    
+    @State var boldIsPressed = false
+    @State var italicIsPressed = false
+    @State var underlineIsPressed = false
+    @State var strikeThroughIsPressed = false
+        
+    @State var bulletIsPressed = false
+    @State var listIsPressed = false
+    @State var numberIsPressed = false
+    @State var alignLeftIsPressed = false
+    @State var alignRightIsPressed = false
     
     @FocusState private var contentEditorInFocus: Bool
     
@@ -77,6 +98,7 @@ struct EditNotesView: View {
             }
         })
         .toolbar {
+            
             ToolbarItem(placement: .bottomBar, content: {
                 HStack{
                     Spacer()
@@ -94,6 +116,22 @@ struct EditNotesView: View {
             })
             ToolbarItem(placement: .keyboard) {
                 HStack {
+                    Button(action:{
+                        isShowingTextFormatter.toggle()
+                    }){
+                        Image(systemName: "textformat")
+                    }
+                    
+                    Button(action:{ }){
+                    Image(systemName: "cloud.bolt.fill")
+                    }
+                    Button(action:{ isShowingLocation = true }){
+                        Image(systemName: "location")
+                    }
+                    Button(action:{}){
+                        Image(systemName: "doc")
+                    }
+                    
                     Button(action: { showImagePicker = true }) {
                         Image(systemName: "paperclip")
                     }
