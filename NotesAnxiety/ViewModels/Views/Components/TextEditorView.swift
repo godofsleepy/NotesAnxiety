@@ -7,10 +7,16 @@
 
 import SwiftUI
 
+enum Elements {
+    case image
+    case text
+}
 struct TextEditorView: View {
     
+    @State var elements: [Elements] = []
     @Binding var string: String
     @State var textEditorHeight : CGFloat = 20
+    @Binding var image: UIImage?
     
     var body: some View {
         
@@ -20,16 +26,36 @@ struct TextEditorView: View {
                 .frame(height: max(20,textEditorHeight))
                 .border(.clear)
                 .foregroundColor(.clear)
+                .onTapGesture {
+                    elements.append(Elements.text)
+                    elements.append(Elements.image)
+                }
             
-            Text(.init(string))
-                .foregroundColor(.white)
-                .padding(10)
-                .background(GeometryReader {
-                    Color.clear.preference(key: ViewHeightKey.self,
-                                           value: $0.frame(in: .local).size.height)
-                })
-                .offset(x: -10.0)
             
+            VStack{
+                ForEach(elements, id: \.self){ elements in
+                    switch elements{
+                    case .image:
+                        if image != nil{
+                            Image(uiImage: image!)
+                                .resizable()
+                                .scaledToFit()
+                        }
+                        
+                    case .text:
+                        Text(.init(string))
+                            .foregroundColor(.white)
+                            .padding(10)
+                            .background(GeometryReader {
+                                Color.clear.preference(key: ViewHeightKey.self,
+                                                       value: $0.frame(in: .local).size.height)
+                            })
+                            .offset(x: -10.0)
+                    }
+                }
+                
+                
+            }
             if string.isEmpty {
                 
                 Text("Content")
@@ -41,6 +67,14 @@ struct TextEditorView: View {
             }
             
         }.onPreferenceChange(ViewHeightKey.self) { textEditorHeight = $0 }
+            .onAppear{
+                if string.description.last == "\n"{
+                    elements.append(Elements.text)
+                }
+                if let image = image {
+                    elements.append(Elements.image)
+                }
+            }
     }
 }
 

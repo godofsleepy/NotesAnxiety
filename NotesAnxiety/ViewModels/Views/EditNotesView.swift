@@ -21,10 +21,13 @@ struct EditNotesView: View {
     @State private var isShowingCamera = false
     @State private var isShowingVoice = false
     @State private var isShowingLocation = false
+    @State private var isShowingAnxiety = false
     @State private var isShowingDoc = false
     @State private var selectedImage: UIImage?
     @State private var imageItem: PhotosPickerItem?
     @State var image: UIImage?
+//    @State var audio: AVAudioFile
+    
     @State public var titleIsPressed = false
     @State public var headingIsPressed = false
     @State public var subHeadingIsPressed = false
@@ -70,12 +73,23 @@ struct EditNotesView: View {
                         }
                     })
                 
-                TextEditorView(string: $content)
+                TextEditorView(string: $content, image: $image)
                     .scrollDisabled(true)
                     .font(.title3)
                     .focused($contentEditorInFocus)
             }
             .padding(10)
+            
+//            if let image = image {
+//                Image(uiImage: image)
+//                    .resizable()
+//                    .scaledToFit()
+//            }
+            
+//            if let audio = audio {
+//                
+//            }
+
         }
         
         .navigationBarItems(trailing:JournalingSuggestionsPicker {
@@ -117,6 +131,7 @@ struct EditNotesView: View {
                     }
                     
                     Button(action:{
+                        isShowingAnxiety = true
                         
                     }){
                         Image(systemName: "cloud.bolt.fill")
@@ -170,7 +185,12 @@ struct EditNotesView: View {
             TextFormatter(boldIsPressed: $boldIsPressed, italicIsPressed: $italicIsPressed, monospaceIsPressed: $monostyledIsPressed, strikeIsPressed: $strikeThroughIsPressed, realContent: $content)
                 .presentationDetents([.height(200)])
         }
+        .sheet(isPresented: $isShowingAnxiety){
+            AnxietyTrackerView()
+                .presentationDetents([.height(200)])
+        }
         .sheet(isPresented: $isShowingVoice){
+//            AudioRecorderView(audioFilename: audio)
             TextFormatter(boldIsPressed: $boldIsPressed, italicIsPressed: $italicIsPressed, monospaceIsPressed: $monostyledIsPressed, strikeIsPressed: $strikeThroughIsPressed, realContent: $content)
                 .presentationDetents([.height(200)])
         }
