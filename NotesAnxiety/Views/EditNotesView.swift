@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import JournalingSuggestions
+import JournalingSuggestions
 
 struct EditNotesView: View {
     @Environment(\.dismiss) private var dismiss
@@ -22,11 +22,22 @@ struct EditNotesView: View {
     @State private var pinned = false
     
     @FocusState private var contentEditorInFocus: Bool
+    @State var suggestionPhotos = [JournalingSuggestion]()
     
     var body: some View {
         
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
+                HStack{
+//                    ForEach(suggestionPhotos, id: \.photo) { item in
+//                        AsyncImage(url: item.photo) { image in
+//                            image.image?
+//                                .resizable ()
+//                                .aspectRatio(contentMode: .fit)
+//                        }
+//                        .frame(maxHeight: 200)
+//                    }
+                }
                 TextField("Title", text: $title, axis: .vertical)
                     .font(.title.bold())
                     .submitLabel(.next)
@@ -59,6 +70,7 @@ struct EditNotesView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(trailing: HStack {
+            
             Group{
                 if(vm.updateProgressState == ProgressState.Loading){
                     ProgressView()
@@ -96,6 +108,18 @@ struct EditNotesView: View {
             })
             ToolbarItem(placement: .keyboard) {
                 HStack {
+                    JournalingSuggestionsPicker {
+                        Image(systemName: "cloud.bolt")
+                    } onCompletion: { suggestion in
+//                        print(suggestion.items.count)
+//                        print(suggestion.title)
+//                        print(suggestion.date)
+//                        suggestion.items.forEach { v in
+//                            print(v.representations)
+//                        }
+//                         await suggestion.content(forType: JournalingSuggestion.Photo.self)
+//                        print(suggestionPhotos.count)
+                    }
                     Button(action: { showImagePicker = true }) {
                         Image(systemName: "paperclip")
                     }
@@ -124,7 +148,7 @@ struct EditNotesView: View {
             if let note = vm.selectedNote {
                 self.title = note.title ?? ""
                 self.content = note.content ?? ""
-                self.pinned = note.pinned ?? false
+                self.pinned = note.pinned
                 
                 if let photoPath = note.photoPath, let imageData = try? Data(contentsOf: URL(fileURLWithPath: photoPath)) {
                     self.image = UIImage(data: imageData)

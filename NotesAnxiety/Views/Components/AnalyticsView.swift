@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct AnalyticsView: View {
+    @EnvironmentObject var vm: NotesViewModel
     let data: [NoteEntity]
     let period: TimePeriod
     
@@ -45,7 +46,7 @@ struct AnalyticsView: View {
                         .lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
                         .font(.headline)
-                    Text("10")
+                    Text(data.count.description)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Text("for this \(period)")
@@ -62,7 +63,7 @@ struct AnalyticsView: View {
                 VStack(alignment: .leading) {
                     Text("Last check in")
                         .font(.headline)
-                    Text("1")
+                    Text(data.isEmpty ? "-" : daysPassed(from: data.last!.timestamp!)!.description)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Text("day ago")
@@ -102,6 +103,15 @@ struct AnalyticsView: View {
         return top3Categories
     }
 
+    func daysPassed(from inputDate: Date) -> Int? {
+        let currentDate = Date()
+        let calendar = Calendar.current
+        
+        // Calculate the difference in days between the two dates
+        let components = calendar.dateComponents([.day], from: inputDate, to: currentDate)
+        
+        return components.day
+    }
     
 }
 
