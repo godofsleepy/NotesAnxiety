@@ -9,21 +9,10 @@ import SwiftUI
 
 @main
 struct NotesAnxietyApp: App {
-    
-    @StateObject var dependencyInjection: DependencyInjection
-    
-    init() {
-        let depen1 = DependencyInjection()
-        _dependencyInjection = StateObject(wrappedValue: depen1)
-    }
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .task {
-                    await dependencyInjection.initialize()
-                }
-                .environmentObject(dependencyInjection)
-                .environmentObject(dependencyInjection.notesViewModel())
+                .environmentObject(DependencyInjection.shared.notesViewModel())
                 
         }
     }

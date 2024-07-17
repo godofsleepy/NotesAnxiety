@@ -7,13 +7,12 @@
 
 import Foundation
 
-class DependencyInjection: ObservableObject {
+class DependencyInjection {
+    
+    static let shared = DependencyInjection()
+    private init() {}
     
     lazy var localDataService: LocalDataService = LocalDataServiceImpl()
-    
-    func initialize() async {
-        
-    }
     
     func notesViewModel() -> NotesViewModel {
         NotesViewModel(localDataService: localDataService)
