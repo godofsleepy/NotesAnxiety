@@ -46,7 +46,7 @@ class NotesViewModel: ObservableObject {
         }
     }
 
-    func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool) {
+    func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool?) {
         if title == selectedNote?.title && content == selectedNote?.content, audioPath == selectedNote?.audioPath && videoPath == selectedNote?.videoPath && photoPath == selectedNote?.photoPath && pinned == selectedNote?.pinned {
             return
         }
@@ -57,7 +57,7 @@ class NotesViewModel: ObservableObject {
             photoPath: photoPath,
             videoPath: videoPath,
             audiotPath: audioPath,
-            pinned: pinned
+            pinned: pinned == nil ? (selectedNote?.pinned ?? false) : pinned!
         )
         noteUpdateSubject.send(noteUpdate)
     }

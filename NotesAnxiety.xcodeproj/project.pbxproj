@@ -29,6 +29,7 @@
 		FBA9D6F42C47836500BF7988 /* AnxietyLevelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F32C47836500BF7988 /* AnxietyLevelType.swift */; };
 		FBA9D6F82C47843B00BF7988 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F72C47843B00BF7988 /* TimePeriod.swift */; };
 		FBA9D6FA2C4784D800BF7988 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F92C4784D800BF7988 /* ChartView.swift */; };
+		FBA9D6FC2C47A6C800BF7988 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6FB2C47A6C800BF7988 /* NotificationManager.swift */; };
 		FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49272C3F692E0022F62C /* EditNotesView.swift */; };
 		FBCC492C2C3F692E0022F62C /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49282C3F692E0022F62C /* ListCellView.swift */; };
 		FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49292C3F692E0022F62C /* TextEditorView.swift */; };
@@ -91,6 +92,7 @@
 		FBA9D6F32C47836500BF7988 /* AnxietyLevelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyLevelType.swift; sourceTree = "<group>"; };
 		FBA9D6F72C47843B00BF7988 /* TimePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
 		FBA9D6F92C4784D800BF7988 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
+		FBA9D6FB2C47A6C800BF7988 /* NotificationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		FBCC49272C3F692E0022F62C /* EditNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNotesView.swift; sourceTree = "<group>"; };
 		FBCC49282C3F692E0022F62C /* ListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCellView.swift; sourceTree = "<group>"; };
 		FBCC49292C3F692E0022F62C /* TextEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
@@ -205,6 +207,7 @@
 		FB3BF6232C3BB6D500A9406D /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				FBA9D6FB2C47A6C800BF7988 /* NotificationManager.swift */,
 				FBCC492F2C3F694B0022F62C /* Extensions.swift */,
 				FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */,
 				FBCC493A2C3F70F20022F62C /* AppError.swift */,
@@ -386,6 +389,7 @@
 				FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */,
 				FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */,
 				FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */,
+				FBA9D6FC2C47A6C800BF7988 /* NotificationManager.swift in Sources */,
 				FBA9D6ED2C467AD700BF7988 /* CellButtonEdit.swift in Sources */,
 				FBA9D6FA2C4784D800BF7988 /* ChartView.swift in Sources */,
 			);
@@ -546,6 +550,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesAnxiety/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera Permission";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Health Permission";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Health Permission";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Health Permission";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone Permission";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Gallery Permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -581,6 +588,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesAnxiety/Info.plist;
 				INFOPLIST_KEY_NSCameraUsageDescription = "Camera Permission";
+				INFOPLIST_KEY_NSHealthClinicalHealthRecordsShareUsageDescription = "Health Permission";
+				INFOPLIST_KEY_NSHealthShareUsageDescription = "Health Permission";
+				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "Health Permission";
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Microphone Permission";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Gallery Permission";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

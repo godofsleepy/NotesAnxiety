@@ -166,6 +166,6 @@ struct EditNotesView: View {
         let photoPath = saveImage(image)
         let audioPath = audioFilename?.path
         
-        vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: false)
+        vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: nil )
     }
 }
