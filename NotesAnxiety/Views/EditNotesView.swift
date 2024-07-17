@@ -13,36 +13,13 @@ struct EditNotesView: View {
     
     @EnvironmentObject var vm: NotesViewModel
     @State private var title: String = ""
-    @State var content: String = ""
+    @State private var content: String = ""
     @State private var showImagePicker = false
-    @State private var showAnxiety = false
     @State private var showCamera = false
     @State private var showAudioRecorder = false
     @State private var image: UIImage?
     @State private var audioFilename: URL?
     @State private var pinned = false
-    
-    @State private var isShowingTextFormatter = false
-    @State private var isShowingVoice = false
-    @State private var isShowingLocation = false
-    
-    @State var titleIsPressed = false
-    @State var headingIsPressed = false
-    @State var subHeadingIsPressed = false
-    @State var bodyIsPressed = false
-    @State var monostyledIsPressed = false
-    
-    @State var boldIsPressed = false
-    @State var italicIsPressed = false
-    @State var underlineIsPressed = false
-    @State var strikeThroughIsPressed = false
-        
-    @State var bulletIsPressed = false
-    @State var listIsPressed = false
-    @State var numberIsPressed = false
-    @State var alignLeftIsPressed = false
-    @State var alignRightIsPressed = false
-    @State private var currentValue1 = 50.0
     
     @FocusState private var contentEditorInFocus: Bool
     @State var suggestionPhotos = [JournalingSuggestion]()
@@ -61,7 +38,6 @@ struct EditNotesView: View {
 //                        .frame(maxHeight: 200)
 //                    }
                 }
-                StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
                 TextField("Title", text: $title, axis: .vertical)
                     .font(.title.bold())
                     .submitLabel(.next)
@@ -114,7 +90,6 @@ struct EditNotesView: View {
             }
         })
         .toolbar {
-            
             ToolbarItem(placement: .bottomBar, content: {
                 HStack{
                     Spacer()
@@ -145,25 +120,6 @@ struct EditNotesView: View {
 //                         await suggestion.content(forType: JournalingSuggestion.Photo.self)
 //                        print(suggestionPhotos.count)
                     }
-                    Button(action:{
-                        isShowingTextFormatter.toggle()
-                    }){
-                        Image(systemName: "textformat")
-                    }
-                    Button(action:{ 
-                        showAnxiety.toggle()
-                            
-    
-                    }){
-                    Image(systemName: "cloud.bolt.fill")
-                    }
-                    Button(action:{ isShowingLocation = true }){
-                        Image(systemName: "location")
-                    }
-                    Button(action:{}){
-                        Image(systemName: "doc")
-                    }
-                    
                     Button(action: { showImagePicker = true }) {
                         Image(systemName: "paperclip")
                     }
@@ -203,14 +159,6 @@ struct EditNotesView: View {
 
                 NotificationManager.shared.clearNotification()
             }
-        }
-        .sheet(isPresented: $showAnxiety) {
-            NavigationStack{
-                LogView(showAnxiety: $showAnxiety,value: $currentValue1, labels: "minimal")
-                    
-            }
-        
-            .presentationDetents([.medium])
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePickerComponent(sourceType: .photoLibrary, selectedImage: $image)

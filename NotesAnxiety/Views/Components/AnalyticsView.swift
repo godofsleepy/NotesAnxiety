@@ -49,7 +49,7 @@ struct AnalyticsView: View {
                     Text(data.count.description)
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    Text("for this \(period.rawValue)")
+                    Text("for this \(period)")
                         .font(.body)
                 }
                 .frame(maxWidth: .infinity,alignment: .leading)

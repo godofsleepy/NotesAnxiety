@@ -7,14 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5012B012C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5012AFF2C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld */; };
-		B5012B022C47F4D300C39BF9 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5012AFF2C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld */; };
-		B5B35EEB2C47F7CE00DB701E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */; };
-		B5B35EED2C47F7DB00DB701E /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EEC2C47F7DB00DB701E /* StatusView.swift */; };
-		B5B35EEF2C47F7F400DB701E /* StatusComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EEE2C47F7F400DB701E /* StatusComponent.swift */; };
-		B5B35EF12C47F80100DB701E /* CategoryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EF02C47F80100DB701E /* CategoryComponent.swift */; };
-		B5B35EF32C47F80E00DB701E /* LogComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EF22C47F80E00DB701E /* LogComponent.swift */; };
-		B5B35EF52C47F81A00DB701E /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EF42C47F81A00DB701E /* LogView.swift */; };
 		FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */; };
 		FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6142C3BB29300A9406D /* ContentView.swift */; };
 		FB3BF6172C3BB29400A9406D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6162C3BB29400A9406D /* Assets.xcassets */; };
@@ -32,6 +24,8 @@
 		FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E02C46268700BF7988 /* ImagePickerComponent.swift */; };
 		FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E22C4626AB00BF7988 /* AudioRecorderComponent.swift */; };
 		FBA9D6ED2C467AD700BF7988 /* CellButtonEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */; };
+		FBA9D6F02C46A39500BF7988 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6EE2C46A39500BF7988 /* NotesContainer.xcdatamodeld */; };
+		FBA9D6F12C46A39500BF7988 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6EE2C46A39500BF7988 /* NotesContainer.xcdatamodeld */; };
 		FBA9D6F42C47836500BF7988 /* AnxietyLevelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F32C47836500BF7988 /* AnxietyLevelType.swift */; };
 		FBA9D6F82C47843B00BF7988 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F72C47843B00BF7988 /* TimePeriod.swift */; };
 		FBA9D6FA2C4784D800BF7988 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F92C4784D800BF7988 /* ChartView.swift */; };
@@ -75,13 +69,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B5012B002C47F4CD00C39BF9 /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
-		B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
-		B5B35EEC2C47F7DB00DB701E /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
-		B5B35EEE2C47F7F400DB701E /* StatusComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusComponent.swift; sourceTree = "<group>"; };
-		B5B35EF02C47F80100DB701E /* CategoryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryComponent.swift; sourceTree = "<group>"; };
-		B5B35EF22C47F80E00DB701E /* LogComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogComponent.swift; sourceTree = "<group>"; };
-		B5B35EF42C47F81A00DB701E /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		FB3BF60F2C3BB29300A9406D /* NotesAnxiety.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesAnxiety.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAnxietyApp.swift; sourceTree = "<group>"; };
 		FB3BF6142C3BB29300A9406D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -102,6 +89,7 @@
 		FBA9D6E22C4626AB00BF7988 /* AudioRecorderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderComponent.swift; sourceTree = "<group>"; };
 		FBA9D6E42C4627ED00BF7988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButtonEdit.swift; sourceTree = "<group>"; };
+		FBA9D6EF2C46A39500BF7988 /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		FBA9D6F32C47836500BF7988 /* AnxietyLevelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyLevelType.swift; sourceTree = "<group>"; };
 		FBA9D6F72C47843B00BF7988 /* TimePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
 		FBA9D6F92C4784D800BF7988 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -215,12 +203,6 @@
 				FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */,
 				FBA9D6F92C4784D800BF7988 /* ChartView.swift */,
 				FBA9D6FD2C47B74700BF7988 /* AnalyticsView.swift */,
-				B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */,
-				B5B35EEC2C47F7DB00DB701E /* StatusView.swift */,
-				B5B35EEE2C47F7F400DB701E /* StatusComponent.swift */,
-				B5B35EF02C47F80100DB701E /* CategoryComponent.swift */,
-				B5B35EF22C47F80E00DB701E /* LogComponent.swift */,
-				B5B35EF42C47F81A00DB701E /* LogView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -282,7 +264,7 @@
 		FBCC49332C3F6CA70022F62C /* CoreData Container */ = {
 			isa = PBXGroup;
 			children = (
-				B5012AFF2C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld */,
+				FBA9D6EE2C46A39500BF7988 /* NotesContainer.xcdatamodeld */,
 			);
 			path = "CoreData Container";
 			sourceTree = "<group>";
@@ -390,27 +372,22 @@
 			files = (
 				FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */,
 				FB5CBA0E2C443450003DF098 /* TemporaryNoteModel.swift in Sources */,
-				B5B35EF32C47F80E00DB701E /* LogComponent.swift in Sources */,
-				B5B35EEF2C47F7F400DB701E /* StatusComponent.swift in Sources */,
 				FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */,
-				B5B35EF52C47F81A00DB701E /* LogView.swift in Sources */,
 				FBCC492C2C3F692E0022F62C /* ListCellView.swift in Sources */,
 				FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */,
 				FBA9D6F82C47843B00BF7988 /* TimePeriod.swift in Sources */,
-				B5B35EF12C47F80100DB701E /* CategoryComponent.swift in Sources */,
 				FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */,
 				FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */,
 				FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */,
 				FB5CBA0A2C441B2E003DF098 /* HistoryNotesView.swift in Sources */,
 				FB5CBA0C2C442E4A003DF098 /* ProgressState.swift in Sources */,
 				FBA9D6FE2C47B74700BF7988 /* AnalyticsView.swift in Sources */,
+				FBA9D6F02C46A39500BF7988 /* NotesContainer.xcdatamodeld in Sources */,
 				FBF68B8C2C446A8000689EC2 /* DataPointModel.swift in Sources */,
 				FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */,
-				B5012B012C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld in Sources */,
 				FBA9D6DF2C46218D00BF7988 /* PersistenceController.swift in Sources */,
 				FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */,
 				FBA9D6F42C47836500BF7988 /* AnxietyLevelType.swift in Sources */,
-				B5B35EED2C47F7DB00DB701E /* StatusView.swift in Sources */,
 				FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */,
 				FBF68B8A2C44686100689EC2 /* InsightView.swift in Sources */,
 				FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */,
@@ -419,7 +396,6 @@
 				FBA9D6FC2C47A6C800BF7988 /* NotificationManager.swift in Sources */,
 				FBA9D6ED2C467AD700BF7988 /* CellButtonEdit.swift in Sources */,
 				FBA9D6FA2C4784D800BF7988 /* ChartView.swift in Sources */,
-				B5B35EEB2C47F7CE00DB701E /* CategoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -429,7 +405,7 @@
 			files = (
 				FBA9D6CE2C46215B00BF7988 /* NotesWidgetBundle.swift in Sources */,
 				FBA9D6D22C46215B00BF7988 /* AppIntent.swift in Sources */,
-				B5012B022C47F4D300C39BF9 /* NotesContainer.xcdatamodeld in Sources */,
+				FBA9D6F12C46A39500BF7988 /* NotesContainer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -588,7 +564,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -627,7 +602,6 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -653,7 +627,6 @@
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -681,7 +654,6 @@
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -730,13 +702,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		B5012AFF2C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld */ = {
+		FBA9D6EE2C46A39500BF7988 /* NotesContainer.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				B5012B002C47F4CD00C39BF9 /* NotesContainer.xcdatamodel */,
+				FBA9D6EF2C46A39500BF7988 /* NotesContainer.xcdatamodel */,
 			);
-			currentVersion = B5012B002C47F4CD00C39BF9 /* NotesContainer.xcdatamodel */;
-			path = NotesContainer.xcdatamodeld;
+			currentVersion = FBA9D6EF2C46A39500BF7988 /* NotesContainer.xcdatamodel */;
+			name = NotesContainer.xcdatamodeld;
+			path = "/Users/rifatkhadafy/Project/NotesAnxiety/NotesAnxiety/Data/CoreData Container/NotesContainer.xcdatamodeld";
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
