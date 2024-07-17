@@ -50,7 +50,7 @@ struct NotesWidgetEntryView: View {
                 Text("Feeling Anxious Today?")
                     .font(.system(size: 21))
                     .fontWeight(.bold)
-                    .foregroundColor(.black)
+                    .foregroundColor(.labelPrimary)
                     .padding()
                 Spacer()
             }
@@ -58,7 +58,7 @@ struct NotesWidgetEntryView: View {
         }
         .containerBackground(for: .widget) {  // Apply containerBackground for widget
             LinearGradient(
-                gradient: Gradient(colors: [Color.white, Color.indigo]),
+                gradient: Gradient(colors: [Color.backgroundPrimary, Color.systemSevere]),
                 startPoint: .topLeading,
                 endPoint: .bottomTrailing
             )

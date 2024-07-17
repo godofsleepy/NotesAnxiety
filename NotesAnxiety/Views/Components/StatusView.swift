@@ -12,9 +12,8 @@ struct StatusView: View {
     var anxietyImage : String
     var anxietyLabel: String
     var anxietyCategory: [String]
-    @State private var bgRed : Double = 140
-    @State private var bgGreen : Double = 165
-    @State private var bgBlue : Double = 223
+    var anxietyColor: Color
+    @EnvironmentObject var vm: NotesViewModel
     var bgColor: Color
     var body: some View {
         ZStack {
@@ -28,21 +27,29 @@ struct StatusView: View {
             HStack(alignment: .top){
                     Image(systemName: anxietyImage)
                         .font(.system(size: 34))
-                        .foregroundColor(Color(red: bgRed / 255, green: bgGreen / 255, blue: bgBlue / 255))
+                        .foregroundColor(anxietyColor)
                     
                     VStack(alignment: .leading) {
-                        Text(formattedDate)
-                            .font(.system(size: 14))
-                            .foregroundColor(Color(red: bgRed / 255, green: bgGreen / 255, blue: bgBlue / 255))
+                        
+                        HStack {
+                            Text(formattedDate)
+                                .font(.system(size: 14))
+                                .foregroundColor(anxietyColor)
+                            Spacer()
+                            Button(action: {
+                                self.vm.temporaryAnxiety = nil
+                            }, label: {Image(systemName: "x.circle")})
+                            .foregroundStyle(anxietyColor)
+                        }
                         
                         Text(anxietyLabel)
                             .font(.system(size: 20))
                             .fontWeight(.semibold)
-                            .foregroundColor(Color(red: bgRed / 255, green: bgGreen / 255, blue: bgBlue / 255))
+                            .foregroundColor(anxietyColor)
                         
                         HStack {
                             ForEach(anxietyCategory, id: \.self) { category in
-                                StatusComponent(anxietyCategory: category, bgRed: self.bgRed, bgGreen: self.bgGreen, bgBlue: self.bgBlue)
+                                StatusComponent(anxietyCategory: category, anxietyColor: anxietyColor)
                             }
                         }
                         .padding(.top, -10)
@@ -61,5 +68,5 @@ struct StatusView: View {
 }
 
 #Preview {
-    StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
+    StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], anxietyColor: Color.systemMinimal, bgColor: Color.cardsMinimal)
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 enum AnxietyState{
-    case minimals
+    case minimal
     case mild
     case moderate
     case severe
@@ -19,10 +19,11 @@ struct LogComponent: View {
     var state: AnxietyState
     var body: some View {
         Image(systemName: imageName(for: state))
-            .font(.system(size: 58))
+            .font(.system(size: 100))
             .padding(.bottom)
             .foregroundColor(Color.white)
             .animation(Animation.linear, value: state)
+            .frame(width: 100, height: 100)
         HStack{
             Text(label)
                 .foregroundStyle(Color.white)
@@ -37,7 +38,7 @@ struct LogComponent: View {
     }
     private func imageName(for condition: AnxietyState) -> String {
             switch condition {
-            case .minimals:
+            case .minimal:
                 return "cloud.fill"
             case .mild:
                 return "cloud.rain.fill"
@@ -50,5 +51,5 @@ struct LogComponent: View {
 }
 
 #Preview {
-    LogComponent(label: "Test", state: .minimals)
+    LogComponent(label: "Minimal", state: .minimal)
 }

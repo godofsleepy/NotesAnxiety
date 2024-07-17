@@ -29,7 +29,7 @@ struct TextEditorView: View {
                 .border(.clear)
             
             if string.isEmpty {
-                Text("Content")
+                Text("How do you feel today?")
                     .font(.title3)
                     .foregroundColor(.gray)
                     .disabled(true)

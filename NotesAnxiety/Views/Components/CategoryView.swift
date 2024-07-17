@@ -13,13 +13,10 @@ struct CategoryView: View {
     @Binding var anxietyLevel: Double
     @State var valueCategory: [String] = []
     
-    var bgRed: Double
-    var bgGreen: Double
-    var bgBlue: Double
+    var anxietyColor: Color
 
     var body: some View {
         VStack(alignment: .center){
-            
             HStack{
                 Text("What do you think trigger this feeling?")
                     .fontWeight(.semibold)
@@ -30,10 +27,10 @@ struct CategoryView: View {
                 }){
                     Image(systemName: "x.circle.fill")
                         .font(.system(size: 22))
-                        .foregroundStyle(Color(red: 118/255, green: 118/255, blue: 128/255).opacity(0.32))
+                        .foregroundStyle(Color.gray)
                 }
-                
             }
+            .padding(.top)
             VStack{
                 VStackLayout(alignment: .center, spacing: 12){
                     VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 12 ){
@@ -72,7 +69,7 @@ struct CategoryView: View {
                 }
                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 40, trailing: 0))
                 Button(action: {
-                    vm.temporaryAnxiety = AnxietyTemporaryModel(anxietyLevel: anxietyLevel, categoryAnxiety: valueCategory)
+                    vm.temporaryAnxiety = AnxietyTemporaryModel(anxietyLevel: anxietyLevel, categoryAnxiety: valueCategory, anxietyColor: anxietyColor)
                     dismiss()
                     dismiss()
                 }, label: {
@@ -89,7 +86,7 @@ struct CategoryView: View {
         }
         .padding()
         .background(
-            RadialGradient(colors: [Color(red: bgRed/255, green: bgGreen/255, blue: bgBlue/255), Color.white], center: .center, startRadius: 5, endRadius: 400).opacity(0.75))
+            RadialGradient(colors: [anxietyColor, Color.backgroundSecondary], center: .center, startRadius: 5, endRadius: 300).opacity(0.75))
         .navigationBarBackButtonHidden()
         
     }

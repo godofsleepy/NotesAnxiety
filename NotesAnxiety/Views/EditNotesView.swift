@@ -47,7 +47,6 @@ struct EditNotesView: View {
     @FocusState private var contentEditorInFocus: Bool
     
     var body: some View {
-        
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 HStack{
@@ -61,11 +60,12 @@ struct EditNotesView: View {
 //                    }
                 }
                 if vm.temporaryAnxiety != nil {
-                    StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
+                    StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], anxietyColor: Color.systemMinimal ,bgColor: Color.cardsMinimal)
                 }
                 TextField("Title", text: $title, axis: .vertical)
                     .font(.title.bold())
                     .submitLabel(.next)
+                    .focused($contentEditorInFocus)
                     .onChange(of: title, {
                         guard let newValueLastChar = title.last else { return }
                         if newValueLastChar == "\n" {
@@ -95,28 +95,88 @@ struct EditNotesView: View {
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
         .navigationBarItems(trailing: HStack {
-            Group{
-                if(vm.updateProgressState == ProgressState.Loading){
-                    ProgressView()
-                } else if (vm.updateProgressState == ProgressState.Complete){
-                    Label("Saved", systemImage: "checkmark.circle.fill")
-                        .labelStyle(.titleAndIcon)
-
-                }
-            }.padding(.trailing, 2)
+//            Group{
+//                if(vm.updateProgressState == ProgressState.Loading){
+//                    ProgressView()
+//                } else if (vm.updateProgressState == ProgressState.Complete){
+//                    Label("Saved", systemImage: "checkmark.circle.fill")
+//                        .labelStyle(.titleAndIcon)
+//
+//                }
+//            }.padding(.trailing, 2)
             Menu {
+                ControlGroup{
+                    Button { } label: {
+                                Text("Share")
+                                Image(systemName: "square.and.arrow.up")
+                            }
+
+                            Button { } label: {
+                                Text("Pin")
+                                Image(systemName: "pin.fill")
+                            }
+
+                            Button { } label: {
+                                Text("Lock")
+                                Image(systemName: "lock.fill")
+                            }
+                }
                 NavigationLink(destination: InsightView(), label: {
                     Label("My Insight", systemImage: "chart.dots.scatter")
                 })
-                
+                Button(action: {}) {
+                    Label("Find in Note", systemImage: "magnifyingglass")
+                }
+                Button(action: {}) {
+                    Label("Move Note", systemImage: "folder")
+                }
+                Button(action: {}) {
+                    Label("Recent Note", systemImage: "clock")
+                }
+                Button(action: {}) {
+                    Label("Line & Grids", systemImage: "rectangle.split.3x3")
+                }
+                Button(action: {}) {
+                    Label("Attachment View", systemImage: "rectangle.3.group")
+                }
+                Button(role:.destructive, action: {
+                    if let note = vm.selectedNote {
+                        deleteNote(note)
+                    }
+                }) {
+                    Label("Delete", systemImage: "trash")
+                }
             } label: {
                 Label("", systemImage: "ellipsis.circle")
+            }
+            if contentEditorInFocus {
+                Button("Done") {
+                    contentEditorInFocus = false
+                }
             }
         })
         .toolbar {
             
             ToolbarItem(placement: .bottomBar, content: {
                 HStack{
+                    Button(action: { }) {
+                        Image(systemName: "textformat")
+                    }
+                    Spacer()
+                    Button(action: { showImagePicker = true }) {
+                        Image(systemName: "paperclip")
+                    }
+                    Spacer()
+                    Button(action:{
+                        showAnxiety.toggle()
+                    }){
+                    Image(systemName: "cloud.bolt.fill")
+                    }
+                    Spacer()
+                    Button(action: {
+                    }) {
+                        Image(systemName: "pencil.tip.crop.circle")
+                    }
                     Spacer()
                     Button(action: {
                         // Create New Note
@@ -151,24 +211,23 @@ struct EditNotesView: View {
 //                    }){
 //                        Image(systemName: "textformat")
 //                    }
-                    Button(action:{ 
+                    Spacer()
+                    Button(action: { showImagePicker = true }) {
+                        Image(systemName: "paperclip")
+                    }
+                    Spacer()
+                    Button(action:{
                         showAnxiety.toggle()
                     }){
                     Image(systemName: "cloud.bolt.fill")
                     }
-                    Button(action: { showImagePicker = true }) {
-                        Image(systemName: "paperclip")
-                    }
+                    Spacer()
                     Button(action: { showCamera = true }) {
                         Image(systemName: "camera")
                     }
+                    Spacer()
                     Button(action: { showAudioRecorder = true }) {
                         Image(systemName: "mic")
-                    }
-                    Spacer()
-                   
-                    Button("Done") {
-                        self.hideKeyboard()
                     }
                 }
             }
@@ -212,6 +271,7 @@ struct EditNotesView: View {
         }
         .sheet(isPresented: $showAudioRecorder) {
             AudioRecorderComponent(audioFilename: $audioFilename)
+                .presentationDetents([.medium])
         }
         
     }
@@ -238,5 +298,13 @@ struct EditNotesView: View {
         let audioPath = audioFilename?.path
         
         vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: pinned )
+    }
+    private func deleteNote(_ note: NoteEntity) {
+        Task {
+            await vm.deleteNote(note)
+            DispatchQueue.main.async {
+                dismiss()
+            }
+        }
     }
 }

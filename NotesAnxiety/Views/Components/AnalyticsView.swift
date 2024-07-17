@@ -36,8 +36,12 @@ struct AnalyticsView: View {
                 Spacer()
             }
             .padding()
-            .background(Color(UIColor.systemGray5))
+            .background(Color.cardsModerate)
             .cornerRadius(8)
+//            .overlay(
+//                RoundedRectangle(cornerRadius: 8)
+//                    .stroke(Color.cardsSevere, lineWidth: 1)
+//            )
             
             VStack {
                 VStack(alignment: .leading) {
@@ -48,13 +52,17 @@ struct AnalyticsView: View {
                     Text(data.count.description)
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    Text("for this \(period)")
+                    Text("for this \(period.rawValue.lowercased())")
                         .font(.body)
                 }
                 .frame(maxWidth: .infinity,alignment: .leading)
                 .padding()
-                .background(Color(UIColor.systemGray6))
+                .background(Color.cardsMild)
                 .cornerRadius(8)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.cardsMild, lineWidth: 1)
+                )
                 
                 Spacer()
                 
@@ -70,8 +78,12 @@ struct AnalyticsView: View {
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding()
-                .background(Color(UIColor.systemGray6))
+                .background(Color.cardsMild)
                 .cornerRadius(8)
+//                .overlay(
+//                    RoundedRectangle(cornerRadius: 8)
+//                        .stroke(Color.cardsMild, lineWidth: 1)
+//                )
                 
             }
         }

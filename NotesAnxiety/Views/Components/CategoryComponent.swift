@@ -26,10 +26,10 @@ struct CategoryComponent: View {
             Text(title)
                 .font(.system(size: 14))
                 .padding(EdgeInsets(top: 6, leading: 14, bottom: 6, trailing: 14))
-                .foregroundStyle(Color.black)
+                .foregroundStyle(value.contains(title) ? Color.white : Color.black)
                 .background(
                     RoundedRectangle(cornerRadius: 25.0)
-                        .fill(value.contains(title) ? Color.red : Color.white)
+                        .fill(value.contains(title) ? Color.gray : Color.white)
                         .stroke(Color.gray, lineWidth: 1)
                     
                 )

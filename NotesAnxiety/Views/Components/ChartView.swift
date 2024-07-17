@@ -26,7 +26,7 @@ struct ChartView: View {
                     .padding(.top)
                 Text(formattedDateInterval(interval: dateRange))
                     .font(.callout)
-                    .foregroundStyle(.black.opacity(0.5))
+                    .foregroundStyle(Color("LabelPrimary"))
                     .padding(.leading)
             }
             .frame(maxWidth:.infinity, alignment: .leading)
@@ -36,32 +36,32 @@ struct ChartView: View {
                     x: .value("Period", entry.timestamp!),
                     y: .value("Average Anxiety", entry.anxietyLevel)
                 )
-                .foregroundStyle(Color.blue)
+                .foregroundStyle(Color("SystemModerate"))
                 .symbol(Circle())
             }
             .chartXAxis {
                 AxisMarks( preset: .extended, position: .bottom, values: getXScaleDomain(for: period)) { value in
                     AxisGridLine()
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color("LabelPrimary"))
                     AxisTick()
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color("LabelPrimary"))
                     AxisValueLabel {
                         Text(getFormattedLabel(for: value.as(Date.self)!, period: period))
                     }
-                    .foregroundStyle(Color.black)
+                    .foregroundStyle(Color("LabelPrimary"))
                 }
                 
             }
             .chartYAxis {
                 AxisMarks(preset: .aligned, position: .leading) { value in
                     AxisGridLine()
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color("LabelPrimary"))
                     AxisTick()
-                        .foregroundStyle(Color.black)
+                        .foregroundStyle(Color("LabelPrimary"))
                     AxisValueLabel {
                         Text(AnxietyLevelType.label(for: value.as(Int.self)!))
                     }
-                    .foregroundStyle(Color.black)
+                    .foregroundStyle(Color("LabelPrimary"))
                 }
                 
             }
@@ -71,7 +71,7 @@ struct ChartView: View {
             
         }
         .frame(height: 350, alignment: .top)
-        .background(.white)
+        .background(Color.backgroundSecondary)
         .cornerRadius(10)
         .shadow(color: .black.opacity(0.15), radius: 5)
         .padding(.top, 10)
