@@ -14,6 +14,7 @@ class NotesViewModel: ObservableObject {
     let localDataService : LocalDataService
     @Published var notes: [NoteEntity] = []
     @Published var selectedNote: NoteEntity?
+    @Published var prefferedColumn: NavigationSplitViewColumn = .detail
     @Published var isDataLoaded = false
     @Published var preferredColumn = NavigationSplitViewColumn.detail
     @Published var updateProgressState = ProgressState.Default

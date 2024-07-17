@@ -11,6 +11,7 @@ import JournalingSuggestions
 struct EditNotesView: View {
     @Environment(\.dismiss) private var dismiss
     
+    
     @EnvironmentObject var vm: NotesViewModel
     @State private var title: String = ""
     @State var content: String = ""
@@ -107,9 +108,49 @@ struct EditNotesView: View {
                 }
             }.padding(.trailing, 2)
             Menu {
+                ControlGroup{
+                    Button(action: {
+                        togglePin()
+                    }) {
+                        Label(pinned ? "Unpin" : "Pin", systemImage: pinned ? "pin.slash.fill" : "pin.fill")
+                    }
+                    Button(action: {
+                        togglePin()
+                    }) {
+                        Label("Music", systemImage:"music.note")
+                    }
+                    Button(action: {
+                        togglePin()
+                    }) {
+                        Label("Lock",systemImage:"lock.fill")
+                    }
+                }
+
                 NavigationLink(destination: InsightView(), label: {
                     Label("My Insight", systemImage: "chart.dots.scatter")
                 })
+                NavigationLink(destination: FindInNotesView(), label: {
+                    Label("Find in Note", systemImage: "magnifyingglass")
+                })
+                NavigationLink(destination: FindInNotesView(), label: {
+                    Label("Move Note", systemImage: "folder")
+                })
+                NavigationLink(destination: RecentView(), label: {
+                    Label("Recent Note", systemImage: "clock")
+                })
+                NavigationLink(destination: FindInNotesView(), label: {
+                    Label("Line & Grids", systemImage: "tablecells")
+                })
+                NavigationLink(destination: FindInNotesView(), label: {
+                    Label("Attachment View", systemImage: "square.grid.3x2")
+                })
+                Button(action: {
+                    if let note = vm.selectedNote {
+                        deleteNote(note)
+                    }
+                }) {
+                    Label("Delete", systemImage: "trash")
+                }
                 
             } label: {
                 Label("", systemImage: "ellipsis.circle")
@@ -250,5 +291,19 @@ struct EditNotesView: View {
         let audioPath = audioFilename?.path
         
         vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: pinned, anxiety: anxietyLevel)
+    }
+    private func togglePin() {
+        if let note = vm.selectedNote {
+            vm.togglePin(for: note)
+            pinned.toggle()
+        }
+    }
+    private func deleteNote(_ note: NoteEntity) {
+        Task {
+            await vm.deleteNote(note)
+            DispatchQueue.main.async {
+                dismiss()
+            }
+        }
     }
 }
