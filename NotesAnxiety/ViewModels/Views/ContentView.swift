@@ -6,23 +6,31 @@
 //
 
 import SwiftUI
-import HealthKit
 
 struct ContentView: View {
     @EnvironmentObject var notesViewModel: NotesViewModel
+    @State private var preferredColumn = NavigationSplitViewColumn.detail
+
 
     var body: some View {
-//        Keyboard(txtF: TextFormatter())
-        
-        Group {
-            if notesViewModel.isDataLoaded {
-                NotesView()
-            } else {
-                ProgressView("Loading...")
+        NavigationSplitView(preferredCompactColumn: $preferredColumn) {
+            Group{
+                if (notesViewModel.isDataLoaded){
+                    HistoryNotesView()
+                } else {
+                    ProgressView("Loading...")
+                }
+            }.task {
+                await notesViewModel.fetchNotes()
             }
-        }.task {
-            await notesViewModel.fetchNotes()
+        } detail: {
+            NavigationStack{
+                EditNotesView()
+            }
         }
+        .onReceive(notesViewModel.$preferredColumn, perform: { changes in
+            preferredColumn = changes
+        })
     }
 }
 

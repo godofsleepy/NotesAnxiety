@@ -11,21 +11,31 @@ import CoreData
 protocol LocalDataService {
     func fetchNotes(searchText: String) async throws -> [NoteEntity]
     func createNote() async -> NoteEntity
-    func updateNote(_ note: NoteEntity, title: String, content: String) async
+    func updateNote(_ note: NoteEntity, temporaryNote: TemporaryNoteModel) async
+    func togglePin(for note: NoteEntity) async
     func deleteNote(_ note: NoteEntity) async
 }
 
 class LocalDataServiceImpl : LocalDataService {
+        
     let notesContainer: NSPersistentContainer
     
     init() {
         notesContainer = NSPersistentContainer(name: "NotesContainer")
         notesContainer.loadPersistentStores { (storeDescription, error) in
-                    if let error = error as NSError? {
-                        fatalError("Unresolved error \(error), \(error.userInfo)")
-                    }
-                }
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
+        }
     }
+    
+    func togglePin(for note: NoteEntity) async {
+        notesContainer.viewContext.performAndWait {
+            note.pinned.toggle()
+            saveContext()
+        }
+    }
+
     
     func createNote() async -> NoteEntity {
         notesContainer.viewContext.performAndWait {
@@ -38,10 +48,14 @@ class LocalDataServiceImpl : LocalDataService {
         }
     }
     
-    func updateNote(_ note: NoteEntity, title: String, content: String) async {
+    func updateNote(_ note: NoteEntity, temporaryNote: TemporaryNoteModel) async {
         notesContainer.viewContext.performAndWait {
-            note.title = title
-            note.content = content
+            note.title = temporaryNote.title
+            note.content = temporaryNote.content
+            note.audioPath = temporaryNote.audiotPath
+            note.photoPath = temporaryNote.photoPath
+            note.videoPath = temporaryNote.videoPath
+            note.pinned = temporaryNote.pinned
             saveContext()
         }
     }
