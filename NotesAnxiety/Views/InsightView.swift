@@ -82,82 +82,8 @@ struct InsightView: View {
                 
                 
                 ChartView(data: sampleData, period: selectedPeriod)
-                GeometryReader { geometry in
-                    HStack( spacing: 16) {
-                        VStack(alignment: .leading) {
-                            Text("Your anxiety this week most triggered by:")
-                                .font(.headline)
-                                .padding(.bottom, 8)
-                            
-                            VStack {
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text("60%")
-                                        .font(.largeTitle)
-                                        .fontWeight(.bold)
-                                    Text("Parents")
-                                        .font(.body)
-                                }
-                                Spacer()
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text("30%")
-                                        .font(.largeTitle)
-                                        .fontWeight(.bold)
-                                    Text("Partner")
-                                        .font(.body)
-                                }
-                                Spacer()
-                                VStack(alignment: .leading, spacing: 8) {
-                                    Text("10%")
-                                        .font(.largeTitle)
-                                        .fontWeight(.bold)
-                                    Text("Others")
-                                        .font(.body)
-                                }
-                            }
-                            .padding()
-                            .background(Color(UIColor.systemGray6))
-                            .cornerRadius(8)
-                        }
-                        .padding()
-                        .background(Color(UIColor.systemGray5))
-                        .cornerRadius(8)
-                        
-                        VStack {
-                            VStack(alignment: .leading) {
-                                Text("Your total record is")
-                                    .font(.headline)
-                                Text("10")
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
-                                Text("for this week")
-                                    .font(.body)
-                            }
-                            .padding()
-                            .background(Color(UIColor.systemGray6))
-                            .cornerRadius(8)
-                            
-                            Spacer()
-                            
-                            VStack(alignment: .leading) {
-                                Text("Last check in")
-                                    .font(.headline)
-                                Text("1")
-                                    .font(.largeTitle)
-                                    .fontWeight(.bold)
-                                Text("day ago")
-                                    .font(.body)
-                            }
-                            .padding()
-                            .background(Color(UIColor.systemGray6))
-                            .cornerRadius(8)
-                        }
-                        .background(.red)
-                        .frame(height: geometry.size.height)
-                        .padding(.horizontal)
-                    }
-                }
-                
-                .padding()
+                AnalyticsView(data: sampleData, period: selectedPeriod)
+                .padding(.top)
                 Spacer()
             }
             .padding(.horizontal, 10)
