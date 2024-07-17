@@ -130,6 +130,7 @@ struct EditNotesView: View {
                     self.audioFilename = URL(fileURLWithPath: audioPath)
                 }
 
+                NotificationManager.shared.clearNotification()
             }
         }
         .sheet(isPresented: $showImagePicker) {

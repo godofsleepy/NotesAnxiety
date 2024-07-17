@@ -12,6 +12,10 @@ struct NotesAnxietyApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .task {
+                    NotificationManager.shared.requestAuthorization()
+                    NotificationManager.shared.scheduleNotification(trigger: .calendar)
+                }
                 .environmentObject(DependencyInjection.shared.notesViewModel())
                 
         }
