@@ -1,14 +1,7 @@
-//
-//  AudioRecorderComponent.swift
-//  NotesAnxiety
-//
-//  Created by Rifat Khadafy on 16/07/24.
-//
-
 import SwiftUI
-import AVKit
+import AVFoundation
 
-struct AudioRecorderComponent: View {
+struct AudioRecorderView: View {
     @Binding var audioFilename: URL?
     @State private var recording = false
     @State private var audioRecorder: AVAudioRecorder?
