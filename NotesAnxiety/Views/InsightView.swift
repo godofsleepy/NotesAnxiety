@@ -15,7 +15,7 @@ struct InsightView: View {
     var body: some View {
         ScrollView {
             VStack {
-                Picker("Select Period", selection: $selectedPeriod) {
+                Picker(NSLocalizedString("Select Period", comment: ""), selection: $selectedPeriod) {
                     ForEach(TimePeriod.allCases, id: \.self) { period in
                         Text(period.rawValue).tag(period)
                     }

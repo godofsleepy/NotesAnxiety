@@ -19,7 +19,7 @@ struct ChartView: View {
         
         VStack {
             Group{
-                Text("My Anxiety Record")
+                Text(NSLocalizedString("My Anxiety Record", comment: ""))
                     .font(.title2)
                     .fontWeight(.bold)
                     .padding(.leading)

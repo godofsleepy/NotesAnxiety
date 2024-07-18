@@ -64,7 +64,7 @@ struct EditNotesView: View {
                     StatusView(date: anxietyLevel!.createdAt, anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: AnxietyLevelType.from(average: anxietyLevel!.anxietyLevel).rawValue, anxietyCategory: anxietyLevel!.categoryAnxiety, anxietyColor: AnxietyLevelType.color(anxiety: anxietyLevel!.anxietyLevel),
                                bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
                 }
-                TextField("Title", text: $title, axis: .vertical)
+                TextField(NSLocalizedString("Title", comment: "Greeting"), text: $title, axis: .vertical)
                     .font(.title.bold())
                     .submitLabel(.next)
                     .focused($contentEditorInFocus)
@@ -124,7 +124,7 @@ struct EditNotesView: View {
                             }
                 }
                 NavigationLink(destination: InsightView(), label: {
-                    Label("My Insight", systemImage: "chart.dots.scatter")
+                    Label(NSLocalizedString("My Insight", comment: "Greeting"), systemImage: "chart.dots.scatter")
                 })
                 Button(action: {}) {
                     Label("Find in Note", systemImage: "magnifyingglass")
@@ -146,7 +146,7 @@ struct EditNotesView: View {
                         deleteNote(note)
                     }
                 }) {
-                    Label("Delete", systemImage: "trash")
+                    Label(NSLocalizedString("Delete", comment: "Greeting"), systemImage: "trash")
                 }
             } label: {
                 Label("", systemImage: "ellipsis.circle")

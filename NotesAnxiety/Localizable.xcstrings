@@ -1,0 +1,270 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "" : {
+
+    },
+    "%@" : {
+
+    },
+    "%lld%%" : {
+
+    },
+    "Anxiety" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kecemasan"
+          }
+        }
+      }
+    },
+    "Attachment View" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attachment View"
+          }
+        }
+      }
+    },
+    "Average Anxiety" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Rata-rata kecemasan"
+          }
+        }
+      }
+    },
+    "Choose how you're feeling right now" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagaimana perasaanmu saat ini?"
+          }
+        }
+      }
+    },
+    "day ago" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "hari yang lalu"
+          }
+        }
+      }
+    },
+    "Delete" : {
+      "comment" : "Greeting",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hapus"
+          }
+        }
+      }
+    },
+    "Done" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selesai"
+          }
+        }
+      }
+    },
+    "FileNotFound" : {
+      "comment" : "The requested file was not found"
+    },
+    "Find in Note" : {
+
+    },
+    "for this %@" : {
+
+    },
+    "History" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Riwayat"
+          }
+        }
+      }
+    },
+    "How do you feel today?" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bagaimana perasaanmu hari ini?"
+          }
+        }
+      }
+    },
+    "InvalidInput" : {
+      "comment" : "The input provided is invalid"
+    },
+    "Last check in" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Terakhir check in"
+          }
+        }
+      }
+    },
+    "Line & Grids" : {
+
+    },
+    "Loading..." : {
+
+    },
+    "Lock" : {
+
+    },
+    "Move Note" : {
+
+    },
+    "My Anxiety Record" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan Kecemasanku"
+          }
+        }
+      }
+    },
+    "My Insight" : {
+      "comment" : "Greeting",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pengalamanku"
+          }
+        }
+      }
+    },
+    "NetworkError" : {
+      "comment" : "Network error occurred"
+    },
+    "Next" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Selanjutnya"
+          }
+        }
+      }
+    },
+    "Period" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Periode"
+          }
+        }
+      }
+    },
+    "Pin" : {
+
+    },
+    "Play Recording" : {
+
+    },
+    "Recent Note" : {
+
+    },
+    "Select Period" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pilih Periode"
+          }
+        }
+      }
+    },
+    "Share" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Share"
+          }
+        }
+      }
+    },
+    "Start Recording" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mulai Merekam"
+          }
+        }
+      }
+    },
+    "Stop Recording" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Berhenti Merekam"
+          }
+        }
+      }
+    },
+    "Title" : {
+      "comment" : "Greeting",
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Judul"
+          }
+        }
+      }
+    },
+    "Unpin" : {
+
+    },
+    "What do you think trigger this feeling?" : {
+
+    },
+    "Your anxiety this week most triggered by:" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kecemasanmu ... ini paling banyak dipengaruhi oleh"
+          }
+        }
+      }
+    },
+    "Your total record is" : {
+      "localizations" : {
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Total catatanmu adalah"
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

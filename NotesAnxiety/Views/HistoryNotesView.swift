@@ -51,7 +51,7 @@ struct HistoryNotesView: View {
                                     Button(role: .destructive) {
                                         deleteNote(in: header, at: IndexSet(integer: notes.firstIndex(of: note)!))
                                     } label: {
-                                        Label("Delete", systemImage: "trash")
+                                        Label(NSLocalizedString("Delete", comment: ""), systemImage: "trash")
                                     }
                                 }
                                 .swipeActions(edge: .leading, allowsFullSwipe: false) {
@@ -71,7 +71,7 @@ struct HistoryNotesView: View {
                 }
             }
             .id(UUID())
-            .navigationTitle("History")
+            .navigationTitle(NSLocalizedString("History", comment: ""))
             .searchable(text: $searchText)
             .onChange(of: searchText) {
                 vm.searchNotes(with: searchText)

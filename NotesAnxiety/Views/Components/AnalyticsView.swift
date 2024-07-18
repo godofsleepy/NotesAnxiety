@@ -16,7 +16,7 @@ struct AnalyticsView: View {
         
         HStack( spacing: 16) {
             VStack(alignment: .leading) {
-                Text("Your anxiety this week most triggered by:")
+                Text(NSLocalizedString("Your anxiety this week most triggered by:", comment: ""))
                     .font(.headline)
                     .padding(.bottom, 8)
                     .fixedSize(horizontal: false, vertical: true)
@@ -45,7 +45,7 @@ struct AnalyticsView: View {
             
             VStack {
                 VStack(alignment: .leading) {
-                    Text("Your total record is")
+                    Text(NSLocalizedString("Your total record is", comment: ""))
                         .lineLimit(nil)
                         .fixedSize(horizontal: false, vertical: true)
                         .font(.headline)
@@ -68,12 +68,12 @@ struct AnalyticsView: View {
                 
                 
                 VStack(alignment: .leading) {
-                    Text("Last check in")
+                    Text(NSLocalizedString("Last check in", comment: ""))
                         .font(.headline)
                     Text(data.isEmpty ? "-" : daysPassed(from: data.last!.timestamp!)!.description)
                         .font(.largeTitle)
                         .fontWeight(.bold)
-                    Text("day ago")
+                    Text(NSLocalizedString("day ago", comment: ""))
                         .font(.body)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

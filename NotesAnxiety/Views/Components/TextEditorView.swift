@@ -29,7 +29,7 @@ struct TextEditorView: View {
                 .border(.clear)
             
             if string.isEmpty {
-                Text("How do you feel today?")
+                Text(NSLocalizedString("How do you feel today?", comment: ""))
                     .font(.title3)
                     .foregroundColor(.gray)
                     .disabled(true)
