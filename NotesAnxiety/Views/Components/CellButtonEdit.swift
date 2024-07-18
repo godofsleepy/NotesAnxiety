@@ -20,7 +20,8 @@ struct CellButtonEdit: View {
                 audioPath: note.audioPath,
                 videoPath: note.videoPath,
                 photoPath: note.photoPath,
-                pinned: !note.pinned
+                pinned: !note.pinned,
+                anxiety: AnxietyTemporaryModel(anxietyLevel: note.anxietyLevel, categoryAnxiety: note.categoryAnxiety!.split(separator: ",").map(String.init))
             )
         } label: {
             Label(note.pinned ? "Unpin" : "Pin", systemImage: note.pinned ? "pin.slash" : "pin")

@@ -59,7 +59,7 @@ struct ChartView: View {
                     AxisTick()
                         .foregroundStyle(Color("LabelPrimary"))
                     AxisValueLabel {
-                        Text(AnxietyLevelType.label(for: value.as(Int.self)!))
+                        Text(AnxietyLevelType.from(average: Double(value.as(Int.self)!)).rawValue)
                     }
                     .foregroundStyle(Color("LabelPrimary"))
                 }
