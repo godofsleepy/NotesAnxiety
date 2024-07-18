@@ -48,7 +48,7 @@ class NotesViewModel: ObservableObject {
     }
 
     func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool?, anxiety: AnxietyTemporaryModel?) {
-        if title == selectedNote?.title && content == selectedNote?.content, audioPath == selectedNote?.audioPath && videoPath == selectedNote?.videoPath && photoPath == selectedNote?.photoPath && pinned == selectedNote?.pinned {
+        if title == selectedNote?.title && content == selectedNote?.content, audioPath == selectedNote?.audioPath && videoPath == selectedNote?.videoPath && photoPath == selectedNote?.photoPath && pinned == selectedNote?.pinned  {
             return
         }
         updateProgressState = ProgressState.Loading

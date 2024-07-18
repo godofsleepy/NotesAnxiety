@@ -62,7 +62,11 @@ struct EditNotesView: View {
                 }
                 if anxietyLevel != nil {
                     StatusView(date: anxietyLevel!.createdAt, anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: AnxietyLevelType.from(average: anxietyLevel!.anxietyLevel).rawValue, anxietyCategory: anxietyLevel!.categoryAnxiety, anxietyColor: AnxietyLevelType.color(anxiety: anxietyLevel!.anxietyLevel),
-                               bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
+                               bgColor: Color(red: 99/255, green: 124/255, blue: 192/255), onDelete: {
+                        vm.temporaryAnxiety = nil
+                        anxietyLevel = nil
+                        updateNote(title: title, content: content)
+                    })
                 }
                 TextField(NSLocalizedString("Title", comment: "Greeting"), text: $title, axis: .vertical)
                     .font(.title.bold())

@@ -15,6 +15,7 @@ struct StatusView: View {
     var anxietyColor: Color
     @EnvironmentObject var vm: NotesViewModel
     var bgColor: Color
+    var onDelete: () -> Void
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
@@ -36,9 +37,7 @@ struct StatusView: View {
                                 .font(.system(size: 14))
                                 .foregroundColor(anxietyColor)
                             Spacer()
-                            Button(action: {
-                                self.vm.temporaryAnxiety = nil
-                            }, label: {Image(systemName: "x.circle")})
+                            Button(action: onDelete, label: {Image(systemName: "x.circle")})
                             .foregroundStyle(anxietyColor)
                         }
                         
@@ -47,12 +46,14 @@ struct StatusView: View {
                             .fontWeight(.semibold)
                             .foregroundColor(anxietyColor)
                         
-                        HStack {
-                            ForEach(anxietyCategory, id: \.self) { category in
-                                StatusComponent(anxietyCategory: category, anxietyColor: anxietyColor)
+                        ScrollView(.horizontal,showsIndicators: false) {
+                            HStack {
+                                ForEach(anxietyCategory, id: \.self) { category in
+                                    StatusComponent(anxietyCategory: category, anxietyColor: anxietyColor)
+                                }
                             }
-                        }
-                        .padding(.top, -10)
+
+                        }                        .padding(.top, -10)
                     }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -67,6 +68,6 @@ struct StatusView: View {
     }
 }
 
-#Preview {
-    StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], anxietyColor: Color.systemMinimal, bgColor: Color.cardsMinimal)
-}
+//#Preview {
+//    StatusView(date: Date(), anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: "Mild Anxiety", anxietyCategory: ["Family", "Test"], anxietyColor: Color.systemMinimal, bgColor: Color.cardsMinimal)
+//}

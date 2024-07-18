@@ -39,6 +39,7 @@
 		FBA9D6FE2C47B74700BF7988 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6FD2C47B74700BF7988 /* AnalyticsView.swift */; };
 		FBA9D71A2C48361000BF7988 /* AnxietyTemporaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D7192C48361000BF7988 /* AnxietyTemporaryModel.swift */; };
 		FBA9D71C2C48A01C00BF7988 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FBA9D71B2C48A01C00BF7988 /* Localizable.xcstrings */; };
+		FBA9D71E2C48A7B300BF7988 /* WrapStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D71D2C48A7B300BF7988 /* WrapStack.swift */; };
 		FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49272C3F692E0022F62C /* EditNotesView.swift */; };
 		FBCC492C2C3F692E0022F62C /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49282C3F692E0022F62C /* ListCellView.swift */; };
 		FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49292C3F692E0022F62C /* TextEditorView.swift */; };
@@ -111,6 +112,7 @@
 		FBA9D6FD2C47B74700BF7988 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		FBA9D7192C48361000BF7988 /* AnxietyTemporaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyTemporaryModel.swift; sourceTree = "<group>"; };
 		FBA9D71B2C48A01C00BF7988 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		FBA9D71D2C48A7B300BF7988 /* WrapStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapStack.swift; sourceTree = "<group>"; };
 		FBCC49272C3F692E0022F62C /* EditNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNotesView.swift; sourceTree = "<group>"; };
 		FBCC49282C3F692E0022F62C /* ListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCellView.swift; sourceTree = "<group>"; };
 		FBCC49292C3F692E0022F62C /* TextEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				B5B35EF02C47F80100DB701E /* CategoryComponent.swift */,
 				B5B35EF22C47F80E00DB701E /* LogComponent.swift */,
 				B5B35EF42C47F81A00DB701E /* LogView.swift */,
+				FBA9D71D2C48A7B300BF7988 /* WrapStack.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				B5012B012C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld in Sources */,
 				FBA9D6DF2C46218D00BF7988 /* PersistenceController.swift in Sources */,
 				FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */,
+				FBA9D71E2C48A7B300BF7988 /* WrapStack.swift in Sources */,
 				FBA9D6F42C47836500BF7988 /* AnxietyLevelType.swift in Sources */,
 				B5B35EED2C47F7DB00DB701E /* StatusView.swift in Sources */,
 				FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */,
