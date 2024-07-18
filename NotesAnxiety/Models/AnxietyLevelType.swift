@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 enum AnxietyLevelType: String, Codable {
     case minimal = "Minimal"
@@ -43,6 +44,21 @@ extension AnxietyLevelType {
             return .severe
         default:
             return .empty
+        }
+    }
+    
+    static func color(anxiety: Double) -> Color {
+        switch anxiety {
+        case 0..<1.5:
+            return Color("SystemSevere")
+        case 1.5..<2.5:
+            return  Color("SystemMild")
+        case 2.5..<3.5:
+            return Color("SystemModerate")
+        case 3.5...4:
+            return Color("SystemMinimal")
+        default:
+            return Color.white
         }
     }
 }

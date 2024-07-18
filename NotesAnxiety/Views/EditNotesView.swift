@@ -61,7 +61,7 @@ struct EditNotesView: View {
 //                    }
                 }
                 if anxietyLevel != nil {
-                    StatusView(date: anxietyLevel!.createdAt, anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: AnxietyLevelType.from(average: anxietyLevel!.anxietyLevel).rawValue, anxietyCategory: anxietyLevel!.categoryAnxiety,
+                    StatusView(date: anxietyLevel!.createdAt, anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: AnxietyLevelType.from(average: anxietyLevel!.anxietyLevel).rawValue, anxietyCategory: anxietyLevel!.categoryAnxiety, anxietyColor: AnxietyLevelType.color(anxiety: anxietyLevel!.anxietyLevel),
                                bgColor: Color(red: 99/255, green: 124/255, blue: 192/255))
                 }
                 TextField("Title", text: $title, axis: .vertical)
@@ -250,7 +250,8 @@ struct EditNotesView: View {
                 self.anxietyLevel = note.anxietyLevel != 0.0 ?
                     AnxietyTemporaryModel(
                         anxietyLevel: note.anxietyLevel,
-                        categoryAnxiety: note.categoryAnxiety?.isEmpty == false ? note.categoryAnxiety!.split(separator: ",").map(String.init) : []
+                        categoryAnxiety: note.categoryAnxiety?.isEmpty == false ? note.categoryAnxiety!.split(separator: ",").map(String.init) : [],
+                        createdAt: note.timestamp ?? Date(), anxietyColor: AnxietyLevelType.color(anxiety: note.anxietyLevel)
                     ) : nil
                 
                 if let photoPath = note.photoPath, let imageData = try? Data(contentsOf: URL(fileURLWithPath: photoPath)) {

@@ -6,11 +6,11 @@
 //
 
 import Foundation
-import SwiftUICore
+import SwiftUI
 
 struct AnxietyTemporaryModel {
     let anxietyLevel: Double
     let categoryAnxiety: [String]
-    let createdAt = Date()
+    var createdAt = Date()
     let anxietyColor: Color
 }

@@ -21,7 +21,7 @@ struct CellButtonEdit: View {
                 videoPath: note.videoPath,
                 photoPath: note.photoPath,
                 pinned: !note.pinned,
-                anxiety: AnxietyTemporaryModel(anxietyLevel: note.anxietyLevel, categoryAnxiety: note.categoryAnxiety!.split(separator: ",").map(String.init))
+                anxiety: AnxietyTemporaryModel(anxietyLevel: note.anxietyLevel, categoryAnxiety: note.categoryAnxiety!.split(separator: ",").map(String.init), anxietyColor: AnxietyLevelType.color(anxiety: note.anxietyLevel))
             )
         } label: {
             Label(note.pinned ? "Unpin" : "Pin", systemImage: note.pinned ? "pin.slash" : "pin")
