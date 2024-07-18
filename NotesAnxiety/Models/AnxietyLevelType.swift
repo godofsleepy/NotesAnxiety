@@ -47,6 +47,22 @@ extension AnxietyLevelType {
         }
     }
     
+    static func image(anxiety: Double) -> String? {
+        switch anxiety {
+        case 0..<1.5:
+            return "cloud.fill"
+        case 1.5..<2.5:
+            return "cloud.rain.fill"
+        case 2.5..<3.5:
+            return "cloud.heavyrain.fill"
+        case 3.5...4:
+            return "cloud.bolt.rain.fill"
+        default:
+            return nil
+        }
+
+    }
+    
     static func color(anxiety: Double) -> Color {
         switch anxiety {
         case 0..<1.5:
