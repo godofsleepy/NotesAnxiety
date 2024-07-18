@@ -161,9 +161,20 @@ struct EditNotesView: View {
             
             ToolbarItem(placement: .bottomBar, content: {
                 HStack{
-                    Button(action: { }) {
-                        Image(systemName: "textformat")
+                    JournalingSuggestionsPicker {
+                        Image(systemName: "sparkles")
+                    } onCompletion: { suggestion in
+                        //                        print(suggestion.items.count)
+                        //                        print(suggestion.title)
+                        //                        print(suggestion.date)
+                        //                        suggestion.items.forEach { v in
+                        //                            print(v.representations)
+                        //                        }
+                        loadImageJournalSuggestion(suggestion: suggestion)
                     }
+//                    Button(action: { }) {
+//                        Image(systemName: "textformat")
+//                    }
                     Spacer()
                     Button(action: { showImagePicker = true }) {
                         Image(systemName: "paperclip")
@@ -200,14 +211,13 @@ struct EditNotesView: View {
                     JournalingSuggestionsPicker {
                         Image(systemName: "sparkles")
                     } onCompletion: { suggestion in
-//                        print(suggestion.items.count)
-//                        print(suggestion.title)
-//                        print(suggestion.date)
-//                        suggestion.items.forEach { v in
-//                            print(v.representations)
-//                        }
-//                         await suggestion.content(forType: JournalingSuggestion.Photo.self)
-//                        print(suggestionPhotos.count)
+                        //                        print(suggestion.items.count)
+                        //                        print(suggestion.title)
+                        //                        print(suggestion.date)
+                        //                        suggestion.items.forEach { v in
+                        //                            print(v.representations)
+                        //                        }
+                        loadImageJournalSuggestion(suggestion: suggestion)
                     }
 //                    Button(action:{
 //                        isShowingTextFormatter.toggle()
@@ -244,6 +254,8 @@ struct EditNotesView: View {
         }
         .onAppear {
             if let note = vm.selectedNote {
+                
+                self.audioFilename = nil
                 self.title = note.title ?? ""
                 self.content = note.content ?? ""
                 self.pinned = note.pinned
@@ -256,9 +268,13 @@ struct EditNotesView: View {
                 
                 if let photoPath = note.photoPath, let imageData = try? Data(contentsOf: URL(fileURLWithPath: photoPath)) {
                     self.image = UIImage(data: imageData)
+                } else {
+                    self.image = nil
                 }
                 if let audioPath = note.audioPath {
                     self.audioFilename = URL(fileURLWithPath: audioPath)
+                } else {
+                    audioFilename = nil
                 }
 
                 NotificationManager.shared.clearNotification()
@@ -289,6 +305,22 @@ struct EditNotesView: View {
         
     }
     
+    func loadImageJournalSuggestion(suggestion: JournalingSuggestion)  {
+        Task {
+            let content = await suggestion.content(forType: JournalingSuggestion.Photo.self)
+            print(content.count)
+            for v in content {
+                if let uiImage = try? await fetchImage(from: v.photo) {
+                    // Update the UI on the main thread
+                    image = uiImage
+                }
+            }
+            
+
+        }
+
+    }
+    
     func saveImage(_ image: UIImage?) -> String? {
         guard let image = image, let data = image.jpegData(compressionQuality: 1.0) else { return nil }
         let filename = getDocumentsDirectory().appendingPathComponent(UUID().uuidString + ".jpg")
@@ -311,6 +343,10 @@ struct EditNotesView: View {
         let audioPath = audioFilename?.path
         
         vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: pinned, anxiety: anxietyLevel)
+    }
+    private func fetchImage(from url: URL) async throws -> UIImage? {
+        let (data, _) = try await URLSession.shared.data(from: url)
+        return UIImage(data: data)
     }
     private func deleteNote(_ note: NoteEntity) {
         Task {
