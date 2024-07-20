@@ -201,6 +201,8 @@
 				FBCC49272C3F692E0022F62C /* EditNotesView.swift */,
 				FBF68B892C44686100689EC2 /* InsightView.swift */,
 				FB3BF6142C3BB29300A9406D /* ContentView.swift */,
+				B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */,
+				B5B35EF42C47F81A00DB701E /* LogView.swift */,
 				FB3BF6222C3BB6C400A9406D /* Components */,
 			);
 			path = Views;
@@ -226,7 +228,6 @@
 				FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */,
 				FBA9D6F92C4784D800BF7988 /* ChartView.swift */,
 				FBA9D6FD2C47B74700BF7988 /* AnalyticsView.swift */,
-				B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */,
 				B5B35EEC2C47F7DB00DB701E /* StatusView.swift */,
 				B5B35EEE2C47F7F400DB701E /* StatusComponent.swift */,
 				FBA9D71D2C48A7B300BF7988 /* WrapStack.swift */,
@@ -273,7 +274,6 @@
 			children = (
 				B5B35EF02C47F80100DB701E /* CategoryComponent.swift */,
 				B5B35EF22C47F80E00DB701E /* LogComponent.swift */,
-				B5B35EF42C47F81A00DB701E /* LogView.swift */,
 			);
 			path = Anxiety;
 			sourceTree = "<group>";

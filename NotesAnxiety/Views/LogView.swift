@@ -16,46 +16,39 @@ struct LogView: View {
     var body: some View {
         
         VStack(alignment: .center){
-            
-            HStack{
-                Text("Choose how you're feeling right now")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 16))
-                Spacer()
-                Button(action: {
-                    self.showAnxiety.toggle()
-                }){
-                    Image(systemName: "x.circle.fill")
-                        .foregroundStyle(Color.gray)
-                }
-                .font(.system(size: 22))
-                
-            }
-            .padding(EdgeInsets(top: 12, leading: 0, bottom: 25, trailing: 0))
+            Text("Choose how you're feeling right now")
+                .frame(width: 300, alignment: .center)
+                .multilineTextAlignment(.center)
+                .fontWeight(.bold)
+                .font(.title2)
+                .foregroundStyle(Color.white)
+                .padding(.top)
             
             VStack{
                 LogComponent(anxietyLevelType: anxietyLevelType)
                 VStack {
                     Slider( value: self.$value, in: 1...4)
-                    
-                        .accentColor(Color.gray)
+                        .tint(Color.clear)
+                        .accentColor(Color.clear)
                         .padding(4)
                 }
+                
                 .background(Color(red: 118/255, green: 118/255, blue: 128/255).opacity(0.32))
                 .cornerRadius(25)
                 .frame(width:325, height: 40)
-                .padding(EdgeInsets(top: 15, leading: 0, bottom: 10, trailing: 0))
+                .padding(.bottom)
                 
-                
-                NavigationLink(destination: CategoryView(anxietyLevelType: $anxietyLevelType), label: {
+                Spacer()
+                NavigationLink(destination: CategoryView(anxietyLevelType: $anxietyLevelType, showAnxiety: $showAnxiety), label: {
                     Text("Next")
+                        .fontWeight(.semibold)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.blue)
+                        .background(anxietyLevelType.color)
                         .foregroundColor(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .clipShape(RoundedRectangle(cornerRadius: 50))
                 })
-                Spacer()
+                .padding(.bottom)
             }
             .padding()
             
@@ -64,12 +57,22 @@ struct LogView: View {
         .padding()
         .background(
             RadialGradient(colors: [
-                Color(anxietyLevelType.color!), Color.backgroundSecondary],
-                           center: .center, startRadius: 5, endRadius: 300).opacity(0.75)
+                Color(anxietyLevelType.color!), Color.backgroundSecondary
+            ], center: .center, startRadius: 5, endRadius: 400)
         )
         .onChange(of: value) {
             withAnimation(.easeInOut(duration: 0.5)) {
                 anxietyLevelType = AnxietyLevelType.from(value)
+            }
+        }
+        .toolbar{
+            ToolbarItem(placement: .topBarTrailing){
+                Button(action: {
+                    showAnxiety = false
+                }, label: {
+                    Text("Cancel")
+                        .foregroundStyle(Color.white)
+                })
             }
         }
     }

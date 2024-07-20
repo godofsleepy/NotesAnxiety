@@ -11,25 +11,23 @@ struct CategoryView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject() var vm: NotesViewModel
     @Binding var anxietyLevelType: AnxietyLevelType
+    @Binding var showAnxiety: Bool
+    
     @State var valueCategory: [String] = []
     
 
     var body: some View {
         VStack(alignment: .center){
-            HStack{
-                Text("What do you think trigger this feeling?")
-                    .fontWeight(.semibold)
-                    .font(.system(size: 16))
-                Spacer()
-                Button(action: {
-                    dismiss()
-                }){
-                    Image(systemName: "x.circle.fill")
-                        .font(.system(size: 22))
-                        .foregroundStyle(Color.gray)
-                }
-            }
-            .padding(.top)
+            Text("What do you think trigger this feeling?")
+                .fixedSize(horizontal: false, vertical: true)
+                .lineLimit(nil)
+                .frame(width: 300, alignment: .center)
+                .multilineTextAlignment(.center)
+                .fontWeight(.bold)
+                .font(.title2)
+                .foregroundStyle(Color.white)
+                .padding(.top)
+            
             VStack{
                 VStackLayout(alignment: .center, spacing: 12){
                     VStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/, spacing: 12 ){
@@ -66,26 +64,40 @@ struct CategoryView: View {
                         }
                     }
                 }
-                .padding(EdgeInsets(top: 10, leading: 0, bottom: 40, trailing: 0))
+                .padding(.bottom)
+                
                 Button(action: {
                     dismiss()
                     dismiss()
                 }, label: {
                     Text("Done")
+                        .fontWeight(.semibold)
                         .padding()
                         .frame(maxWidth: .infinity)
-                        .background(Color.blue)
-                        .fontWeight(.semibold)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
+                        .background(anxietyLevelType.color)
+                        .foregroundColor(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 50))
                     
                 })
             }.padding()
         }
+        .toolbar{
+            ToolbarItem(placement: .topBarTrailing){
+                Button(action: {
+                    showAnxiety = false
+                }, label: {
+                    Text("Cancel")
+                        .foregroundStyle(Color.white)
+                })
+            }
+        }
+
         .padding()
         .background(
-            RadialGradient(colors: [anxietyLevelType.color!, Color.backgroundSecondary], center: .center, startRadius: 5, endRadius: 300).opacity(0.75))
-        .navigationBarBackButtonHidden()
+            RadialGradient(colors: [
+                Color(anxietyLevelType.color!), Color.backgroundSecondary],
+                           center: .center, startRadius: 5, endRadius: 400)
+        )
         
     }
 }

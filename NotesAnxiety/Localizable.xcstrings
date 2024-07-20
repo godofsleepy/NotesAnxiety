@@ -41,6 +41,9 @@
         }
       }
     },
+    "Cancel" : {
+
+    },
     "Choose how you're feeling right now" : {
       "localizations" : {
         "id" : {

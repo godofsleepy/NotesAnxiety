@@ -96,7 +96,8 @@ struct EditNotesView: View {
             NavigationStack{
                 LogView(showAnxiety: $showAnxiety)
             }
-            .presentationDetents([.medium])
+            .tint(Color.white)
+            .presentationDetents([.fraction(0.65)])
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePickerComponent(sourceType: .photoLibrary, selectedImage: $image)
