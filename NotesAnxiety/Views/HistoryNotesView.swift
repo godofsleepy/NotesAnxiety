@@ -3,17 +3,16 @@ import SwiftUI
 struct HistoryNotesView: View {
     @EnvironmentObject var vm: NotesViewModel
     @State private var searchText = ""
-    @State private var showEditView = false
     
-    var groupedByDate: [String: [NoteEntity]] {
+    var groupedByDate: [String: [NoteModel]] {
         let calendar = Calendar.current
         let today = calendar.startOfDay(for: Date())
         let last7Days = calendar.date(byAdding: .day, value: -7, to: today)!
         let last30Days = calendar.date(byAdding: .day, value: -30, to: today)!
         
-        return Dictionary(grouping: vm.notes) { noteEntity in
-            let noteDate = calendar.startOfDay(for: noteEntity.timestamp!)
-            if noteEntity.pinned {
+        return Dictionary(grouping: vm.notes) { note in
+            let noteDate = calendar.startOfDay(for: note.createdAt)
+            if note.pinned {
                 return "Pinned"
             } else if noteDate == today {
                 return "Today"
@@ -49,7 +48,7 @@ struct HistoryNotesView: View {
                                 }
                                 .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                     Button(role: .destructive) {
-                                        deleteNote(in: header, at: IndexSet(integer: notes.firstIndex(of: note)!))
+                                        deleteNote(note)
                                     } label: {
                                         Label(NSLocalizedString("Delete", comment: ""), systemImage: "trash")
                                     }
@@ -64,7 +63,12 @@ struct HistoryNotesView: View {
                                 }
                             }
                             .onDelete { indexSet in
-                                deleteNote(in: header, at: indexSet)
+                                if let notes = groupedByDate[header], !notes.isEmpty {
+                                    for index in indexSet {
+                                           let note = notes[index]
+                                           deleteNote(note)
+                                       }
+                                }
                             }
                         }
                     }
@@ -93,42 +97,30 @@ struct HistoryNotesView: View {
                     HStack {
                         Spacer()
                         Button(action: {
-                            createNewNote()
+                            vm.preferredColumn = NavigationSplitViewColumn.detail
                         }) {
                             Image(systemName: "square.and.pencil")
                         }
                     }
                 }
             }
-            .navigationDestination(isPresented: $showEditView) {
-                EditNotesView()
-            }
+    
         }
     }
     
-    private func createNewNote() {
+    
+    private func deleteNote(_ note: NoteModel) {
+        if note.id == vm.selectedNote?.id {
+            vm.selectedNote = nil
+        }
+        
         Task {
-            showEditView = true
+            await vm.deleteNote(note)
         }
+
     }
     
-    private func deleteNote(in header: String, at offsets: IndexSet) {
-        if let notes = groupedByDate[header] {
-            offsets.forEach { index in
-                let noteToDelete = notes[index]
-                
-                if noteToDelete == vm.selectedNote {
-                    vm.selectedNote = nil
-                }
-                
-                Task {
-                    await vm.deleteNote(noteToDelete)
-                }
-            }
-        }
-    }
-    
-    private func togglePin(for note: NoteEntity) {
+    private func togglePin(for note: NoteModel) {
         vm.togglePin(for: note)
     }
 }

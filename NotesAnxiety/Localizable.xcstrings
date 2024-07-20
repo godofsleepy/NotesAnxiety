@@ -11,6 +11,7 @@
 
     },
     "Anxiety" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -124,9 +125,6 @@
       }
     },
     "Line & Grids" : {
-
-    },
-    "Loading..." : {
 
     },
     "Lock" : {

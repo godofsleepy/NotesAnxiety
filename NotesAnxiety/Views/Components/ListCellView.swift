@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct ListCellView: View {
-    var note: NoteEntity
+    var note: NoteModel
     
     var body: some View {
         HStack(alignment: .top) {
             VStack(alignment: .leading, spacing: 5) {
                 HStack{
-                    if note.anxietyLevel >= 1 {
-                        Image(systemName: AnxietyLevelType.image(anxiety: note.anxietyLevel)!)
+                    if note.anxiety != nil {
+                        Image(systemName: note.anxiety!.type.icon!)
                             .font(.title3)
-                            .foregroundColor(AnxietyLevelType.color(anxiety: note.anxietyLevel))
+                            .foregroundColor(note.anxiety!.type.color)
                             .frame(alignment: .top)
                             
                     }
@@ -31,11 +31,10 @@ struct ListCellView: View {
                 Text(note.content ?? "No content available")
                     .lineLimit(1)
                     .fontWeight(.light)
-                if let timestamp = note.timestamp {
-                    Text("\(timestamp, formatter: dateFormatter)")
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                }
+                
+                Text("\(note.createdAt, formatter: dateFormatter)")
+                    .font(.footnote)
+                    .foregroundColor(.gray)
             }
         }
     }

@@ -26,7 +26,7 @@ struct InsightView: View {
                 
                 ChartView(data: vm.notes, period: selectedPeriod)
                     
-                AnalyticsView(data: vm.notes.filter{ (!($0.categoryAnxiety?.isEmpty ?? true) && $0.anxietyLevel >= 1) }, period: selectedPeriod)
+                AnalyticsView(period: selectedPeriod)
                     .padding(.top)
                 Spacer()
             }

@@ -10,14 +10,9 @@ import SwiftUI
 struct LogView: View {
     @Binding var showAnxiety: Bool
     @State var value: Double = 1
-    @State private var previousSliderValue: Double = 0.0
+    @State private var previousSliderValue: Double = 1.0
+    @State var anxietyLevelType: AnxietyLevelType = AnxietyLevelType.from(1.0)
 
-    @State var labels: String = "Minimal"
-    @State private var anxietyStatus : AnxietyState = .minimal
-    @State private var anxietyColor : Color = Color("SystemMinimal")
-    @State private var bgRed : Double = 140
-    @State private var bgGreen : Double = 165
-    @State private var bgBlue : Double = 223
     var body: some View {
         
         VStack(alignment: .center){
@@ -39,7 +34,7 @@ struct LogView: View {
             .padding(EdgeInsets(top: 12, leading: 0, bottom: 25, trailing: 0))
             
             VStack{
-                LogComponent(label: labels, state: anxietyStatus)
+                LogComponent(anxietyLevelType: anxietyLevelType)
                 VStack {
                     Slider( value: self.$value, in: 1...4)
                     
@@ -52,7 +47,7 @@ struct LogView: View {
                 .padding(EdgeInsets(top: 15, leading: 0, bottom: 10, trailing: 0))
                 
                 
-                NavigationLink(destination: CategoryView(anxietyLevel: $value, anxietyColor: anxietyColor), label: {
+                NavigationLink(destination: CategoryView(anxietyLevelType: $anxietyLevelType), label: {
                     Text("Next")
                         .padding()
                         .frame(maxWidth: .infinity)
@@ -69,28 +64,12 @@ struct LogView: View {
         .padding()
         .background(
             RadialGradient(colors: [
-                Color(anxietyColor), Color.backgroundSecondary],
+                Color(anxietyLevelType.color!), Color.backgroundSecondary],
                            center: .center, startRadius: 5, endRadius: 300).opacity(0.75)
         )
         .onChange(of: value) {
             withAnimation(.easeInOut(duration: 0.5)) {
-                if value > 3.5 && value <= 4 {
-                    anxietyStatus = .severe
-                    labels = "Severe"
-                    anxietyColor = Color("SystemSevere")
-                } else if value > 2.5 && value <= 3.5 {
-                    anxietyStatus = .moderate
-                    labels = "Moderate"
-                    anxietyColor = Color("SystemModerate")
-                } else if value > 1.5 && value <= 2.5 {
-                    anxietyStatus = .mild
-                    labels = "Mild"
-                    anxietyColor = Color("SystemMild")
-                } else {
-                    anxietyStatus = .minimal
-                    labels = "Minimal"
-                    anxietyColor = Color("SystemMinimal")
-                }
+                anxietyLevelType = AnxietyLevelType.from(value)
             }
         }
     }

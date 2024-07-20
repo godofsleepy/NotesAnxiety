@@ -8,13 +8,13 @@
 import Foundation
 
 enum AppError: LocalizedError {
-    case networkError
+    case databaseError
     case fileNotFound
     case invalidInput
     
     var errorDescription: String? {
         switch self {
-        case .networkError:
+        case .databaseError:
             return NSLocalizedString("NetworkError", comment: "Network error occurred")
         case .fileNotFound:
             return NSLocalizedString("FileNotFound", comment: "The requested file was not found")

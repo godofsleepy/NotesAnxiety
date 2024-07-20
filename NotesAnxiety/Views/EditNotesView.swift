@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import JournalingSuggestions
+//import JournalingSuggestions
 
 struct EditNotesView: View {
     @Environment(\.dismiss) private var dismiss
@@ -14,6 +14,7 @@ struct EditNotesView: View {
     @EnvironmentObject var vm: NotesViewModel
     @State private var title: String = ""
     @State var content: String = ""
+    
     @State private var showImagePicker = false
     @State private var showAnxiety = false
     @State private var showCamera = false
@@ -21,72 +22,43 @@ struct EditNotesView: View {
     @State private var image: UIImage?
     @State private var audioFilename: URL?
     @State private var pinned = false
-    @State private var anxietyLevel: AnxietyTemporaryModel?
+    @State private var anxiety: AnxietyModel?
     
     @State private var isShowingTextFormatter = false
     @State private var isShowingVoice = false
     @State private var isShowingLocation = false
-    
-    @State var titleIsPressed = false
-    @State var headingIsPressed = false
-    @State var subHeadingIsPressed = false
-    @State var bodyIsPressed = false
-    @State var monostyledIsPressed = false
-    
-    @State var boldIsPressed = false
-    @State var italicIsPressed = false
-    @State var underlineIsPressed = false
-    @State var strikeThroughIsPressed = false
-        
-    @State var bulletIsPressed = false
-    @State var listIsPressed = false
-    @State var numberIsPressed = false
-    @State var alignLeftIsPressed = false
-    @State var alignRightIsPressed = false
-    @State private var currentValue1 = 50.0
     
     @FocusState private var contentEditorInFocus: Bool
     
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
-                HStack{
-//                    ForEach(suggestionPhotos, id: \.photo) { item in
-//                        AsyncImage(url: item.photo) { image in
-//                            image.image?
-//                                .resizable ()
-//                                .aspectRatio(contentMode: .fit)
-//                        }
-//                        .frame(maxHeight: 200)
-//                    }
-                }
-                if anxietyLevel != nil {
-                    StatusView(date: anxietyLevel!.createdAt, anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: AnxietyLevelType.from(average: anxietyLevel!.anxietyLevel).rawValue, anxietyCategory: anxietyLevel!.categoryAnxiety, anxietyColor: AnxietyLevelType.color(anxiety: anxietyLevel!.anxietyLevel),
-                               bgColor: Color(red: 99/255, green: 124/255, blue: 192/255), onDelete: {
-                        vm.temporaryAnxiety = nil
-                        anxietyLevel = nil
-                        updateNote(title: title, content: content)
-                    })
+                if anxiety != nil {
+                    StatusView(
+                        anxiety: anxiety!,
+                        onDelete: {
+                            anxiety = nil
+                            updateNote()
+                        }
+                    )
                 }
                 TextField(NSLocalizedString("Title", comment: "Greeting"), text: $title, axis: .vertical)
                     .font(.title.bold())
                     .submitLabel(.next)
-                    .focused($contentEditorInFocus)
                     .onChange(of: title, {
                         guard let newValueLastChar = title.last else { return }
                         if newValueLastChar == "\n" {
                             title.removeLast()
                             contentEditorInFocus = true
                         }
-                        self.updateNote(title: title, content: content)
+                        self.updateNote()
                     })
                 
-                TextEditorView(string: $content)
+                TextEditorView(string: $content, focus: _contentEditorInFocus)
                     .scrollDisabled(true)
                     .font(.title3)
-                    .focused($contentEditorInFocus)
                     .onChange(of:content){
-                        self.updateNote(title: title, content: content)
+                        self.updateNote()
                     }
                 
                 if let image = image {
@@ -94,195 +66,31 @@ struct EditNotesView: View {
                         .resizable()
                         .scaledToFit()
                 }
-
+                
             }
             .padding(10)
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
-        .navigationBarItems(trailing: HStack {
-//            Group{
-//                if(vm.updateProgressState == ProgressState.Loading){
-//                    ProgressView()
-//                } else if (vm.updateProgressState == ProgressState.Complete){
-//                    Label("Saved", systemImage: "checkmark.circle.fill")
-//                        .labelStyle(.titleAndIcon)
-//
-//                }
-//            }.padding(.trailing, 2)
-            Menu {
-                ControlGroup{
-                    Button { } label: {
-                                Text("Share")
-                                Image(systemName: "square.and.arrow.up")
-                            }
-
-                            Button { } label: {
-                                Text("Pin")
-                                Image(systemName: "pin.fill")
-                            }
-
-                            Button { } label: {
-                                Text("Lock")
-                                Image(systemName: "lock.fill")
-                            }
-                }
-                NavigationLink(destination: InsightView(), label: {
-                    Label(NSLocalizedString("My Insight", comment: "Greeting"), systemImage: "chart.dots.scatter")
-                })
-                Button(action: {}) {
-                    Label("Find in Note", systemImage: "magnifyingglass")
-                }
-                Button(action: {}) {
-                    Label("Move Note", systemImage: "folder")
-                }
-                Button(action: {}) {
-                    Label("Recent Note", systemImage: "clock")
-                }
-                Button(action: {}) {
-                    Label("Line & Grids", systemImage: "rectangle.split.3x3")
-                }
-                Button(action: {}) {
-                    Label("Attachment View", systemImage: "rectangle.3.group")
-                }
-                Button(role:.destructive, action: {
-                    if let note = vm.selectedNote {
-                        deleteNote(note)
-                    }
-                }) {
-                    Label(NSLocalizedString("Delete", comment: "Greeting"), systemImage: "trash")
-                }
-            } label: {
-                Label("", systemImage: "ellipsis.circle")
-            }
-            if contentEditorInFocus {
-                Button("Done") {
-                    contentEditorInFocus = false
-                }
-            }
-        })
+        .edgesIgnoringSafeArea(.bottom)
+        .navigationBarItems(trailing: EditNotesNavBarTrailing(contentEditorInFocus: _contentEditorInFocus))
         .toolbar {
-            
-            ToolbarItem(placement: .bottomBar, content: {
-                HStack{
-                    JournalingSuggestionsPicker {
-                        Image(systemName: "sparkles")
-                    } onCompletion: { suggestion in
-                        //                        print(suggestion.items.count)
-                        //                        print(suggestion.title)
-                        //                        print(suggestion.date)
-                        //                        suggestion.items.forEach { v in
-                        //                            print(v.representations)
-                        //                        }
-                        loadImageJournalSuggestion(suggestion: suggestion)
-                    }
-//                    Button(action: { }) {
-//                        Image(systemName: "textformat")
-//                    }
-                    Spacer()
-                    Button(action: { showImagePicker = true }) {
-                        Image(systemName: "paperclip")
-                    }
-                    Spacer()
-                    Button(action:{
-                        showAnxiety.toggle()
-                    }){
-                    Image(systemName: "cloud.bolt.fill")
-                    }
-                    Spacer()
-                    Button(action: {
-                    }) {
-                        Image(systemName: "pencil.tip.crop.circle")
-                    }
-                    Spacer()
-                    Button(action: {
-                        // Create New Note
-                        vm.selectedNote = nil
-                        title = ""
-                        content = ""
-                        image = nil
-                        audioFilename = nil
-                        contentEditorInFocus = false
-                        pinned = false
-                        anxietyLevel = nil
-                    }) {
-                        Image(systemName: "square.and.pencil")
-                    }
-                }
-            })
-            ToolbarItem(placement: .keyboard) {
-                HStack {
-                    JournalingSuggestionsPicker {
-                        Image(systemName: "sparkles")
-                    } onCompletion: { suggestion in
-                        //                        print(suggestion.items.count)
-                        //                        print(suggestion.title)
-                        //                        print(suggestion.date)
-                        //                        suggestion.items.forEach { v in
-                        //                            print(v.representations)
-                        //                        }
-                        loadImageJournalSuggestion(suggestion: suggestion)
-                    }
-//                    Button(action:{
-//                        isShowingTextFormatter.toggle()
-//                    }){
-//                        Image(systemName: "textformat")
-//                    }
-                    Spacer()
-                    Button(action: { showImagePicker = true }) {
-                        Image(systemName: "paperclip")
-                    }
-                    Spacer()
-                    Button(action:{
-                        showAnxiety.toggle()
-                    }){
-                    Image(systemName: "cloud.bolt.fill")
-                    }
-                    Spacer()
-                    Button(action: { showCamera = true }) {
-                        Image(systemName: "camera")
-                    }
-                    Spacer()
-                    Button(action: { showAudioRecorder = true }) {
-                        Image(systemName: "mic")
-                    }
-                }
-            }
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    dismiss()
-                }) {
-                    Image(systemName: "sidebar.leading")
-                }
-            }
-        }
-        .onAppear {
-            if let note = vm.selectedNote {
-                
-                self.audioFilename = nil
-                self.title = note.title ?? ""
-                self.content = note.content ?? ""
-                self.pinned = note.pinned
-                self.anxietyLevel = note.anxietyLevel != 0.0 ?
-                    AnxietyTemporaryModel(
-                        anxietyLevel: note.anxietyLevel,
-                        categoryAnxiety: note.categoryAnxiety?.isEmpty == false ? note.categoryAnxiety!.split(separator: ",").map(String.init) : [],
-                        createdAt: note.timestamp ?? Date(), anxietyColor: AnxietyLevelType.color(anxiety: note.anxietyLevel)
-                    ) : nil
-                
-                if let photoPath = note.photoPath, let imageData = try? Data(contentsOf: URL(fileURLWithPath: photoPath)) {
-                    self.image = UIImage(data: imageData)
-                } else {
-                    self.image = nil
-                }
-                if let audioPath = note.audioPath {
-                    self.audioFilename = URL(fileURLWithPath: audioPath)
-                } else {
+            ToolbarEditNotes(
+                showImagePicker: $showImagePicker,
+                showAnxiety: $showAnxiety,
+                showCamera: $showCamera,
+                showAudioRecorder: $showAudioRecorder,
+                onCreateNewNote: {
+                    vm.selectedNote = nil
+                    title = ""
+                    content = ""
+                    image = nil
                     audioFilename = nil
+                    contentEditorInFocus = false
+                    pinned = false
+                    anxiety = nil
                 }
-
-                NotificationManager.shared.clearNotification()
-            }
+            )
         }
         .sheet(isPresented: $showAnxiety) {
             NavigationStack{
@@ -300,30 +108,55 @@ struct EditNotesView: View {
             AudioRecorderComponent(audioFilename: $audioFilename)
                 .presentationDetents([.medium])
         }
-        .onReceive(vm.$temporaryAnxiety, perform: { v in
-            if v != nil {
-                self.anxietyLevel = v
-                self.updateNote(title: title, content: content)
-            }
-        })
+        .onChange(of: anxiety){
+            updateNote()
+        }
         
+        .onAppear {
+            if let note = vm.selectedNote {
+                resetNote(newData: note)
+                            
+                NotificationManager.shared.clearNotification()
+            }
+        }
     }
     
-    func loadImageJournalSuggestion(suggestion: JournalingSuggestion)  {
-        Task {
-            let content = await suggestion.content(forType: JournalingSuggestion.Photo.self)
-            print(content.count)
-            for v in content {
-                if let uiImage = try? await fetchImage(from: v.photo) {
-                    // Update the UI on the main thread
-                    image = uiImage
-                }
-            }
-            
-
-        }
+    func resetNote(newData: NoteModel)  {
+        self.audioFilename = nil
+        self.title = newData.title ?? ""
+        self.content = newData.content ?? ""
+        self.pinned = newData.pinned
+        self.anxiety = newData.anxiety
+        
+//        if let photoPath = newData.photoPath, let imageData = try? Data(contentsOf: URL(fileURLWithPath: photoPath)) {
+//            self.image = UIImage(data: imageData)
+//        } else {
+//            self.image = nil
+//        }
+//        
+//        if let audioPath = newData.audioPath {
+//            self.audioFilename = URL(fileURLWithPath: audioPath)
+//        } else {
+//            audioFilename = nil
+//        }
 
     }
+    
+    //    func loadImageJournalSuggestion(suggestion: JournalingSuggestion)  {
+    //        Task {
+    //            let content = await suggestion.content(forType: JournalingSuggestion.Photo.self)
+    //            print(content.count)
+    //            for v in content {
+    //                if let uiImage = try? await fetchImage(from: v.photo) {
+    //                    // Update the UI on the main thread
+    //                    image = uiImage
+    //                }
+    //            }
+    //
+    //
+    //        }
+    //
+    //    }
     
     func saveImage(_ image: UIImage?) -> String? {
         guard let image = image, let data = image.jpegData(compressionQuality: 1.0) else { return nil }
@@ -331,30 +164,40 @@ struct EditNotesView: View {
         try? data.write(to: filename)
         return filename.path
     }
-
+    
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
-    func updateNote(title: String, content: String) {
-        
-        if (title.isEmpty) && (content.isEmpty) {
+    func updateNote() {
+        if  title.isEmpty &&
+            content.isEmpty &&
+            anxiety == nil
+        {
             return
         }
         
         let photoPath = saveImage(image)
         let audioPath = audioFilename?.path
         
-        vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: pinned, anxiety: anxietyLevel)
+        let temporaryNote = TemporaryNoteModel(
+            title: title,
+            content: content,
+            anxiety: anxiety
+        )
+        
+        vm.performUpdate(temporaryNote)
     }
+    
     private func fetchImage(from url: URL) async throws -> UIImage? {
         let (data, _) = try await URLSession.shared.data(from: url)
         return UIImage(data: data)
     }
-    private func deleteNote(_ note: NoteEntity) {
+    
+    private func deleteNote() {
         Task {
-            await vm.deleteNote(note)
+            await vm.deleteNote(vm.selectedNote!)
             DispatchQueue.main.async {
                 dismiss()
             }

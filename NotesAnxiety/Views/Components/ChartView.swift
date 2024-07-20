@@ -10,7 +10,7 @@ import SwiftUI
 import Charts
 
 struct ChartView: View {
-    let data: [NoteEntity]
+    let data: [NoteModel]
     let period: TimePeriod
     
     var body: some View {
@@ -33,8 +33,8 @@ struct ChartView: View {
         
             Chart(filteredData) { entry in
                 PointMark(
-                    x: .value("Period", entry.timestamp!),
-                    y: .value("Average Anxiety", entry.anxietyLevel)
+                    x: .value("Period", entry.createdAt),
+                    y: .value("Average Anxiety", entry.anxiety!.value)
                 )
                 .foregroundStyle(Color("SystemModerate"))
                 .symbol(Circle())
@@ -59,7 +59,7 @@ struct ChartView: View {
                     AxisTick()
                         .foregroundStyle(Color("LabelPrimary"))
                     AxisValueLabel {
-                        Text(AnxietyLevelType.from(average: Double(value.as(Int.self)!)).rawValue)
+                        Text(AnxietyLevelType.from(Double(value.as(Int.self)!)).rawValue)
                     }
                     .foregroundStyle(Color("LabelPrimary"))
                 }
@@ -78,10 +78,10 @@ struct ChartView: View {
         
     }
     
-    func filterEntries(_ entries: [NoteEntity], for period: TimePeriod) -> [NoteEntity] {
+    func filterEntries(_ entries: [NoteModel], for period: TimePeriod) -> [NoteModel] {
         let dateRange = Calendar.current.dateRange(for: period)
         return entries.filter { value in
-            dateRange.contains(value.timestamp!)
+            dateRange.contains(value.createdAt)
         }
     }
 

@@ -9,11 +9,19 @@ import SwiftUI
 
 struct AnalyticsView: View {
     @EnvironmentObject var vm: NotesViewModel
-    let data: [NoteEntity]
     let period: TimePeriod
+    var data: [NoteModel] {
+        vm.notes.filter {
+            !($0.anxiety?.categoryAnxiety.isEmpty ?? true) && ($0.anxiety?.value ?? 0) >= 1
+        }
+    }
+    
+    init(period: TimePeriod) {
+        self.period = period
+    }
+
     
     var body: some View {
-        
         HStack( spacing: 16) {
             VStack(alignment: .leading) {
                 Text(NSLocalizedString("Your anxiety this week most triggered by:", comment: ""))
@@ -70,7 +78,7 @@ struct AnalyticsView: View {
                 VStack(alignment: .leading) {
                     Text(NSLocalizedString("Last check in", comment: ""))
                         .font(.headline)
-                    Text(data.isEmpty ? "-" : daysPassed(from: data.last!.timestamp!)!.description)
+                    Text(data.isEmpty ? "-" : daysPassed(from: data.last!.createdAt)!.description)
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Text(NSLocalizedString("day ago", comment: ""))
@@ -88,13 +96,13 @@ struct AnalyticsView: View {
             }
         }
     }
-    func getTop3CategoryAnxiety(from entries: [NoteEntity]) -> [(category: String, percentage: Int)] {
+    func getTop3CategoryAnxiety(from entries: [NoteModel]) -> [(category: String, percentage: Int)] {
         // Create a dictionary to count occurrences of each category
         var categoryCount: [String: Int] = [:]
         
         // Count occurrences of each category
         for entry in entries {
-            let categoryAnxiety = entry.categoryAnxiety!.split(separator: ",")
+            let categoryAnxiety = entry.anxiety!.categoryAnxiety
             for category in categoryAnxiety {
                 categoryCount[String(category), default: 0] += 1
             }

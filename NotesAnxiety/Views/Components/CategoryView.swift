@@ -10,10 +10,9 @@ import SwiftUI
 struct CategoryView: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject() var vm: NotesViewModel
-    @Binding var anxietyLevel: Double
+    @Binding var anxietyLevelType: AnxietyLevelType
     @State var valueCategory: [String] = []
     
-    var anxietyColor: Color
 
     var body: some View {
         VStack(alignment: .center){
@@ -69,7 +68,6 @@ struct CategoryView: View {
                 }
                 .padding(EdgeInsets(top: 10, leading: 0, bottom: 40, trailing: 0))
                 Button(action: {
-                    vm.temporaryAnxiety = AnxietyTemporaryModel(anxietyLevel: anxietyLevel, categoryAnxiety: valueCategory, anxietyColor: anxietyColor)
                     dismiss()
                     dismiss()
                 }, label: {
@@ -86,7 +84,7 @@ struct CategoryView: View {
         }
         .padding()
         .background(
-            RadialGradient(colors: [anxietyColor, Color.backgroundSecondary], center: .center, startRadius: 5, endRadius: 300).opacity(0.75))
+            RadialGradient(colors: [anxietyLevelType.color!, Color.backgroundSecondary], center: .center, startRadius: 5, endRadius: 300).opacity(0.75))
         .navigationBarBackButtonHidden()
         
     }

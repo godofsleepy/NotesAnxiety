@@ -15,11 +15,7 @@ struct ContentView: View {
     var body: some View {
         NavigationSplitView(preferredCompactColumn: $preferredColumn) {
             Group{
-                if (notesViewModel.isDataLoaded){
-                    HistoryNotesView()
-                } else {
-                    ProgressView("Loading...")
-                }
+                HistoryNotesView()
             }.task {
                 await notesViewModel.fetchNotes()
             }

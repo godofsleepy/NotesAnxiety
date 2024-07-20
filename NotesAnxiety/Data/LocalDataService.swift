@@ -9,15 +9,14 @@ import Foundation
 import CoreData
 
 protocol LocalDataService {
-    func fetchNotes(searchText: String) async throws -> [NoteEntity]
-    func createNote() async -> NoteEntity
-    func updateNote(_ note: NoteEntity, temporaryNote: TemporaryNoteModel) async -> NoteEntity
-    func togglePin(for note: NoteEntity) async
-    func deleteNote(_ note: NoteEntity) async
+    func getNotes(searchText: String) async throws -> [NoteModel]
+    func createNote() async throws -> NoteModel
+    func updateNote(_ note: NoteModel) async throws -> NoteModel
+    func deleteNote(_ note: NoteModel) async throws
 }
 
 class LocalDataServiceImpl : LocalDataService {
-        
+    
     let notesContainer: NSPersistentContainer
     
     init() {
@@ -29,50 +28,8 @@ class LocalDataServiceImpl : LocalDataService {
         }
     }
     
-    func togglePin(for note: NoteEntity) async {
-        notesContainer.viewContext.performAndWait {
-            note.pinned.toggle()
-            saveContext()
-        }
-    }
-
-    
-    func createNote() async -> NoteEntity {
-        notesContainer.viewContext.performAndWait {
-            let newNote = NoteEntity(context: notesContainer.viewContext)
-            newNote.id = UUID()
-            newNote.timestamp = Date()
-            saveContext()
-            
-            return newNote
-        }
-    }
-    
-    func updateNote(_ note: NoteEntity, temporaryNote: TemporaryNoteModel) async -> NoteEntity {
-        return notesContainer.viewContext.performAndWait {
-            note.title = temporaryNote.title
-            note.content = temporaryNote.content
-            note.audioPath = temporaryNote.audiotPath
-            note.photoPath = temporaryNote.photoPath
-            note.videoPath = temporaryNote.videoPath
-            note.pinned = temporaryNote.pinned
-            note.anxietyLevel = temporaryNote.anxietyLevel
-            note.categoryAnxiety = temporaryNote.categoryAnxiety.joined(separator: ",")
-            saveContext()
-            return note
-        }
-    }
-    
-    func deleteNote(_ note: NoteEntity) async {
-        notesContainer.viewContext.performAndWait {
-            notesContainer.viewContext.delete(note)
-            saveContext()
-        }
-    }
-    
-
-    func fetchNotes(searchText: String) async throws -> [NoteEntity] {
-       try notesContainer.viewContext.performAndWait {
+    func getNotes(searchText: String) async throws -> [NoteModel] {
+        try await notesContainer.viewContext.perform {
             let request: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
             request.sortDescriptors = [NSSortDescriptor(key: "timestamp", ascending: false)]
             
@@ -80,15 +37,57 @@ class LocalDataServiceImpl : LocalDataService {
                 request.predicate = NSPredicate(format: "title CONTAINS %@", searchText)
             }
             
-            return try notesContainer.viewContext.fetch(request)
+            let result = try self.notesContainer.viewContext.fetch(request)
+            return result.map {
+                NoteModel.fromNoteEntity($0)
+            }
         }
     }
     
-    private func saveContext() {
-        do {
-            try notesContainer.viewContext.save()
-        } catch {
-            print("Error saving context: \(error)")
+    func createNote() async throws -> NoteModel {
+        try await notesContainer.viewContext.perform {
+            let newNote = NoteEntity(context: self.notesContainer.viewContext)
+            newNote.id = UUID()
+            newNote.timestamp = Date()
+            try self.notesContainer.viewContext.save()
+            
+            return NoteModel.fromNoteEntity(newNote)
         }
     }
+    
+    func updateNote(_ note: NoteModel) async throws -> NoteModel {
+        let result = try await getNoteById(uuid: note.id)
+        return try await notesContainer.viewContext.perform {
+            result.title = note.title
+            result.content = note.content
+            result.pinned = note.pinned
+            result.anxietyLevel = note.anxiety?.value ?? 0
+            result.categoryAnxiety = note.anxiety?.categoryAnxiety.joined(separator: ",") ?? ""
+            
+            try self.notesContainer.viewContext.save()
+            return note
+        }
+    }
+    
+    func getNoteById(uuid: UUID) async throws -> NoteEntity {
+        return try await notesContainer.viewContext.perform{
+            let fetchRequest: NSFetchRequest<NoteEntity> = NoteEntity.fetchRequest()
+            fetchRequest.predicate = NSPredicate(format: "id == %@", uuid as CVarArg)
+            fetchRequest.fetchLimit = 1
+            
+            guard let result = try self.notesContainer.viewContext.fetch(fetchRequest).first else {
+                throw AppError.databaseError
+            }
+            return result
+        }
+    }
+    
+    func deleteNote(_ note: NoteModel) async throws {
+        let result = try await getNoteById(uuid: note.id)
+        try await notesContainer.viewContext.perform {
+            self.notesContainer.viewContext.delete(result)
+            try self.notesContainer.viewContext.save()
+        }
+    }
+    
 }

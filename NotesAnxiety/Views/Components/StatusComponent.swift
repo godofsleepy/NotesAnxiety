@@ -18,7 +18,7 @@ struct StatusComponent: View {
             .background(
                 RoundedRectangle(cornerRadius: 25.0)
                     .foregroundColor(anxietyColor)
-            .font(.system(size: 12))
+                    .font(.system(size: 12))
             )
     }
 }

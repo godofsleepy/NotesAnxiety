@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct StatusView: View {
-    var date: Date
-    var anxietyImage : String
-    var anxietyLabel: String
-    var anxietyCategory: [String]
-    var anxietyColor: Color
     @EnvironmentObject var vm: NotesViewModel
-    var bgColor: Color
+    
+    var anxiety: AnxietyModel
     var onDelete: () -> Void
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
@@ -26,34 +23,35 @@ struct StatusView: View {
                         .stroke(Color(red: 99 / 255, green: 124 / 255, blue: 192 / 255).opacity(0.5), lineWidth: 2))
             
             HStack(alignment: .top){
-                    Image(systemName: anxietyImage)
+                Image(systemName: anxiety.type.icon!)
                         .font(.system(size: 34))
-                        .foregroundColor(anxietyColor)
+                        .foregroundColor(anxiety.type.color)
                     
                     VStack(alignment: .leading) {
                         
                         HStack {
                             Text(formattedDate)
                                 .font(.system(size: 14))
-                                .foregroundColor(anxietyColor)
+                                .foregroundColor(anxiety.type.color)
                             Spacer()
                             Button(action: onDelete, label: {Image(systemName: "x.circle")})
-                            .foregroundStyle(anxietyColor)
+                            .foregroundStyle(anxiety.type.color!)
                         }
                         
-                        Text(anxietyLabel)
+                        Text(anxiety.type.rawValue)
                             .font(.system(size: 20))
                             .fontWeight(.semibold)
-                            .foregroundColor(anxietyColor)
+                            .foregroundColor(anxiety.type.color)
                         
                         ScrollView(.horizontal,showsIndicators: false) {
                             HStack {
-                                ForEach(anxietyCategory, id: \.self) { category in
-                                    StatusComponent(anxietyCategory: category, anxietyColor: anxietyColor)
+                                ForEach(anxiety.categoryAnxiety, id: \.self) { category in
+                                    StatusComponent(anxietyCategory: category, anxietyColor: anxiety.type.color!)
                                 }
                             }
 
-                        }                        .padding(.top, -10)
+                        }                       
+                        .padding(.top, -10)
                     }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -64,7 +62,7 @@ struct StatusView: View {
     private var formattedDate: String{
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "EEEE, dd MMMM yyyy"
-        return dateFormatter.string(from: date)
+        return dateFormatter.string(from: anxiety.createdAt)
     }
 }
 

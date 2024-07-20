@@ -12,12 +12,11 @@ import Combine
 class NotesViewModel: ObservableObject {
 
     let localDataService : LocalDataService
-    @Published var notes: [NoteEntity] = []
-    @Published var selectedNote: NoteEntity?
-    @Published var isDataLoaded = false
+    
+    @Published var notes: [NoteModel] = []
+    @Published var selectedNote: NoteModel?
     @Published var preferredColumn = NavigationSplitViewColumn.detail
-    @Published var updateProgressState = ProgressState.Default
-    @Published var temporaryAnxiety: AnxietyTemporaryModel?
+
     private var cancellables = Set<AnyCancellable>()
     private var noteUpdateSubject = PassthroughSubject<TemporaryNoteModel, Never>()
     
@@ -25,7 +24,7 @@ class NotesViewModel: ObservableObject {
     init(localDataService: LocalDataService) {
         self.localDataService = localDataService
         noteUpdateSubject
-            .debounce(for: .milliseconds(1000), scheduler: DispatchQueue.main)
+            .debounce(for: .milliseconds(200), scheduler: DispatchQueue.main)
             .sink { [weak self] noteUpdate in
                 guard let self = self else { return }
                 Task {
@@ -33,62 +32,52 @@ class NotesViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
-        $selectedNote.sink(receiveValue: { note in
-            DispatchQueue.main.async {
-                self.updateProgressState = ProgressState.Default
-            }
-        }).store(in: &cancellables)
     }
 
-    func togglePin(for note: NoteEntity) {
+    func togglePin(for note: NoteModel) {
         Task {
-            await localDataService.togglePin(for: note)
+            var newNote = note
+            newNote.pinned.toggle()
+            do {
+                try await localDataService.updateNote(newNote)
+            } catch {
+                print("\(error)")
+            }
             await fetchNotes()
         }
     }
 
-    func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool?, anxiety: AnxietyTemporaryModel?) {
-        if title == selectedNote?.title && content == selectedNote?.content, audioPath == selectedNote?.audioPath && videoPath == selectedNote?.videoPath && photoPath == selectedNote?.photoPath && pinned == selectedNote?.pinned  {
-            return
-        }
-        updateProgressState = ProgressState.Loading
-        let noteUpdate = TemporaryNoteModel(
-            title: title,
-            content: content,
-            photoPath: photoPath,
-            videoPath: videoPath,
-            audiotPath: audioPath,
-            anxietyLevel: anxiety?.anxietyLevel ?? 0,
-            categoryAnxiety: anxiety?.categoryAnxiety ?? [],
-            pinned: pinned == nil ? (selectedNote?.pinned ?? false) : pinned!
-        )
-        noteUpdateSubject.send(noteUpdate)
+    func performUpdate(_ temporary: TemporaryNoteModel) {
+        noteUpdateSubject.send(temporary)
     }
     
-    func generateRandomDecimal() -> Double {
-        let randomNumber = Double(arc4random_uniform(41)) / 10.0
-        return randomNumber
-    }
-
-    func updateNote(_ temporaryNote: TemporaryNoteModel) async {
-        let note = if selectedNote == nil {
-            await createNote()
-        } else {
-            selectedNote
+    func updateNote(_ temporary: TemporaryNoteModel) async {
+        do {
+            var updatedNote: NoteModel
+            
+            if selectedNote != nil{
+                updatedNote = selectedNote!
+            } else {
+                updatedNote = try await localDataService.createNote()
+            }
+            
+            updatedNote.title = temporary.title ?? updatedNote.title
+            updatedNote.content = temporary.content ?? updatedNote.content
+            updatedNote.anxiety = temporary.anxiety ?? updatedNote.anxiety
+            
+            selectedNote = updatedNote
+            try await localDataService.updateNote(updatedNote)
+        } catch {
+            print("Error updating note: \(error.localizedDescription)")
         }
         
-        await localDataService.updateNote(note!, temporaryNote: temporaryNote)
-        DispatchQueue.main.async {
-            self.updateProgressState = ProgressState.Complete
-        }
         await fetchNotes()
     }
-
+    
     func fetchNotes(with searchText: String = "") async  {
         do {
-            let data = try await localDataService.fetchNotes(searchText: searchText)
+            let data = try await localDataService.getNotes(searchText: searchText)
             DispatchQueue.main.async {
-                self.isDataLoaded = true
                 self.notes = data
             }
         } catch {
@@ -96,20 +85,15 @@ class NotesViewModel: ObservableObject {
         }
     }
 
-    func createNote() async -> NoteEntity {
-        let newNote = await localDataService.createNote()
-        Task {
-            await fetchNotes()
-        }
-        return newNote
-    }
-
-    func deleteNote(_ note: NoteEntity) async {
-        if selectedNote == note {
+    func deleteNote(_ note: NoteModel) async {
+        if selectedNote?.id == note.id {
             self.selectedNote = nil
-            self.updateProgressState = ProgressState.Default
         }
-        await localDataService.deleteNote(note)
+        do {
+            try await localDataService.deleteNote(note)
+        } catch {
+            print("\(error.localizedDescription)")
+        }
         Task {
             await fetchNotes()
         }

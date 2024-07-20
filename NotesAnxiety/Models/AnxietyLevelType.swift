@@ -29,11 +29,43 @@ enum AnxietyLevelType: String, Codable {
             return 0
         }
     }
+    
+    var icon: String? {
+        switch self {
+        case .minimal:
+            return "cloud.fill"
+        case .mild:
+            return "cloud.rain.fill"
+        case .moderate:
+            return "cloud.heavyrain.fill"
+        case .severe:
+            return "cloud.bolt.rain.fill"
+        case .empty:
+            return nil
+        }
+    }
+    
+    var color: Color? {
+        switch self {
+        case .minimal:
+            return Color("SystemMinimal")
+        case .mild:
+            return  Color("SystemMild")
+        case .moderate:
+            return Color("SystemModerate")
+        case .severe:
+            return Color("SystemSevere")
+        case .empty:
+            return nil
+        }
+    }
+    
+    
 }
 
 extension AnxietyLevelType {
-    static func from(average: Double) -> AnxietyLevelType {
-        switch average {
+    static func from(_ value: Double) -> AnxietyLevelType {
+        switch value {
         case 0..<1.5:
             return .minimal
         case 1.5..<2.5:
@@ -45,36 +77,5 @@ extension AnxietyLevelType {
         default:
             return .empty
         }
-    }
-    
-    static func image(anxiety: Double) -> String? {
-        switch anxiety {
-        case 0..<1.5:
-            return "cloud.fill"
-        case 1.5..<2.5:
-            return "cloud.rain.fill"
-        case 2.5..<3.5:
-            return "cloud.heavyrain.fill"
-        case 3.5...4:
-            return "cloud.bolt.rain.fill"
-        default:
-            return nil
-        }
-
-    }
-    
-    static func color(anxiety: Double) -> Color {
-        switch anxiety {
-        case 0..<1.5:
-            return Color("SystemSevere")
-        case 1.5..<2.5:
-            return  Color("SystemMild")
-        case 2.5..<3.5:
-            return Color("SystemModerate")
-        case 3.5...4:
-            return Color("SystemMinimal")
-        default:
-            return Color.white
-        }
-    }
+    }    
 }
