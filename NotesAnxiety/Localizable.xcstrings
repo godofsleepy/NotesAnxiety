@@ -183,9 +183,6 @@
     "Pin" : {
 
     },
-    "Play Recording" : {
-
-    },
     "Recent Note" : {
 
     },
@@ -210,6 +207,7 @@
       }
     },
     "Start Recording" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -220,6 +218,7 @@
       }
     },
     "Stop Recording" : {
+      "extractionState" : "stale",
       "localizations" : {
         "id" : {
           "stringUnit" : {
@@ -228,6 +227,12 @@
           }
         }
       }
+    },
+    "Tap to start record.." : {
+
+    },
+    "Tap to stop record.." : {
+
     },
     "Title" : {
       "comment" : "Greeting",

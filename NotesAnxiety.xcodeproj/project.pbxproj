@@ -598,7 +598,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NotesAnxiety/Preview Content\"";
-				DEVELOPMENT_TEAM = 68FP6TZ275;
+				DEVELOPMENT_TEAM = VNG2A57GP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesAnxiety/Info.plist;
@@ -620,7 +620,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yellow40.NotesAnxiety;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow42.NotesAnxiety;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -638,7 +638,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"NotesAnxiety/Preview Content\"";
-				DEVELOPMENT_TEAM = 68FP6TZ275;
+				DEVELOPMENT_TEAM = VNG2A57GP5;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesAnxiety/Info.plist;
@@ -660,7 +660,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yellow40.NotesAnxiety;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow42.NotesAnxiety;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -675,7 +675,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 68FP6TZ275;
+				DEVELOPMENT_TEAM = VNG2A57GP5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
@@ -687,7 +687,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yellow40.NotesAnxiety.NotesWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow42.NotesAnxiety.NotesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -703,7 +703,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 68FP6TZ275;
+				DEVELOPMENT_TEAM = VNG2A57GP5;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
@@ -715,7 +715,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yellow40.NotesAnxiety.NotesWidget;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yellow42.NotesAnxiety.NotesWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
