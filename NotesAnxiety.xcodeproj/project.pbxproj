@@ -48,6 +48,8 @@
 		FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC492F2C3F694B0022F62C /* Extensions.swift */; };
 		FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49312C3F695F0022F62C /* NotesViewModel.swift */; };
 		FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC493A2C3F70F20022F62C /* AppError.swift */; };
+		FBE682E92C5578F6002A4941 /* CloudScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBE682E82C5578F6002A4941 /* CloudScene.swift */; };
+		FBE682F62C5624AF002A4941 /* cloud-rain.scn in Resources */ = {isa = PBXBuildFile; fileRef = FBE682F52C5624AF002A4941 /* cloud-rain.scn */; };
 		FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD302C3D77D20089CEE8 /* HealthService.swift */; };
 		FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */; };
 		FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */; };
@@ -122,6 +124,8 @@
 		FBCC492F2C3F694B0022F62C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FBCC49312C3F695F0022F62C /* NotesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
 		FBCC493A2C3F70F20022F62C /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
+		FBE682E82C5578F6002A4941 /* CloudScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudScene.swift; sourceTree = "<group>"; };
+		FBE682F52C5624AF002A4941 /* cloud-rain.scn */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = "cloud-rain.scn"; sourceTree = "<group>"; };
 		FBECCD302C3D77D20089CEE8 /* HealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthService.swift; sourceTree = "<group>"; };
 		FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
 		FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataService.swift; sourceTree = "<group>"; };
@@ -171,6 +175,7 @@
 		FB3BF6112C3BB29300A9406D /* NotesAnxiety */ = {
 			isa = PBXGroup;
 			children = (
+				FBE682EA2C557914002A4941 /* Resources */,
 				FBA9D6E42C4627ED00BF7988 /* Info.plist */,
 				FBECCD362C3E836D0089CEE8 /* NotesAnxiety.entitlements */,
 				FB3BF6252C3BB77500A9406D /* Models */,
@@ -274,6 +279,7 @@
 			children = (
 				B5B35EF02C47F80100DB701E /* CategoryComponent.swift */,
 				B5B35EF22C47F80E00DB701E /* LogComponent.swift */,
+				FBE682E82C5578F6002A4941 /* CloudScene.swift */,
 			);
 			path = Anxiety;
 			sourceTree = "<group>";
@@ -307,6 +313,14 @@
 			path = "CoreData Container";
 			sourceTree = "<group>";
 		};
+		FBE682EA2C557914002A4941 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FBE682F52C5624AF002A4941 /* cloud-rain.scn */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -325,6 +339,8 @@
 				FBA9D6D72C46215C00BF7988 /* PBXTargetDependency */,
 			);
 			name = NotesAnxiety;
+			packageProductDependencies = (
+			);
 			productName = NotesAnxiety;
 			productReference = FB3BF60F2C3BB29300A9406D /* NotesAnxiety.app */;
 			productType = "com.apple.product-type.application";
@@ -374,6 +390,8 @@
 				id,
 			);
 			mainGroup = FB3BF6062C3BB29300A9406D;
+			packageReferences = (
+			);
 			productRefGroup = FB3BF6102C3BB29300A9406D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -391,6 +409,7 @@
 			files = (
 				FB3BF61A2C3BB29400A9406D /* Preview Assets.xcassets in Resources */,
 				FB3BF6172C3BB29400A9406D /* Assets.xcassets in Resources */,
+				FBE682F62C5624AF002A4941 /* cloud-rain.scn in Resources */,
 				FBA9D71C2C48A01C00BF7988 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -414,6 +433,7 @@
 				FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */,
 				B5B35EF32C47F80E00DB701E /* LogComponent.swift in Sources */,
 				FB64F3CE2C4B8EF700C55090 /* EditNotesNavBarTrailing.swift in Sources */,
+				FBE682E92C5578F6002A4941 /* CloudScene.swift in Sources */,
 				B5B35EEF2C47F7F400DB701E /* StatusComponent.swift in Sources */,
 				FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */,
 				B5B35EF52C47F81A00DB701E /* LogView.swift in Sources */,

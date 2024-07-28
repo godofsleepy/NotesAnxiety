@@ -12,7 +12,7 @@ struct LogView: View {
     @State var value: Double = 1
     @State private var previousSliderValue: Double = 1.0
     @State var anxietyLevelType: AnxietyLevelType = AnxietyLevelType.from(1.0)
-
+    
     var body: some View {
         
         VStack(alignment: .center){
