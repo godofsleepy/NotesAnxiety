@@ -33,6 +33,7 @@ enum AnxietyLevelType: String, Codable {
     var icon: String? {
         switch self {
         case .minimal:
+            
             return "cloud.fill"
         case .mild:
             return "cloud.rain.fill"

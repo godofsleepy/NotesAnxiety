@@ -11,12 +11,9 @@ struct LogComponent: View {
     var anxietyLevelType: AnxietyLevelType
     
     var body: some View {
-        Image(systemName: anxietyLevelType.icon!)
-            .font(.system(size: 100))
+        CloudScene(anxietyLevelType: anxietyLevelType)
             .padding(.bottom)
-            .foregroundColor(Color.white)
-            .animation(Animation.linear, value: anxietyLevelType)
-            .frame(width: 100, height: 100)
+            .frame(width: UIScreen.main.bounds.width, height: .infinity)
         HStack{
             Text(anxietyLevelType.rawValue)
                 .foregroundStyle(Color.white)

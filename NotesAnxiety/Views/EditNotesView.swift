@@ -97,7 +97,6 @@ struct EditNotesView: View {
                 LogView(showAnxiety: $showAnxiety)
             }
             .tint(Color.white)
-            .presentationDetents([.fraction(0.65)])
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePickerComponent(sourceType: .photoLibrary, selectedImage: $image)
