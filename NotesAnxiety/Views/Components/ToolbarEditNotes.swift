@@ -36,7 +36,6 @@ struct ToolbarEditNotes : ToolbarContent {
                 //                    }){
                 //                        Image(systemName: "textformat")
                 //                    }
-                Spacer()
                 Button(action: { showImagePicker = true }) {
                     Image(systemName: "paperclip")
                 }
