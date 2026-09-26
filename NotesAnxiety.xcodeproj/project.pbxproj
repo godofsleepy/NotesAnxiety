@@ -46,7 +46,6 @@
 		FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC492F2C3F694B0022F62C /* Extensions.swift */; };
 		FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49312C3F695F0022F62C /* NotesViewModel.swift */; };
 		FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC493A2C3F70F20022F62C /* AppError.swift */; };
-		FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD302C3D77D20089CEE8 /* HealthService.swift */; };
 		FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */; };
 		FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */; };
 		FBF68B8A2C44686100689EC2 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF68B892C44686100689EC2 /* InsightView.swift */; };
@@ -119,7 +118,6 @@
 		FBCC492F2C3F694B0022F62C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FBCC49312C3F695F0022F62C /* NotesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
 		FBCC493A2C3F70F20022F62C /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
-		FBECCD302C3D77D20089CEE8 /* HealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthService.swift; sourceTree = "<group>"; };
 		FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
 		FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataService.swift; sourceTree = "<group>"; };
 		FBECCD362C3E836D0089CEE8 /* NotesAnxiety.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotesAnxiety.entitlements; sourceTree = "<group>"; };
@@ -249,7 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				FBCC49332C3F6CA70022F62C /* CoreData Container */,
-				FBECCD302C3D77D20089CEE8 /* HealthService.swift */,
 				FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */,
 			);
 			path = Data;
@@ -428,7 +425,6 @@
 				FBF68B8A2C44686100689EC2 /* InsightView.swift in Sources */,
 				FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */,
 				FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */,
-				FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */,
 				FBA9D6FC2C47A6C800BF7988 /* NotificationManager.swift in Sources */,
 				FBA9D6ED2C467AD700BF7988 /* CellButtonEdit.swift in Sources */,
 				FBA9D6FA2C4784D800BF7988 /* ChartView.swift in Sources */,

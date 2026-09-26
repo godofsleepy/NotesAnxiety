@@ -17,17 +17,11 @@ No Swift packages, no test targets, no linter config.
 xcodebuild -project NotesAnxiety.xcodeproj -scheme NotesAnxiety -destination 'platform=iOS Simulator,name=iPhone 16' build
 ```
 
-Widget scheme: `NotesWidgetExtension`. The app uses HealthKit and Journaling Suggestions entitlements (`NotesAnxiety/NotesAnxiety.entitlements`); `JournalingSuggestionsPicker` only works on a real device.
+Widget scheme: `NotesWidgetExtension`. The app uses HealthKit and Journaling Suggestions entitlements (`NotesAnxiety/NotesAnxiety.entitlements`); `JournalingSuggestions` isn't in the simulator SDK, so its picker is wrapped in `#if canImport(JournalingSuggestions)` and only appears on device.
 
 ## Xcode project uses explicit file references
 
-The project does **not** use folder-synchronized groups — a `.swift` file is compiled only if it is listed in `project.pbxproj`. New files must be added to the target. Several files on disk are **not** in any target and are dead/scratch copies:
-
-- `NotesAnxiety/ViewModels/Views/**` — an older duplicate of the views tree.
-- In `NotesAnxiety/Views/Components/`: `AnxietyCategoryComponent`, `AnxietyCategoryView`, `AnxietyLevelComponent`, `AnxietyStatusComponent`, `AnxietyTrackerView` (the compiled anxiety components are `CategoryComponent`/`CategoryView`, `StatusComponent`/`StatusView`, `LogComponent`/`LogView`).
-- `TextFormatterView.swift` at repo root.
-
-Before editing a view, confirm it's the compiled copy (`grep <FileName>.swift NotesAnxiety.xcodeproj/project.pbxproj`).
+The project does **not** use folder-synchronized groups — a `.swift` file is compiled only if it is listed in `project.pbxproj`. New files must be added to the target.
 
 ## Architecture
 
@@ -41,7 +35,6 @@ MVVM with a single shared view model:
   - `anxietyLevel` is a `Double` 0–4; `Models/AnxietyLevelType` maps it to minimal/mild/moderate/severe (and to color/image assets like `SystemMild`, `CardsSevere`).
   - Media (photo/audio/video) are stored as file path strings, not blobs.
 - `Utils/NotificationManager` requests permission and schedules a daily reminder at app launch.
-- `Data/HealthService` exists but isn't wired into the UI.
 
 ## Widget
 
