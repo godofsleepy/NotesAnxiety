@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B5012B012C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5012AFF2C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld */; };
-		B5012B022C47F4D300C39BF9 /* NotesContainer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B5012AFF2C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld */; };
+		A1B2C3D40000000000000002 /* NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40000000000000001 /* NoteStore.swift */; };
+		A1B2C3D40000000000000003 /* NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40000000000000001 /* NoteStore.swift */; };
+		A1B2C3D40000000000000005 /* AnxietyLevelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F32C47836500BF7988 /* AnxietyLevelType.swift */; };
 		B5B35EEB2C47F7CE00DB701E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */; };
 		B5B35EED2C47F7DB00DB701E /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EEC2C47F7DB00DB701E /* StatusView.swift */; };
 		B5B35EEF2C47F7F400DB701E /* StatusComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EEE2C47F7F400DB701E /* StatusComponent.swift */; };
@@ -28,7 +29,6 @@
 		FBA9D6D22C46215B00BF7988 /* AppIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6D12C46215B00BF7988 /* AppIntent.swift */; };
 		FBA9D6D42C46215C00BF7988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBA9D6D32C46215C00BF7988 /* Assets.xcassets */; };
 		FBA9D6D82C46215C00BF7988 /* NotesWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBA9D6C92C46215B00BF7988 /* NotesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		FBA9D6DF2C46218D00BF7988 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6DE2C46218D00BF7988 /* PersistenceController.swift */; };
 		FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E02C46268700BF7988 /* ImagePickerComponent.swift */; };
 		FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E22C4626AB00BF7988 /* AudioRecorderComponent.swift */; };
 		FBA9D6ED2C467AD700BF7988 /* CellButtonEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */; };
@@ -46,7 +46,6 @@
 		FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC492F2C3F694B0022F62C /* Extensions.swift */; };
 		FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49312C3F695F0022F62C /* NotesViewModel.swift */; };
 		FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC493A2C3F70F20022F62C /* AppError.swift */; };
-		FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD302C3D77D20089CEE8 /* HealthService.swift */; };
 		FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */; };
 		FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */; };
 		FBF68B8A2C44686100689EC2 /* InsightView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBF68B892C44686100689EC2 /* InsightView.swift */; };
@@ -78,6 +77,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A1B2C3D40000000000000001 /* NoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStore.swift; sourceTree = "<group>"; };
+		A1B2C3D40000000000000006 /* NotesWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotesWidget.entitlements; sourceTree = "<group>"; };
 		B5012B002C47F4CD00C39BF9 /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
 		B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		B5B35EEC2C47F7DB00DB701E /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
@@ -119,7 +120,6 @@
 		FBCC492F2C3F694B0022F62C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FBCC49312C3F695F0022F62C /* NotesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
 		FBCC493A2C3F70F20022F62C /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
-		FBECCD302C3D77D20089CEE8 /* HealthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthService.swift; sourceTree = "<group>"; };
 		FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DependencyInjection.swift; sourceTree = "<group>"; };
 		FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalDataService.swift; sourceTree = "<group>"; };
 		FBECCD362C3E836D0089CEE8 /* NotesAnxiety.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotesAnxiety.entitlements; sourceTree = "<group>"; };
@@ -147,11 +147,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1B2C3D40000000000000004 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2C3D40000000000000001 /* NoteStore.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		FB3BF6062C3BB29300A9406D = {
 			isa = PBXGroup;
 			children = (
 				FB3BF6112C3BB29300A9406D /* NotesAnxiety */,
 				FBA9D6CC2C46215B00BF7988 /* NotesWidget */,
+				A1B2C3D40000000000000004 /* Shared */,
 				FBA9D6AF2C46213500BF7988 /* Frameworks */,
 				FB3BF6102C3BB29300A9406D /* Products */,
 			);
@@ -249,7 +258,6 @@
 			isa = PBXGroup;
 			children = (
 				FBCC49332C3F6CA70022F62C /* CoreData Container */,
-				FBECCD302C3D77D20089CEE8 /* HealthService.swift */,
 				FBECCD342C3E463B0089CEE8 /* LocalDataService.swift */,
 			);
 			path = Data;
@@ -280,6 +288,7 @@
 			isa = PBXGroup;
 			children = (
 				FBA9D6DE2C46218D00BF7988 /* PersistenceController.swift */,
+				A1B2C3D40000000000000006 /* NotesWidget.entitlements */,
 				FBA9D6CD2C46215B00BF7988 /* NotesWidgetBundle.swift */,
 				FBA9D6D12C46215B00BF7988 /* AppIntent.swift */,
 				FBA9D6D32C46215C00BF7988 /* Assets.xcassets */,
@@ -412,14 +421,13 @@
 				FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */,
 				FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */,
 				FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */,
+				A1B2C3D40000000000000002 /* NoteStore.swift in Sources */,
 				FB5CBA0A2C441B2E003DF098 /* HistoryNotesView.swift in Sources */,
 				FB5CBA0C2C442E4A003DF098 /* ProgressState.swift in Sources */,
 				FBA9D6FE2C47B74700BF7988 /* AnalyticsView.swift in Sources */,
 				FBA9D71A2C48361000BF7988 /* AnxietyTemporaryModel.swift in Sources */,
 				FBF68B8C2C446A8000689EC2 /* DataPointModel.swift in Sources */,
 				FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */,
-				B5012B012C47F4CD00C39BF9 /* NotesContainer.xcdatamodeld in Sources */,
-				FBA9D6DF2C46218D00BF7988 /* PersistenceController.swift in Sources */,
 				FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */,
 				FBA9D71E2C48A7B300BF7988 /* WrapStack.swift in Sources */,
 				FBA9D6F42C47836500BF7988 /* AnxietyLevelType.swift in Sources */,
@@ -428,7 +436,6 @@
 				FBF68B8A2C44686100689EC2 /* InsightView.swift in Sources */,
 				FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */,
 				FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */,
-				FBECCD312C3D77D20089CEE8 /* HealthService.swift in Sources */,
 				FBA9D6FC2C47A6C800BF7988 /* NotificationManager.swift in Sources */,
 				FBA9D6ED2C467AD700BF7988 /* CellButtonEdit.swift in Sources */,
 				FBA9D6FA2C4784D800BF7988 /* ChartView.swift in Sources */,
@@ -442,7 +449,8 @@
 			files = (
 				FBA9D6CE2C46215B00BF7988 /* NotesWidgetBundle.swift in Sources */,
 				FBA9D6D22C46215B00BF7988 /* AppIntent.swift in Sources */,
-				B5012B022C47F4D300C39BF9 /* NotesContainer.xcdatamodeld in Sources */,
+				A1B2C3D40000000000000003 /* NoteStore.swift in Sources */,
+				A1B2C3D40000000000000005 /* AnxietyLevelType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,7 +517,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -566,7 +574,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -602,7 +610,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -611,7 +619,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yellow40.NotesAnxiety;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -642,7 +650,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -651,7 +659,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.yellow40.NotesAnxiety;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -665,10 +673,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68FP6TZ275;
 				GENERATE_INFOPLIST_FILE = YES;
+				CODE_SIGN_ENTITLEMENTS = NotesWidget/NotesWidget.entitlements;
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -679,7 +688,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -693,10 +702,11 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 68FP6TZ275;
 				GENERATE_INFOPLIST_FILE = YES;
+				CODE_SIGN_ENTITLEMENTS = NotesWidget/NotesWidget.entitlements;
 				INFOPLIST_FILE = NotesWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = NotesWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -707,7 +717,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

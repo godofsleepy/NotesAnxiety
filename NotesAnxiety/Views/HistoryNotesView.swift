@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct HistoryNotesView: View {
-    @EnvironmentObject var vm: NotesViewModel
+    @Environment(NotesViewModel.self) private var vm
     @State private var searchText = ""
     @State private var showEditView = false
     
@@ -70,7 +70,6 @@ struct HistoryNotesView: View {
                     }
                 }
             }
-            .id(UUID())
             .navigationTitle(NSLocalizedString("History", comment: ""))
             .searchable(text: $searchText)
             .onChange(of: searchText) {
@@ -121,9 +120,7 @@ struct HistoryNotesView: View {
                     vm.selectedNote = nil
                 }
                 
-                Task {
-                    await vm.deleteNote(noteToDelete)
-                }
+                vm.deleteNote(noteToDelete)
             }
         }
     }

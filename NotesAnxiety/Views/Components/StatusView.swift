@@ -13,7 +13,7 @@ struct StatusView: View {
     var anxietyLabel: String
     var anxietyCategory: [String]
     var anxietyColor: Color
-    @EnvironmentObject var vm: NotesViewModel
+    @Environment(NotesViewModel.self) private var vm
     var bgColor: Color
     var onDelete: () -> Void
     var body: some View {

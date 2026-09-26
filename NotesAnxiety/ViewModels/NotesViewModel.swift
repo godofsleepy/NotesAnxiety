@@ -7,51 +7,47 @@
 
 import Foundation
 import SwiftUI
-import Combine
+import Observation
 
-class NotesViewModel: ObservableObject {
+@Observable
+@MainActor
+final class NotesViewModel {
 
-    let localDataService : LocalDataService
-    @Published var notes: [NoteEntity] = []
-    @Published var selectedNote: NoteEntity?
-    @Published var isDataLoaded = false
-    @Published var preferredColumn = NavigationSplitViewColumn.detail
-    @Published var updateProgressState = ProgressState.Default
-    @Published var temporaryAnxiety: AnxietyTemporaryModel?
-    private var cancellables = Set<AnyCancellable>()
-    private var noteUpdateSubject = PassthroughSubject<TemporaryNoteModel, Never>()
-    
+    let localDataService: LocalDataService
+    var notes: [NoteEntity] = []
+    var selectedNote: NoteEntity? {
+        didSet { updateProgressState = .Default }
+    }
+    var isDataLoaded = false
+    var preferredColumn = NavigationSplitViewColumn.detail
+    var updateProgressState = ProgressState.Default
+    var temporaryAnxiety: AnxietyTemporaryModel?
+
+    @ObservationIgnored private var searchText = ""
+    @ObservationIgnored private var pendingUpdate: Task<Void, Never>?
+    @ObservationIgnored private var pendingTarget: NoteEntity?
 
     init(localDataService: LocalDataService) {
         self.localDataService = localDataService
-        noteUpdateSubject
-            .debounce(for: .milliseconds(1000), scheduler: DispatchQueue.main)
-            .sink { [weak self] noteUpdate in
-                guard let self = self else { return }
-                Task {
-                    await self.updateNote(noteUpdate)
-                }
-            }
-            .store(in: &cancellables)
-        $selectedNote.sink(receiveValue: { note in
-            DispatchQueue.main.async {
-                self.updateProgressState = ProgressState.Default
-            }
-        }).store(in: &cancellables)
     }
 
     func togglePin(for note: NoteEntity) {
-        Task {
-            await localDataService.togglePin(for: note)
-            await fetchNotes()
-        }
+        localDataService.togglePin(for: note)
+        fetchNotes()
     }
 
+    /// Autosave entry point. Rapid edits are coalesced: only the last change
+    /// within one second is written.
     func performUpdate(title: String, content: String, audioPath: String?, videoPath: String?, photoPath: String?, pinned: Bool?, anxiety: AnxietyTemporaryModel?) {
-        if title == selectedNote?.title && content == selectedNote?.content, audioPath == selectedNote?.audioPath && videoPath == selectedNote?.videoPath && photoPath == selectedNote?.photoPath && pinned == selectedNote?.pinned  {
+        if let note = selectedNote,
+           title == note.title, content == note.content,
+           audioPath == note.audioPath, videoPath == note.videoPath, photoPath == note.photoPath,
+           (pinned ?? note.pinned) == note.pinned,
+           (anxiety?.anxietyLevel ?? 0) == note.anxietyLevel,
+           (anxiety?.categoryAnxiety ?? []) == note.categories {
             return
         }
-        updateProgressState = ProgressState.Loading
+        updateProgressState = .Loading
         let noteUpdate = TemporaryNoteModel(
             title: title,
             content: content,
@@ -60,64 +56,61 @@ class NotesViewModel: ObservableObject {
             audiotPath: audioPath,
             anxietyLevel: anxiety?.anxietyLevel ?? 0,
             categoryAnxiety: anxiety?.categoryAnxiety ?? [],
-            pinned: pinned == nil ? (selectedNote?.pinned ?? false) : pinned!
+            pinned: pinned ?? selectedNote?.pinned ?? false
         )
-        noteUpdateSubject.send(noteUpdate)
-    }
-    
-    func generateRandomDecimal() -> Double {
-        let randomNumber = Double(arc4random_uniform(41)) / 10.0
-        return randomNumber
+        // Capture the target now so switching notes during the delay can't
+        // redirect this edit to a different note.
+        // A pending edit for another note is left to finish.
+        let target = selectedNote
+        if pendingTarget === target {
+            pendingUpdate?.cancel()
+        }
+        pendingTarget = target
+        pendingUpdate = Task {
+            try? await Task.sleep(for: .seconds(1))
+            guard !Task.isCancelled else { return }
+            updateNote(target, with: noteUpdate)
+        }
     }
 
-    func updateNote(_ temporaryNote: TemporaryNoteModel) async {
-        let note = if selectedNote == nil {
-            await createNote()
+    private func updateNote(_ target: NoteEntity?, with temporaryNote: TemporaryNoteModel) {
+        let note: NoteEntity
+        if let target {
+            guard !target.isDeleted, target.modelContext != nil else { return }
+            note = target
         } else {
-            selectedNote
+            // Select the new note so later edits update it instead of
+            // creating another one.
+            note = localDataService.createNote()
+            selectedNote = note
         }
-        
-        await localDataService.updateNote(note!, temporaryNote: temporaryNote)
-        DispatchQueue.main.async {
-            self.updateProgressState = ProgressState.Complete
-        }
-        await fetchNotes()
+        localDataService.updateNote(note, temporaryNote: temporaryNote)
+        updateProgressState = .Complete
+        fetchNotes()
     }
 
-    func fetchNotes(with searchText: String = "") async  {
+    func fetchNotes() {
         do {
-            let data = try await localDataService.fetchNotes(searchText: searchText)
-            DispatchQueue.main.async {
-                self.isDataLoaded = true
-                self.notes = data
-            }
+            notes = try localDataService.fetchNotes(searchText: searchText)
+            isDataLoaded = true
         } catch {
             print("Error fetching notes: \(error)")
         }
     }
 
-    func createNote() async -> NoteEntity {
-        let newNote = await localDataService.createNote()
-        Task {
-            await fetchNotes()
+    func deleteNote(_ note: NoteEntity) {
+        if pendingTarget === note {
+            pendingUpdate?.cancel()
         }
-        return newNote
-    }
-
-    func deleteNote(_ note: NoteEntity) async {
         if selectedNote == note {
-            self.selectedNote = nil
-            self.updateProgressState = ProgressState.Default
+            selectedNote = nil
         }
-        await localDataService.deleteNote(note)
-        Task {
-            await fetchNotes()
-        }
+        localDataService.deleteNote(note)
+        fetchNotes()
     }
 
     func searchNotes(with searchText: String) {
-        Task {
-           await fetchNotes(with: searchText)
-        }
+        self.searchText = searchText
+        fetchNotes()
     }
 }

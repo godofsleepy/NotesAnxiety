@@ -6,14 +6,25 @@
 //
 
 import Foundation
+import SwiftData
 
-class DependencyInjection {
-    
+@MainActor
+final class DependencyInjection {
+
     static let shared = DependencyInjection()
-    private init() {}
-    
-    lazy var localDataService: LocalDataService = LocalDataServiceImpl()
-    
+
+    let modelContainer: ModelContainer
+
+    private init() {
+        do {
+            modelContainer = try NoteStore.makeContainer()
+        } catch {
+            fatalError("Failed to open note store: \(error)")
+        }
+    }
+
+    lazy var localDataService: LocalDataService = LocalDataServiceImpl(container: modelContainer)
+
     func notesViewModel() -> NotesViewModel {
         NotesViewModel(localDataService: localDataService)
     }

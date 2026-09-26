@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct AnxietyTemporaryModel {
+struct AnxietyTemporaryModel: Equatable {
     let anxietyLevel: Double
     let categoryAnxiety: [String]
     var createdAt = Date()

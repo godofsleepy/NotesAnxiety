@@ -10,9 +10,10 @@ import UserNotifications
 import CoreLocation
 import HealthKit
 
-class NotificationManager: ObservableObject {
-    @Published var healthStore = HKHealthStore()
-    @Published var heartRate: Double = 0.0
+@MainActor
+final class NotificationManager {
+    private let healthStore = HKHealthStore()
+    private var heartRate: Double = 0.0
     static let shared = NotificationManager()
     private var timer: Timer?
     private var observerQuery: HKObserverQuery?
@@ -30,7 +31,9 @@ class NotificationManager: ObservableObject {
             if !success {
                 print("HealthKit authorization failed: \(String(describing: error))")
             } else {
-                self.startHeartRateObserverQuery()
+                Task { @MainActor in
+                    NotificationManager.shared.startHeartRateObserverQuery()
+                }
             }
         }
     }
@@ -41,9 +44,10 @@ class NotificationManager: ObservableObject {
         }
         
         let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
-        observerQuery = HKObserverQuery(sampleType: heartRateType, predicate: nil) { [weak self] (query, completionHandler, error) in
-            guard let self = self else { return }
-            self.fetchLatestHeartRate()
+        observerQuery = HKObserverQuery(sampleType: heartRateType, predicate: nil) { (query, completionHandler, error) in
+            Task { @MainActor in
+                NotificationManager.shared.fetchLatestHeartRate()
+            }
             completionHandler()
         }
         
@@ -54,13 +58,13 @@ class NotificationManager: ObservableObject {
     private func fetchLatestHeartRate() {
         let heartRateType = HKQuantityType.quantityType(forIdentifier: .heartRate)!
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
-        let query = HKSampleQuery(sampleType: heartRateType, predicate: nil, limit: 1, sortDescriptors: [sortDescriptor]) { [weak self] (query, samples, error) in
-            guard let self = self else { return }
+        let query = HKSampleQuery(sampleType: heartRateType, predicate: nil, limit: 1, sortDescriptors: [sortDescriptor]) { (query, samples, error) in
             guard let sample = samples?.first as? HKQuantitySample else { return }
-            DispatchQueue.main.async {
-                let heartRateUnit = HKUnit(from: "count/min")
-                self.heartRate = sample.quantity.doubleValue(for: heartRateUnit)
-                self.checkHeartRateThreshold()
+            let heartRate = sample.quantity.doubleValue(for: HKUnit(from: "count/min"))
+            Task { @MainActor in
+                let manager = NotificationManager.shared
+                manager.heartRate = heartRate
+                manager.checkHeartRateThreshold()
             }
         }
         healthStore.execute(query)
@@ -74,8 +78,9 @@ class NotificationManager: ObservableObject {
         }
 
         // Schedule the next call to startHeartRateObserverQuery after 10 seconds
-        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
-            self.startHeartRateObserverQuery()
+        Task {
+            try? await Task.sleep(for: .seconds(60))
+            startHeartRateObserverQuery()
         }
     }
     
@@ -101,7 +106,10 @@ class NotificationManager: ObservableObject {
         content.sound = .default
         content.badge = 1
         
-        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger: trigger.trigger)
+        // Older builds added a new reminder with a random ID on every launch;
+        // clear those, then use a fixed ID so re-scheduling replaces it.
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        let request = UNNotificationRequest(identifier: "reminder.\(trigger.rawValue)", content: content, trigger: trigger.trigger)
         UNUserNotificationCenter.current().add(request)
     }
     

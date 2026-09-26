@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
+#if canImport(JournalingSuggestions)
 import JournalingSuggestions
+#endif
 
 struct EditNotesView: View {
     @Environment(\.dismiss) private var dismiss
     
-    @EnvironmentObject var vm: NotesViewModel
+    @Environment(NotesViewModel.self) private var vm
     @State private var title: String = ""
     @State var content: String = ""
     @State private var showImagePicker = false
@@ -19,6 +21,10 @@ struct EditNotesView: View {
     @State private var showCamera = false
     @State private var showAudioRecorder = false
     @State private var image: UIImage?
+    /// Where `image` is saved on disk. Only rewritten when a new image is picked.
+    @State private var photoPath: String?
+    /// Set by the pickers; moved into `image` and saved once.
+    @State private var pickedImage: UIImage?
     @State private var audioFilename: URL?
     @State private var pinned = false
     @State private var anxietyLevel: AnxietyTemporaryModel?
@@ -165,17 +171,7 @@ struct EditNotesView: View {
             
             ToolbarItem(placement: .bottomBar, content: {
                 HStack{
-                    JournalingSuggestionsPicker {
-                        Image(systemName: "sparkles")
-                    } onCompletion: { suggestion in
-                        //                        print(suggestion.items.count)
-                        //                        print(suggestion.title)
-                        //                        print(suggestion.date)
-                        //                        suggestion.items.forEach { v in
-                        //                            print(v.representations)
-                        //                        }
-                        loadImageJournalSuggestion(suggestion: suggestion)
-                    }
+                    journalingSuggestionsButton
 //                    Button(action: { }) {
 //                        Image(systemName: "textformat")
 //                    }
@@ -201,6 +197,7 @@ struct EditNotesView: View {
                         title = ""
                         content = ""
                         image = nil
+                        photoPath = nil
                         audioFilename = nil
                         contentEditorInFocus = false
                         pinned = false
@@ -212,17 +209,7 @@ struct EditNotesView: View {
             })
             ToolbarItem(placement: .keyboard) {
                 HStack {
-                    JournalingSuggestionsPicker {
-                        Image(systemName: "sparkles")
-                    } onCompletion: { suggestion in
-                        //                        print(suggestion.items.count)
-                        //                        print(suggestion.title)
-                        //                        print(suggestion.date)
-                        //                        suggestion.items.forEach { v in
-                        //                            print(v.representations)
-                        //                        }
-                        loadImageJournalSuggestion(suggestion: suggestion)
-                    }
+                    journalingSuggestionsButton
 //                    Button(action:{
 //                        isShowingTextFormatter.toggle()
 //                    }){
@@ -266,10 +253,11 @@ struct EditNotesView: View {
                 self.anxietyLevel = note.anxietyLevel != 0.0 ?
                     AnxietyTemporaryModel(
                         anxietyLevel: note.anxietyLevel,
-                        categoryAnxiety: note.categoryAnxiety?.isEmpty == false ? note.categoryAnxiety!.split(separator: ",").map(String.init) : [],
+                        categoryAnxiety: note.categories,
                         createdAt: note.timestamp ?? Date(), anxietyColor: AnxietyLevelType.color(anxiety: note.anxietyLevel)
                     ) : nil
                 
+                self.photoPath = note.photoPath
                 if let photoPath = note.photoPath, let imageData = try? Data(contentsOf: URL(fileURLWithPath: photoPath)) {
                     self.image = UIImage(data: imageData)
                 } else {
@@ -291,39 +279,58 @@ struct EditNotesView: View {
             .presentationDetents([.medium])
         }
         .sheet(isPresented: $showImagePicker) {
-            ImagePickerComponent(sourceType: .photoLibrary, selectedImage: $image)
+            ImagePickerComponent(sourceType: .photoLibrary, selectedImage: $pickedImage)
         }
         .sheet(isPresented: $showCamera) {
-            ImagePickerComponent(sourceType: .camera, selectedImage: $image)
+            ImagePickerComponent(sourceType: .camera, selectedImage: $pickedImage)
         }
         .sheet(isPresented: $showAudioRecorder) {
             AudioRecorderComponent(audioFilename: $audioFilename)
                 .presentationDetents([.medium])
         }
-        .onReceive(vm.$temporaryAnxiety, perform: { v in
-            if v != nil {
-                self.anxietyLevel = v
+        .onChange(of: vm.temporaryAnxiety) {
+            if let anxiety = vm.temporaryAnxiety {
+                self.anxietyLevel = anxiety
                 self.updateNote(title: title, content: content)
             }
-        })
+        }
+        .onChange(of: pickedImage) {
+            guard let pickedImage else { return }
+            image = pickedImage
+            photoPath = saveImage(pickedImage)
+            self.pickedImage = nil
+            updateNote(title: title, content: content)
+        }
         
     }
     
+    // JournalingSuggestions is device-only; the simulator SDK doesn't ship it.
+    @ViewBuilder
+    private var journalingSuggestionsButton: some View {
+        #if canImport(JournalingSuggestions)
+        JournalingSuggestionsPicker {
+            Image(systemName: "sparkles")
+        } onCompletion: { suggestion in
+            loadImageJournalSuggestion(suggestion: suggestion)
+        }
+        #else
+        EmptyView()
+        #endif
+    }
+
+    #if canImport(JournalingSuggestions)
     func loadImageJournalSuggestion(suggestion: JournalingSuggestion)  {
         Task {
             let content = await suggestion.content(forType: JournalingSuggestion.Photo.self)
             print(content.count)
             for v in content {
                 if let uiImage = try? await fetchImage(from: v.photo) {
-                    // Update the UI on the main thread
-                    image = uiImage
+                    pickedImage = uiImage
                 }
             }
-            
-
         }
-
     }
+    #endif
     
     func saveImage(_ image: UIImage?) -> String? {
         guard let image = image, let data = image.jpegData(compressionQuality: 1.0) else { return nil }
@@ -343,7 +350,6 @@ struct EditNotesView: View {
             return
         }
         
-        let photoPath = saveImage(image)
         let audioPath = audioFilename?.path
         
         vm.performUpdate(title: title, content: content, audioPath: audioPath, videoPath: nil, photoPath: photoPath, pinned: pinned, anxiety: anxietyLevel)
@@ -353,11 +359,7 @@ struct EditNotesView: View {
         return UIImage(data: data)
     }
     private func deleteNote(_ note: NoteEntity) {
-        Task {
-            await vm.deleteNote(note)
-            DispatchQueue.main.async {
-                dismiss()
-            }
-        }
+        vm.deleteNote(note)
+        dismiss()
     }
 }
