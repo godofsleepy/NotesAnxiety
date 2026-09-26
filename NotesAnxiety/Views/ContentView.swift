@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @EnvironmentObject var notesViewModel: NotesViewModel
-    @State private var preferredColumn = NavigationSplitViewColumn.detail
+    @Environment(NotesViewModel.self) private var notesViewModel
 
 
     var body: some View {
-        NavigationSplitView(preferredCompactColumn: $preferredColumn) {
+        @Bindable var notesViewModel = notesViewModel
+        NavigationSplitView(preferredCompactColumn: $notesViewModel.preferredColumn) {
             Group{
                 if (notesViewModel.isDataLoaded){
                     HistoryNotesView()
@@ -21,19 +21,17 @@ struct ContentView: View {
                     ProgressView("Loading...")
                 }
             }.task {
-                await notesViewModel.fetchNotes()
+                notesViewModel.fetchNotes()
             }
         } detail: {
             NavigationStack{
                 EditNotesView()
             }
         }
-        .onReceive(notesViewModel.$preferredColumn, perform: { changes in
-            preferredColumn = changes
-        })
     }
 }
 
 #Preview {
     ContentView()
+        .environment(DependencyInjection.shared.notesViewModel())
 }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InsightView: View {
-    @EnvironmentObject var vm: NotesViewModel
+    @Environment(NotesViewModel.self) private var vm
     
     @State private var selectedPeriod: TimePeriod = .lastWeek
     
@@ -26,7 +26,7 @@ struct InsightView: View {
                 
                 ChartView(data: vm.notes, period: selectedPeriod)
                     
-                AnalyticsView(data: vm.notes.filter{ (!($0.categoryAnxiety?.isEmpty ?? true) && $0.anxietyLevel >= 1) }, period: selectedPeriod)
+                AnalyticsView(data: vm.notes.filter { !$0.categories.isEmpty && $0.anxietyLevel >= 1 }, period: selectedPeriod)
                     .padding(.top)
                 Spacer()
             }
@@ -39,4 +39,5 @@ struct InsightView: View {
 
 #Preview {
     InsightView()
+        .environment(DependencyInjection.shared.notesViewModel())
 }

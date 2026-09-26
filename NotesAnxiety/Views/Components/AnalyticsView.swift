@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct AnalyticsView: View {
-    @EnvironmentObject var vm: NotesViewModel
+    @Environment(NotesViewModel.self) private var vm
     let data: [NoteEntity]
     let period: TimePeriod
     
@@ -94,9 +94,8 @@ struct AnalyticsView: View {
         
         // Count occurrences of each category
         for entry in entries {
-            let categoryAnxiety = entry.categoryAnxiety!.split(separator: ",")
-            for category in categoryAnxiety {
-                categoryCount[String(category), default: 0] += 1
+            for category in entry.categories {
+                categoryCount[category, default: 0] += 1
             }
         }
         

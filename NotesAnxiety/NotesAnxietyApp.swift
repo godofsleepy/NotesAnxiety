@@ -9,6 +9,8 @@ import SwiftUI
 
 @main
 struct NotesAnxietyApp: App {
+    @State private var notesViewModel = DependencyInjection.shared.notesViewModel()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
@@ -16,7 +18,7 @@ struct NotesAnxietyApp: App {
                     NotificationManager.shared.requestAuthorization()
                     NotificationManager.shared.scheduleNotification(trigger: .calendar)
                 }
-                .environmentObject(DependencyInjection.shared.notesViewModel())
+                .environment(notesViewModel)
                 
         }
     }

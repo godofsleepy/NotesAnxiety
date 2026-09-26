@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct CellButtonEdit: View {
-    @EnvironmentObject var vm: NotesViewModel
+    @Environment(NotesViewModel.self) private var vm
     
     var note: NoteEntity
     
     var body: some View {
         Button {
             vm.performUpdate(
-                title: note.title!,
-                content: note.content!,
+                title: note.title ?? "",
+                content: note.content ?? "",
                 audioPath: note.audioPath,
                 videoPath: note.videoPath,
                 photoPath: note.photoPath,
                 pinned: !note.pinned,
-                anxiety: AnxietyTemporaryModel(anxietyLevel: note.anxietyLevel, categoryAnxiety: note.categoryAnxiety!.split(separator: ",").map(String.init), anxietyColor: AnxietyLevelType.color(anxiety: note.anxietyLevel))
+                anxiety: AnxietyTemporaryModel(anxietyLevel: note.anxietyLevel, categoryAnxiety: note.categories, anxietyColor: AnxietyLevelType.color(anxiety: note.anxietyLevel))
             )
         } label: {
             Label(note.pinned ? "Unpin" : "Pin", systemImage: note.pinned ? "pin.slash" : "pin")

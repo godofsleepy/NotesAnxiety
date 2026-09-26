@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CategoryView: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject() var vm: NotesViewModel
+    @Environment(NotesViewModel.self) private var vm
     @Binding var anxietyLevel: Double
     @State var valueCategory: [String] = []
     
