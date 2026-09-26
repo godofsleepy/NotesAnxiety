@@ -6,7 +6,9 @@
 //
 
 import SwiftUI
+#if canImport(JournalingSuggestions)
 import JournalingSuggestions
+#endif
 
 struct EditNotesView: View {
     @Environment(\.dismiss) private var dismiss
@@ -165,17 +167,7 @@ struct EditNotesView: View {
             
             ToolbarItem(placement: .bottomBar, content: {
                 HStack{
-                    JournalingSuggestionsPicker {
-                        Image(systemName: "sparkles")
-                    } onCompletion: { suggestion in
-                        //                        print(suggestion.items.count)
-                        //                        print(suggestion.title)
-                        //                        print(suggestion.date)
-                        //                        suggestion.items.forEach { v in
-                        //                            print(v.representations)
-                        //                        }
-                        loadImageJournalSuggestion(suggestion: suggestion)
-                    }
+                    journalingSuggestionsButton
 //                    Button(action: { }) {
 //                        Image(systemName: "textformat")
 //                    }
@@ -212,17 +204,7 @@ struct EditNotesView: View {
             })
             ToolbarItem(placement: .keyboard) {
                 HStack {
-                    JournalingSuggestionsPicker {
-                        Image(systemName: "sparkles")
-                    } onCompletion: { suggestion in
-                        //                        print(suggestion.items.count)
-                        //                        print(suggestion.title)
-                        //                        print(suggestion.date)
-                        //                        suggestion.items.forEach { v in
-                        //                            print(v.representations)
-                        //                        }
-                        loadImageJournalSuggestion(suggestion: suggestion)
-                    }
+                    journalingSuggestionsButton
 //                    Button(action:{
 //                        isShowingTextFormatter.toggle()
 //                    }){
@@ -309,6 +291,21 @@ struct EditNotesView: View {
         
     }
     
+    // JournalingSuggestions is device-only; the simulator SDK doesn't ship it.
+    @ViewBuilder
+    private var journalingSuggestionsButton: some View {
+        #if canImport(JournalingSuggestions)
+        JournalingSuggestionsPicker {
+            Image(systemName: "sparkles")
+        } onCompletion: { suggestion in
+            loadImageJournalSuggestion(suggestion: suggestion)
+        }
+        #else
+        EmptyView()
+        #endif
+    }
+
+    #if canImport(JournalingSuggestions)
     func loadImageJournalSuggestion(suggestion: JournalingSuggestion)  {
         Task {
             let content = await suggestion.content(forType: JournalingSuggestion.Photo.self)
@@ -319,11 +316,9 @@ struct EditNotesView: View {
                     image = uiImage
                 }
             }
-            
-
         }
-
     }
+    #endif
     
     func saveImage(_ image: UIImage?) -> String? {
         guard let image = image, let data = image.jpegData(compressionQuality: 1.0) else { return nil }
