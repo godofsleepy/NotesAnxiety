@@ -1,0 +1,69 @@
+/* NotesAnxiety color tokens.
+   Source: NotesAnxiety/Assets.xcassets/*.colorset (app catalog is the source of truth).
+   Names map 1:1 to the asset names: BackgroundPrimary -> --background-primary. */
+
+:root {
+  /* Surfaces */
+  --background-primary: #FFFFFF;
+  --background-secondary: #383838;
+  --background-tertiary: rgba(0, 0, 0, 0.2);
+
+  /* Text */
+  --label-primary: #000000;
+  --label-secondary: rgba(0, 0, 0, 0.7);
+
+  /* Brand / accents */
+  --accent: #637CC0;
+  --dark-blue: #2E4279;
+  --black-grey: #3E3F41;
+  --black: #FEFFFF; /* asset is named "Black" but is off-white in both modes */
+  --system-blue: #007AFF;
+  --system-red: #FF3B30;
+
+  /* Anxiety level: solid (icons, chart marks, level indicators) */
+  --system-minimal: #04BADE;
+  --system-mild: #0496C7;
+  --system-moderate: #006CA5;
+  --system-severe: #015480;
+
+  /* Anxiety level: card fills (translucent backgrounds behind white text) */
+  --cards-minimal: rgba(140, 165, 233, 0.85);
+  --cards-mild: rgba(99, 124, 192, 0.85);
+  --cards-moderate: rgba(61, 70, 140, 0.85);
+  --cards-severe: rgba(16, 35, 84, 0.85);
+
+  color-scheme: light;
+}
+
+/* Dark appearance. Only assets with a dark variant change. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --background-primary: #000000;
+    --background-tertiary: rgba(0, 0, 0, 0.6);
+    --label-primary: #FFFFFF;
+    --label-secondary: rgba(255, 255, 255, 0.7);
+    --dark-blue: #FEFFFF;
+    --system-blue: #0A84FF;
+    --system-red: #FF453A;
+    --cards-minimal: rgba(208, 235, 255, 0.85);
+    --cards-mild: rgba(137, 205, 255, 0.15);
+    --cards-moderate: rgba(68, 177, 255, 0.85);
+    --cards-severe: rgba(0, 143, 246, 0.85);
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --background-primary: #000000;
+  --background-tertiary: rgba(0, 0, 0, 0.6);
+  --label-primary: #FFFFFF;
+  --label-secondary: rgba(255, 255, 255, 0.7);
+  --dark-blue: #FEFFFF;
+  --system-blue: #0A84FF;
+  --system-red: #FF453A;
+  --cards-minimal: rgba(208, 235, 255, 0.85);
+  --cards-mild: rgba(137, 205, 255, 0.15);
+  --cards-moderate: rgba(68, 177, 255, 0.85);
+  --cards-severe: rgba(0, 143, 246, 0.85);
+  color-scheme: dark;
+}

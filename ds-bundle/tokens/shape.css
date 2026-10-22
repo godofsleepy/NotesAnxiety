@@ -1,0 +1,21 @@
+/* NotesAnxiety corner radius and spacing, taken from the values the SwiftUI views use. */
+
+:root {
+  --radius-sm: 5px;
+  --radius-md: 8px;    /* list cells, buttons, text fields */
+  --radius-lg: 10px;
+  --radius-xl: 20px;   /* cards */
+  --radius-2xl: 25px;  /* category chips and anxiety status pills */
+  --radius-pill: 50px; /* fully rounded controls */
+
+  --space-1: 4px;
+  --space-2: 6px;
+  --space-3: 10px;
+  --space-4: 14px;
+  --space-5: 16px;     /* SwiftUI default .padding() */
+  --space-6: 20px;
+  --space-8: 40px;
+
+  /* Category chip padding: EdgeInsets(top: 6, leading: 14, bottom: 6, trailing: 14) */
+  --chip-padding: var(--space-2) var(--space-4);
+}

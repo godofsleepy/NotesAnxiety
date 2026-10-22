@@ -1,0 +1,43 @@
+/* NotesAnxiety typography tokens.
+   The app uses only the iOS system font (SF Pro) via SwiftUI text styles
+   (.largeTitle, .title2, .title3, .headline, .body, ...). Sizes below are the
+   iOS Dynamic Type defaults at the "Large" content size. No font files are
+   shipped: SF Pro resolves through -apple-system on Apple devices. */
+
+:root {
+  --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", system-ui, "Helvetica Neue", Arial, sans-serif;
+  --font-family-rounded: ui-rounded, "SF Pro Rounded", var(--font-family);
+
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* size / line-height pairs, named after SwiftUI Font.TextStyle */
+  --text-large-title: 34px;  --leading-large-title: 41px;
+  --text-title: 28px;        --leading-title: 34px;
+  --text-title2: 22px;       --leading-title2: 28px;
+  --text-title3: 20px;       --leading-title3: 25px;
+  --text-headline: 17px;     --leading-headline: 22px; /* semibold */
+  --text-body: 17px;         --leading-body: 22px;
+  --text-callout: 16px;      --leading-callout: 21px;
+  --text-subheadline: 15px;  --leading-subheadline: 20px;
+  --text-footnote: 13px;     --leading-footnote: 18px;
+  --text-caption: 12px;      --leading-caption: 16px;
+  --text-caption2: 11px;     --leading-caption2: 13px;
+
+  /* Fixed sizes the app uses outside the text styles */
+  --text-hero-emoji: 60px; /* anxiety-level hero glyph */
+}
+
+.text-large-title { font: var(--font-weight-bold) var(--text-large-title)/var(--leading-large-title) var(--font-family); }
+.text-title       { font: var(--font-weight-bold) var(--text-title)/var(--leading-title) var(--font-family); }
+.text-title2      { font: var(--font-weight-bold) var(--text-title2)/var(--leading-title2) var(--font-family); }
+.text-title3      { font: var(--font-weight-semibold) var(--text-title3)/var(--leading-title3) var(--font-family); }
+.text-headline    { font: var(--font-weight-semibold) var(--text-headline)/var(--leading-headline) var(--font-family); }
+.text-body        { font: var(--font-weight-regular) var(--text-body)/var(--leading-body) var(--font-family); }
+.text-callout     { font: var(--font-weight-regular) var(--text-callout)/var(--leading-callout) var(--font-family); }
+.text-subheadline { font: var(--font-weight-regular) var(--text-subheadline)/var(--leading-subheadline) var(--font-family); }
+.text-footnote    { font: var(--font-weight-regular) var(--text-footnote)/var(--leading-footnote) var(--font-family); }
+.text-caption     { font: var(--font-weight-regular) var(--text-caption)/var(--leading-caption) var(--font-family); }

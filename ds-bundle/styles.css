@@ -1,0 +1,14 @@
+/* NotesAnxiety design tokens: entry stylesheet. Designs receive this file and its @imports. */
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/shape.css";
+
+body {
+  margin: 0;
+  background: var(--background-primary);
+  color: var(--label-primary);
+  font-family: var(--font-family);
+  font-size: var(--text-body);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
