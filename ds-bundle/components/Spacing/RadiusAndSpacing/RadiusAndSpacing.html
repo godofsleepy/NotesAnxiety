@@ -1,0 +1,19 @@
+<!-- @dsCard group="Spacing" viewport="900x560" -->
+<!doctype html>
+<html data-theme="light"><head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Corner radius and spacing</title>
+  <link rel="stylesheet" href="../../../styles.css">
+  <style>
+    body{padding:24px;background:var(--background-primary)}
+    h1{margin:0 0 16px}
+    .cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+    .pane{padding:16px;border-radius:var(--radius-xl);background:var(--background-primary);color:var(--label-primary);border:1px solid rgba(127,127,127,.25)}
+    .pane-label{margin:0 0 12px;color:var(--label-secondary)}
+    code{font:12px/16px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--label-secondary)}
+    .rs{display:flex;flex-wrap:wrap;gap:16px}.r{display:flex;flex-direction:column;gap:6px;align-items:center;text-align:center}.box{width:72px;height:72px;background:var(--cards-mild)}.s{display:grid;grid-template-columns:90px 1fr 50px;gap:12px;align-items:center;padding:3px 0}.bar{height:12px;background:var(--system-moderate);border-radius:2px}
+  </style>
+</head><body>
+<h1 class="text-title2">Corner radius and spacing</h1>
+<p class='text-headline'>Radius</p><div class='rs'><div class='r'><div class='box' style='border-radius:var(--radius-sm)'></div><code>--radius-sm<br>5px</code></div><div class='r'><div class='box' style='border-radius:var(--radius-md)'></div><code>--radius-md<br>8px</code></div><div class='r'><div class='box' style='border-radius:var(--radius-lg)'></div><code>--radius-lg<br>10px</code></div><div class='r'><div class='box' style='border-radius:var(--radius-xl)'></div><code>--radius-xl<br>20px</code></div><div class='r'><div class='box' style='border-radius:var(--radius-2xl)'></div><code>--radius-2xl<br>25px</code></div><div class='r'><div class='box' style='border-radius:var(--radius-pill)'></div><code>--radius-pill<br>50px</code></div></div><p class='text-headline'>Spacing</p><div class='s'><code>--space-1</code><div class='bar' style='width:var(--space-1)'></div><code>4px</code></div><div class='s'><code>--space-2</code><div class='bar' style='width:var(--space-2)'></div><code>6px</code></div><div class='s'><code>--space-3</code><div class='bar' style='width:var(--space-3)'></div><code>10px</code></div><div class='s'><code>--space-4</code><div class='bar' style='width:var(--space-4)'></div><code>14px</code></div><div class='s'><code>--space-5</code><div class='bar' style='width:var(--space-5)'></div><code>16px</code></div><div class='s'><code>--space-6</code><div class='bar' style='width:var(--space-6)'></div><code>20px</code></div><div class='s'><code>--space-8</code><div class='bar' style='width:var(--space-8)'></div><code>40px</code></div>
+</body></html>

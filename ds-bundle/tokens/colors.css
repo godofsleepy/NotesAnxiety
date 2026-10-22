@@ -53,7 +53,9 @@
   }
 }
 
-:root[data-theme="dark"] {
+/* Forced dark: on <html>, or on any element to render just that subtree dark. */
+:root[data-theme="dark"],
+[data-theme="dark"] {
   --background-primary: #000000;
   --background-tertiary: rgba(0, 0, 0, 0.6);
   --label-primary: #FFFFFF;
