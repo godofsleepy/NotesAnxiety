@@ -33,24 +33,6 @@ struct EditNotesView: View {
     @State private var isShowingVoice = false
     @State private var isShowingLocation = false
     
-    @State var titleIsPressed = false
-    @State var headingIsPressed = false
-    @State var subHeadingIsPressed = false
-    @State var bodyIsPressed = false
-    @State var monostyledIsPressed = false
-    
-    @State var boldIsPressed = false
-    @State var italicIsPressed = false
-    @State var underlineIsPressed = false
-    @State var strikeThroughIsPressed = false
-        
-    @State var bulletIsPressed = false
-    @State var listIsPressed = false
-    @State var numberIsPressed = false
-    @State var alignLeftIsPressed = false
-    @State var alignRightIsPressed = false
-    @State private var currentValue1 = 50.0
-    
     @FocusState private var contentEditorInFocus: Bool
     
     var body: some View {
@@ -66,11 +48,10 @@ struct EditNotesView: View {
 //                        .frame(maxHeight: 200)
 //                    }
                 }
-                if anxietyLevel != nil {
-                    StatusView(date: anxietyLevel!.createdAt, anxietyImage: "cloud.drizzle.circle.fill", anxietyLabel: AnxietyLevelType.from(average: anxietyLevel!.anxietyLevel).rawValue, anxietyCategory: anxietyLevel!.categoryAnxiety, anxietyColor: AnxietyLevelType.color(anxiety: anxietyLevel!.anxietyLevel),
-                               bgColor: Color(red: 99/255, green: 124/255, blue: 192/255), onDelete: {
+                if let anxietyLevel {
+                    StatusView(anxiety: anxietyLevel, onDelete: {
                         vm.temporaryAnxiety = nil
-                        anxietyLevel = nil
+                        self.anxietyLevel = nil
                         updateNote(title: title, content: content)
                     })
                 }
@@ -87,10 +68,9 @@ struct EditNotesView: View {
                         self.updateNote(title: title, content: content)
                     })
                 
-                TextEditorView(string: $content)
+                TextEditorView(string: $content, focus: _contentEditorInFocus)
                     .scrollDisabled(true)
                     .font(.title3)
-                    .focused($contentEditorInFocus)
                     .onChange(of:content){
                         self.updateNote(title: title, content: content)
                     }
@@ -106,141 +86,31 @@ struct EditNotesView: View {
         }
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden()
-        .navigationBarItems(trailing: HStack {
-//            Group{
-//                if(vm.updateProgressState == ProgressState.Loading){
-//                    ProgressView()
-//                } else if (vm.updateProgressState == ProgressState.Complete){
-//                    Label("Saved", systemImage: "checkmark.circle.fill")
-//                        .labelStyle(.titleAndIcon)
-//
-//                }
-//            }.padding(.trailing, 2)
-            Menu {
-                ControlGroup{
-                    Button { } label: {
-                                Text("Share")
-                                Image(systemName: "square.and.arrow.up")
-                            }
-
-                            Button { } label: {
-                                Text("Pin")
-                                Image(systemName: "pin.fill")
-                            }
-
-                            Button { } label: {
-                                Text("Lock")
-                                Image(systemName: "lock.fill")
-                            }
-                }
-                NavigationLink(destination: InsightView(), label: {
-                    Label(NSLocalizedString("My Insight", comment: "Greeting"), systemImage: "chart.dots.scatter")
-                })
-                Button(action: {}) {
-                    Label("Find in Note", systemImage: "magnifyingglass")
-                }
-                Button(action: {}) {
-                    Label("Move Note", systemImage: "folder")
-                }
-                Button(action: {}) {
-                    Label("Recent Note", systemImage: "clock")
-                }
-                Button(action: {}) {
-                    Label("Line & Grids", systemImage: "rectangle.split.3x3")
-                }
-                Button(action: {}) {
-                    Label("Attachment View", systemImage: "rectangle.3.group")
-                }
-                Button(role:.destructive, action: {
-                    if let note = vm.selectedNote {
-                        deleteNote(note)
-                    }
-                }) {
-                    Label(NSLocalizedString("Delete", comment: "Greeting"), systemImage: "trash")
-                }
-            } label: {
-                Label("", systemImage: "ellipsis.circle")
+        .edgesIgnoringSafeArea(.bottom)
+        .navigationBarItems(trailing: EditNotesNavBarTrailing(contentEditorInFocus: _contentEditorInFocus, onDelete: {
+            if let note = vm.selectedNote {
+                deleteNote(note)
             }
-            if contentEditorInFocus {
-                Button("Done") {
-                    contentEditorInFocus = false
-                }
-            }
-        })
+        }))
         .toolbar {
-            
-            ToolbarItem(placement: .bottomBar, content: {
-                HStack{
-                    journalingSuggestionsButton
-//                    Button(action: { }) {
-//                        Image(systemName: "textformat")
-//                    }
-                    Spacer()
-                    Button(action: { showImagePicker = true }) {
-                        Image(systemName: "paperclip")
-                    }
-                    Spacer()
-                    Button(action:{
-                        showAnxiety.toggle()
-                    }){
-                    Image(systemName: "cloud.bolt.fill")
-                    }
-                    Spacer()
-                    Button(action: {
-                    }) {
-                        Image(systemName: "pencil.tip.crop.circle")
-                    }
-                    Spacer()
-                    Button(action: {
-                        // Create New Note
-                        vm.selectedNote = nil
-                        title = ""
-                        content = ""
-                        image = nil
-                        photoPath = nil
-                        audioFilename = nil
-                        contentEditorInFocus = false
-                        pinned = false
-                        anxietyLevel = nil
-                    }) {
-                        Image(systemName: "square.and.pencil")
-                    }
+            ToolbarEditNotes(
+                showImagePicker: $showImagePicker,
+                showAnxiety: $showAnxiety,
+                showCamera: $showCamera,
+                showAudioRecorder: $showAudioRecorder,
+                onCreateNewNote: {
+                    vm.selectedNote = nil
+                    title = ""
+                    content = ""
+                    image = nil
+                    photoPath = nil
+                    audioFilename = nil
+                    contentEditorInFocus = false
+                    pinned = false
+                    anxietyLevel = nil
                 }
-            })
-            ToolbarItem(placement: .keyboard) {
-                HStack {
-                    journalingSuggestionsButton
-//                    Button(action:{
-//                        isShowingTextFormatter.toggle()
-//                    }){
-//                        Image(systemName: "textformat")
-//                    }
-                    Spacer()
-                    Button(action: { showImagePicker = true }) {
-                        Image(systemName: "paperclip")
-                    }
-                    Spacer()
-                    Button(action:{
-                        showAnxiety.toggle()
-                    }){
-                    Image(systemName: "cloud.bolt.fill")
-                    }
-                    Spacer()
-                    Button(action: { showCamera = true }) {
-                        Image(systemName: "camera")
-                    }
-                    Spacer()
-                    Button(action: { showAudioRecorder = true }) {
-                        Image(systemName: "mic")
-                    }
-                }
-            }
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action: {
-                    dismiss()
-                }) {
-                    Image(systemName: "sidebar.leading")
-                }
+            ) {
+                journalingSuggestionsButton
             }
         }
         .onAppear {
@@ -276,7 +146,7 @@ struct EditNotesView: View {
             NavigationStack{
                 LogView(showAnxiety: $showAnxiety)
             }
-            .presentationDetents([.medium])
+            .tint(Color.white)
         }
         .sheet(isPresented: $showImagePicker) {
             ImagePickerComponent(sourceType: .photoLibrary, selectedImage: $pickedImage)
@@ -293,6 +163,9 @@ struct EditNotesView: View {
                 self.anxietyLevel = anxiety
                 self.updateNote(title: title, content: content)
             }
+        }
+        .onChange(of: audioFilename) {
+            updateNote(title: title, content: content)
         }
         .onChange(of: pickedImage) {
             guard let pickedImage else { return }
@@ -346,7 +219,7 @@ struct EditNotesView: View {
     
     func updateNote(title: String, content: String) {
         
-        if (title.isEmpty) && (content.isEmpty) {
+        if title.isEmpty && content.isEmpty && anxietyLevel == nil {
             return
         }
         

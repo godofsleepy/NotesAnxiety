@@ -10,6 +10,7 @@ import SwiftUI
 struct TextEditorView: View {
     
     @Binding var string: String
+    @FocusState var focus: Bool
     @State var textEditorHeight : CGFloat = 20
     
     var body: some View {
@@ -19,6 +20,9 @@ struct TextEditorView: View {
             Text(string)
                 .foregroundColor(.clear)
                 .padding(10)
+                .onTapGesture {
+                    focus = true
+                }
                 .background(GeometryReader {
                     Color.clear.preference(key: ViewHeightKey.self,
                                            value: $0.frame(in: .local).size.height)
@@ -26,6 +30,7 @@ struct TextEditorView: View {
             
             TextEditor(text: $string)
                 .frame(height: max(20,textEditorHeight))
+                .focused($focus)
                 .border(.clear)
             
             if string.isEmpty {
@@ -35,6 +40,9 @@ struct TextEditorView: View {
                     .disabled(true)
                     .opacity(0.6)
                     .padding([.top, .leading], 4)
+                    .onTapGesture {
+                        focus = true
+                    }
             }
             
         }.onPreferenceChange(ViewHeightKey.self) { textEditorHeight = $0 }

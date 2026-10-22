@@ -15,11 +15,7 @@ struct ContentView: View {
         @Bindable var notesViewModel = notesViewModel
         NavigationSplitView(preferredCompactColumn: $notesViewModel.preferredColumn) {
             Group{
-                if (notesViewModel.isDataLoaded){
-                    HistoryNotesView()
-                } else {
-                    ProgressView("Loading...")
-                }
+                HistoryNotesView()
             }.task {
                 notesViewModel.fetchNotes()
             }
