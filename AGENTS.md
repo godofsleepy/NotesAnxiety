@@ -14,8 +14,10 @@ No Swift packages, no test targets, no linter config.
 ## Build
 
 ```bash
-xcodebuild -project NotesAnxiety.xcodeproj -scheme NotesAnxiety -destination 'platform=iOS Simulator,name=iPhone 16 Pro' build
+xcodebuild -project NotesAnxiety.xcodeproj -scheme NotesAnxiety -destination 'platform=iOS Simulator,name=iPhone 16 Pro,OS=18.3.1' build
 ```
+
+Without `OS=`, xcodebuild looks for the device on the newest installed runtime, where iPhone 16 Pro may not exist; `xcrun simctl list devices available` shows which name/OS pairs are installed.
 
 Widget scheme: `NotesWidgetExtension`. The app uses HealthKit and Journaling Suggestions entitlements (`NotesAnxiety/NotesAnxiety.entitlements`); `JournalingSuggestions` isn't in the simulator SDK, so its picker is wrapped in `#if canImport(JournalingSuggestions)` and only appears on device.
 
