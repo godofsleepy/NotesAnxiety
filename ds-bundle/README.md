@@ -1,6 +1,6 @@
 # NotesAnxiety design tokens
 
-NotesAnxiety is a native SwiftUI iOS journaling app. Each note is tagged with an anxiety level and categories. **This project ships tokens only, with no components.** Build UI with plain HTML/React and style it with the CSS variables below. Design for an iPhone screen (390px wide), using iOS conventions: large titles, inset grouped lists, bottom toolbars, and SF Symbols-style icons.
+NotesAnxiety is a native SwiftUI iOS journaling app. Each note is tagged with an anxiety level and categories. **This project ships tokens plus one reference screen, with no reusable components.** `components/Screens/AppPrototype/AppPrototype.html` is a working vanilla-JS copy of the app flow (History → note editor → check-in slider → category chips). Match its layout when designing new screens. Build UI with plain HTML/React and style it with the CSS variables below. Design for an iPhone screen (390px wide), using iOS conventions: large titles, inset grouped lists, bottom toolbars, and SF Symbols-style icons.
 
 ## Setup
 Load `styles.css`. It `@import`s `tokens/colors.css`, `tokens/typography.css` and `tokens/shape.css`, and sets the `body` background, text color and font. Dark mode follows `prefers-color-scheme`. To force a mode, set `data-theme="dark"` or `data-theme="light"` on `<html>`. Read those three files before styling: they are the full vocabulary.

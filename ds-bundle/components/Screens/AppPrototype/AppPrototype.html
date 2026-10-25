@@ -1,0 +1,197 @@
+<!-- @dsCard group="Screens" viewport="420x860" -->
+<!doctype html>
+<html data-theme="light"><head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>App prototype</title>
+  <link rel="stylesheet" href="../../../styles.css">
+  <!-- JS mimic of the SwiftUI app: HistoryNotesView → EditNotesView → LogView → CategoryView.
+       Layout values mirror the Swift sources; colors and type come only from tokens. -->
+  <style>
+    body{display:flex;justify-content:center;padding:16px 0;background:#ddd}
+    .phone{position:relative;width:390px;height:820px;border-radius:44px;overflow:hidden;
+      background:var(--background-primary);color:var(--label-primary);box-shadow:0 0 0 10px #111}
+    .screen{position:absolute;inset:0;display:flex;flex-direction:column}
+    .navbar{display:flex;align-items:center;justify-content:space-between;padding:54px var(--space-5) 0;min-height:44px;color:var(--system-blue)}
+    .navbar button,.toolbar button{background:none;border:0;color:inherit;font:inherit;padding:6px;cursor:pointer}
+    .scroll{flex:1;overflow-y:auto;padding:0 var(--space-5)}
+    .search{margin:8px 0 12px;padding:8px 10px;border-radius:10px;border:0;width:100%;box-sizing:border-box;
+      background:rgba(118,118,128,.12);color:var(--label-primary);font:var(--text-body) var(--font-family)}
+    .section-h{margin:16px 0 6px;color:var(--label-secondary)}
+    .group{border-radius:10px;background:rgba(118,118,128,.08);overflow:hidden}
+    .cell{display:flex;flex-direction:column;gap:5px;padding:11px var(--space-5);cursor:pointer;border-bottom:.5px solid rgba(127,127,127,.25)}
+    .cell:last-child{border-bottom:0}
+    .cell .t{display:flex;gap:6px;align-items:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .cell .c{font-weight:var(--font-weight-light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .cell .d{color:gray}
+    .toolbar{display:flex;justify-content:space-between;align-items:center;padding:10px 24px 34px;color:var(--system-blue);
+      border-top:.5px solid rgba(127,127,127,.25)}
+    .icon{width:22px;height:22px;display:inline-block;vertical-align:middle}
+    .title-in{border:0;outline:0;width:100%;background:none;color:var(--label-primary);font:var(--font-weight-bold) var(--text-title)/var(--leading-title) var(--font-family)}
+    .body-in{border:0;outline:0;width:100%;min-height:300px;resize:none;background:none;color:var(--label-primary);font:var(--text-title3)/var(--leading-title3) var(--font-family)}
+    .status{position:relative;display:flex;gap:10px;padding:var(--space-5);border-radius:var(--radius-xl);
+      background:rgba(99,124,192,.15);border:2px solid rgba(99,124,192,.5);margin:10px 0 20px}
+    .status .x{position:absolute;right:14px;top:12px;background:none;border:0;cursor:pointer;font-size:16px}
+    .pills{display:flex;gap:6px;overflow-x:auto;margin-top:4px}
+    .pill{padding:4px 14px;border-radius:var(--radius-2xl);font-weight:var(--font-weight-medium);color:var(--background-primary);white-space:nowrap}
+    /* Sheet (LogView / CategoryView) */
+    .sheet{position:absolute;inset:40px 0 0;border-radius:12px 12px 0 0;color:#fff;display:flex;flex-direction:column;align-items:center;
+      padding:var(--space-5);box-sizing:border-box;transition:background .5s ease-in-out;transform:translateY(100%);transition:transform .35s ease,background .5s}
+    .sheet.open{transform:none}
+    .sheet .cancel{align-self:flex-end;background:none;border:0;color:#fff;font:var(--text-body) var(--font-family);cursor:pointer}
+    .q{width:300px;text-align:center;margin:12px 0}
+    .cloud-hero{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+    .level-name{font:var(--font-weight-bold) 32px var(--font-family)}
+    input[type=range]{width:317px;height:32px;margin:0 0 16px;padding:4px;border-radius:25px;background:rgba(118,118,128,.32);-webkit-appearance:none;appearance:none}
+    input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:28px;height:28px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.3)}
+    .cta{width:100%;padding:var(--space-5);border:0;border-radius:var(--radius-pill);color:#fff;font:var(--font-weight-semibold) var(--text-body) var(--font-family);cursor:pointer;margin-bottom:24px}
+    .chips{display:flex;flex-direction:column;gap:12px;align-items:center;flex:1;justify-content:center}
+    .chips .row{display:flex;gap:12px}
+    .chip{border:0;padding:var(--chip-padding);border-radius:var(--radius-2xl);font:14px var(--font-family);background:var(--black-grey);color:#fff;cursor:pointer}
+    .chip.on{background:#fff;color:gray}
+    .rain line{stroke:#fff;stroke-width:3;stroke-linecap:round;opacity:.85}
+  </style>
+</head><body>
+<div class="phone" id="phone"></div>
+
+<script>
+// Mirrors Models/AnxietyLevelType.swift
+const LEVELS = [
+  {name:'Minimal',  max:1.5, v:'--system-minimal',  rain:0,  bolt:false},
+  {name:'Mild',     max:2.5, v:'--system-mild',     rain:4,  bolt:false},
+  {name:'Moderate', max:3.5, v:'--system-moderate', rain:9,  bolt:false},
+  {name:'Severe',   max:4.01,v:'--system-severe',   rain:12, bolt:true},
+];
+const levelFor = x => LEVELS.find(l => x < l.max);
+const color = l => `var(${l.v})`;
+const CATEGORY_ROWS = [['Health','Fitness','Self-Care'],['Hobbies','Identity','Spirituality'],['Community','Family','Friends'],
+  ['Weather','Partner','Dating','Tasks'],['Work','Education','Travel'],['Current','Events','Money']];
+
+const day = 864e5, now = Date.now();
+let notes = [
+  {id:1,title:'Presentation tomorrow',content:'Rehearsed twice, still feel shaky about Q&A.',ts:now,pinned:true,level:3.2,cats:['Work','Tasks']},
+  {id:2,title:'Morning walk',content:'Sun was out. Breathing exercise helped.',ts:now-3600e3,pinned:false,level:1.1,cats:['Fitness','Self-Care']},
+  {id:3,title:'Call with mom',content:'Talked about the trip in December.',ts:now-3*day,pinned:false,level:2,cats:['Family','Travel']},
+  {id:4,title:'Rent due',content:'Budget is tight this month.',ts:now-12*day,pinned:false,level:3.8,cats:['Money']},
+  {id:5,title:'New Note',content:'',ts:now-40*day,pinned:false,level:0,cats:[]},
+];
+let state = {screen:'history', noteId:null, query:'', sheet:null, value:1, cats:[]};
+
+// Simple SF Symbol stand-ins
+const ICON = {
+  cloud:(c,s=22,rain=0,bolt=false)=>`<svg class="icon" style="width:${s}px;height:${s}px" viewBox="0 0 64 64" fill="${c}">
+    <path d="M20 40h28a10 10 0 0 0 0-20 14 14 0 0 0-27-3A11 11 0 0 0 20 40z"/>
+    ${Array.from({length:Math.min(rain,6)},(_,i)=>`<rect x="${18+i*6}" y="44" width="3" height="${8+(i%2)*4}" rx="1.5"/>`).join('')}
+    ${bolt?`<path d="M34 42l-6 12h6l-3 9 10-14h-6l3-7z"/>`:''}</svg>`,
+  compose:`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h16M14 4l6 6-9 9H5v-6z"/></svg>`,
+  clip:`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M8 12l7-7a3.5 3.5 0 0 1 5 5l-9 9a5 5 0 0 1-7-7l8-8"/></svg>`,
+  camera:`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="7" width="18" height="13" rx="2"/><circle cx="12" cy="13.5" r="3.5"/><path d="M9 7l1.5-3h3L15 7"/></svg>`,
+  mic:`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg>`,
+  sidebar:`<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M9 5v14"/></svg>`,
+};
+
+function group(n){
+  if (n.pinned) return 'Pinned';
+  const d = (new Date().setHours(0,0,0,0) - new Date(n.ts).setHours(0,0,0,0)) / day;
+  return d <= 0 ? 'Today' : d <= 7 ? 'Last 7 Days' : d <= 30 ? 'Last 30 Days' : 'Older';
+}
+const esc = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function historyView(){
+  const q = state.query.toLowerCase();
+  const list = notes.filter(n => !q || (n.title+n.content).toLowerCase().includes(q));
+  const sections = ['Pinned','Today','Last 7 Days','Last 30 Days','Older'].map(h => {
+    const items = list.filter(n => group(n) === h).sort((a,b)=>b.ts-a.ts);
+    if (!items.length) return '';
+    return `<div class="section-h text-footnote">${h}</div><div class="group">${items.map(n => {
+      const l = levelFor(n.level);
+      return `<div class="cell" data-open="${n.id}">
+        <div class="t text-title3" style="font-weight:700">${n.level >= 1 ? ICON.cloud(color(l),22,l.rain,l.bolt) : ''}${esc(n.title||'New Note')}</div>
+        <div class="c text-body">${esc(n.content||'No content available')}</div>
+        <div class="d text-footnote">${new Date(n.ts).toLocaleDateString()}</div></div>`;
+    }).join('')}</div>`;
+  }).join('');
+  return `<div class="screen">
+    <div class="navbar"><button>${ICON.sidebar}</button><button>Edit</button></div>
+    <div class="scroll"><div class="text-large-title">History</div>
+      <input class="search" placeholder="Search" value="${esc(state.query)}" data-search>
+      ${sections}</div>
+    <div class="toolbar" style="justify-content:flex-end"><button data-new>${ICON.compose}</button></div></div>`;
+}
+
+function statusView(n){
+  const l = levelFor(n.level), c = color(l);
+  const date = new Date(n.ts).toLocaleDateString(undefined,{weekday:'long',day:'2-digit',month:'long',year:'numeric'});
+  return `<div class="status">${ICON.cloud(c,34,l.rain,l.bolt)}
+    <div style="min-width:0"><div style="font-size:14px;color:${c}">${date}</div>
+      <div style="font:600 20px var(--font-family);color:${c}">${l.name}</div>
+      <div class="pills">${n.cats.map(t=>`<span class="pill text-caption" style="background:${c}">${t}</span>`).join('')}</div></div>
+    <button class="x" style="color:${c}" data-clear>ⓧ</button></div>`;
+}
+
+function editView(){
+  const n = notes.find(n => n.id === state.noteId);
+  return `<div class="screen">
+    <div class="navbar"><button data-back>‹ History</button><span style="display:flex;gap:4px"><button>Share</button><button>Done</button></span></div>
+    <div class="scroll" style="padding:10px">
+      ${n.level >= 1 ? statusView(n) : ''}
+      <input class="title-in" placeholder="Title" value="${esc(n.title)}" data-field="title">
+      <textarea class="body-in" data-field="content">${esc(n.content)}</textarea></div>
+    <div class="toolbar"><button>${ICON.clip}</button><button data-log>${ICON.cloud('currentColor',22,0,true)}</button>
+      <button>${ICON.camera}</button><button>${ICON.mic}</button><button data-new>${ICON.compose}</button></div></div>`;
+}
+
+function sheetView(){
+  const l = levelFor(state.value), c = color(l);
+  const bg = `radial-gradient(circle at center, ${c} 5px, var(--background-secondary) 400px)`;
+  const inner = state.sheet === 'log' ? `
+      <div class="q text-title2">Choose how you're feeling right now</div>
+      <div class="cloud-hero">${ICON.cloud('#fff',180,l.rain,l.bolt)}<div class="level-name">${l.name}</div></div>
+      <input type="range" min="1" max="4" step="0.01" value="${state.value}" data-slider>
+      <button class="cta" style="background:${c}" data-next>Next</button>` : `
+      <div class="q text-title2">What do you think trigger this feeling?</div>
+      <div class="chips">${CATEGORY_ROWS.map(r=>`<div class="row">${r.map(t=>
+        `<button class="chip ${state.cats.includes(t)?'on':''}" data-chip="${t}">${t}</button>`).join('')}</div>`).join('')}</div>
+      <button class="cta" style="background:${c}" data-done>Done</button>`;
+  return `<div class="sheet ${state.sheet?'open':''}" style="background:${bg}">
+    <button class="cancel" data-cancel>Cancel</button>${inner}</div>`;
+}
+
+const phone = document.getElementById('phone');
+function render(){
+  phone.innerHTML = (state.screen === 'history' ? historyView() : editView()) + sheetView();
+}
+
+phone.addEventListener('click', e => {
+  const t = e.target.closest('button,[data-open]'); if (!t) return;
+  const d = t.dataset;
+  if (d.open) { state.noteId = +d.open; state.screen = 'edit'; }
+  else if ('new' in d) { const n = {id:Date.now(),title:'',content:'',ts:Date.now(),pinned:false,level:0,cats:[]}; notes.unshift(n); state.noteId = n.id; state.screen = 'edit'; }
+  else if ('back' in d) { notes = notes.filter(n => n.title || n.content || n.level); state.screen = 'history'; }
+  else if ('log' in d) { state.sheet = 'log'; state.value = 1; state.cats = []; }
+  else if ('cancel' in d) state.sheet = null;
+  else if ('next' in d) state.sheet = 'cat';
+  else if (d.chip) state.cats = state.cats.includes(d.chip) ? state.cats.filter(c => c !== d.chip) : [...state.cats, d.chip];
+  else if ('done' in d) { Object.assign(notes.find(n => n.id === state.noteId), {level:state.value, cats:state.cats}); state.sheet = null; }
+  else if ('clear' in d) Object.assign(notes.find(n => n.id === state.noteId), {level:0, cats:[]});
+  else return;
+  render();
+});
+phone.addEventListener('input', e => {
+  const d = e.target.dataset;
+  if ('search' in d) { state.query = e.target.value; render(); const s = phone.querySelector('[data-search]'); s.focus(); s.setSelectionRange(9e9,9e9); }
+  else if (d.field) notes.find(n => n.id === state.noteId)[d.field] = e.target.value; // autosave
+  else if ('slider' in d) {
+    const before = levelFor(state.value); state.value = +e.target.value;
+    // Patch in place so the drag isn't interrupted by a re-render.
+    const l = levelFor(state.value);
+    if (l !== before) {
+      const c = color(l), sheet = phone.querySelector('.sheet');
+      sheet.style.background = `radial-gradient(circle at center, ${c} 5px, var(--background-secondary) 400px)`;
+      sheet.querySelector('.cloud-hero').innerHTML = `${ICON.cloud('#fff',180,l.rain,l.bolt)}<div class="level-name">${l.name}</div>`;
+      sheet.querySelector('[data-next]').style.background = c;
+    }
+  }
+});
+render();
+</script>
+</body></html>
