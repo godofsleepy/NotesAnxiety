@@ -47,6 +47,7 @@ final class LocalDataServiceImpl: LocalDataService {
         note.videoPath = temporaryNote.videoPath
         note.pinned = temporaryNote.pinned
         note.anxietyLevel = temporaryNote.anxietyLevel
+        note.anxietyLevelAfter = temporaryNote.anxietyLevelAfter
         note.categories = temporaryNote.categoryAnxiety
         saveContext()
     }

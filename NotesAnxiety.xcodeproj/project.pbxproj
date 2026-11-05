@@ -7,24 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C0FFEE0000000000000005B1 /* SkyComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFEE0000000000000005A1 /* SkyComponents.swift */; };
+		C0FFEE0000000000000004B1 /* SkyBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFEE0000000000000004A1 /* SkyBackground.swift */; };
+		C0FFEE0000000000000003B1 /* NoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFEE0000000000000003A1 /* NoteDetailView.swift */; };
+		C0FFEE0000000000000002B1 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFEE0000000000000002A1 /* JournalView.swift */; };
+		C0FFEE0000000000000001B1 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FFEE0000000000000001A1 /* HomeView.swift */; };
 		A1B2C3D40000000000000002 /* NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40000000000000001 /* NoteStore.swift */; };
 		A1B2C3D40000000000000003 /* NoteStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D40000000000000001 /* NoteStore.swift */; };
 		A1B2C3D40000000000000005 /* AnxietyLevelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F32C47836500BF7988 /* AnxietyLevelType.swift */; };
-		B5B35EEB2C47F7CE00DB701E /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */; };
-		B5B35EED2C47F7DB00DB701E /* StatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EEC2C47F7DB00DB701E /* StatusView.swift */; };
-		B5B35EEF2C47F7F400DB701E /* StatusComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EEE2C47F7F400DB701E /* StatusComponent.swift */; };
-		B5B35EF12C47F80100DB701E /* CategoryComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EF02C47F80100DB701E /* CategoryComponent.swift */; };
-		B5B35EF32C47F80E00DB701E /* LogComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EF22C47F80E00DB701E /* LogComponent.swift */; };
-		B5B35EF52C47F81A00DB701E /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5B35EF42C47F81A00DB701E /* LogView.swift */; };
 		FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */; };
 		FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB3BF6142C3BB29300A9406D /* ContentView.swift */; };
 		FB3BF6172C3BB29400A9406D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6162C3BB29400A9406D /* Assets.xcassets */; };
 		FB3BF61A2C3BB29400A9406D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FB3BF6192C3BB29400A9406D /* Preview Assets.xcassets */; };
-		FB5CBA0A2C441B2E003DF098 /* HistoryNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5CBA092C441B2E003DF098 /* HistoryNotesView.swift */; };
-		FB5CBA0C2C442E4A003DF098 /* ProgressState.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB5CBA0B2C442E4A003DF098 /* ProgressState.swift */; };
-		FB64F3CC2C4B8B7100C55090 /* ToolbarEditNotes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB64F3CB2C4B8B7100C55090 /* ToolbarEditNotes.swift */; };
-		FB64F3CE2C4B8EF700C55090 /* EditNotesNavBarTrailing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB64F3CD2C4B8EF700C55090 /* EditNotesNavBarTrailing.swift */; };
-		FB64F3D02C4B954400C55090 /* AnxietyTemporaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB64F3CF2C4B954400C55090 /* AnxietyTemporaryModel.swift */; };
 		FB64F3D22C4BA63A00C55090 /* TemporaryNoteModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB64F3D12C4BA63A00C55090 /* TemporaryNoteModel.swift */; };
 		FBA9D6CA2C46215B00BF7988 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9D6B02C46213500BF7988 /* WidgetKit.framework */; };
 		FBA9D6CB2C46215B00BF7988 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FBA9D6B22C46213500BF7988 /* SwiftUI.framework */; };
@@ -34,7 +28,6 @@
 		FBA9D6D82C46215C00BF7988 /* NotesWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = FBA9D6C92C46215B00BF7988 /* NotesWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E02C46268700BF7988 /* ImagePickerComponent.swift */; };
 		FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6E22C4626AB00BF7988 /* AudioRecorderComponent.swift */; };
-		FBA9D6ED2C467AD700BF7988 /* CellButtonEdit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */; };
 		FBA9D6F42C47836500BF7988 /* AnxietyLevelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F32C47836500BF7988 /* AnxietyLevelType.swift */; };
 		FBA9D6F82C47843B00BF7988 /* TimePeriod.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F72C47843B00BF7988 /* TimePeriod.swift */; };
 		FBA9D6FA2C4784D800BF7988 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6F92C4784D800BF7988 /* ChartView.swift */; };
@@ -42,9 +35,6 @@
 		FBA9D6FE2C47B74700BF7988 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D6FD2C47B74700BF7988 /* AnalyticsView.swift */; };
 		FBA9D71C2C48A01C00BF7988 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = FBA9D71B2C48A01C00BF7988 /* Localizable.xcstrings */; };
 		FBA9D71E2C48A7B300BF7988 /* WrapStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA9D71D2C48A7B300BF7988 /* WrapStack.swift */; };
-		FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49272C3F692E0022F62C /* EditNotesView.swift */; };
-		FBCC492C2C3F692E0022F62C /* ListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49282C3F692E0022F62C /* ListCellView.swift */; };
-		FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49292C3F692E0022F62C /* TextEditorView.swift */; };
 		FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC492F2C3F694B0022F62C /* Extensions.swift */; };
 		FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC49312C3F695F0022F62C /* NotesViewModel.swift */; };
 		FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBCC493A2C3F70F20022F62C /* AppError.swift */; };
@@ -80,25 +70,19 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		C0FFEE0000000000000005A1 /* SkyComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyComponents.swift; sourceTree = "<group>"; };
+		C0FFEE0000000000000004A1 /* SkyBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkyBackground.swift; sourceTree = "<group>"; };
+		C0FFEE0000000000000003A1 /* NoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteDetailView.swift; sourceTree = "<group>"; };
+		C0FFEE0000000000000002A1 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		C0FFEE0000000000000001A1 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		A1B2C3D40000000000000001 /* NoteStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteStore.swift; sourceTree = "<group>"; };
 		A1B2C3D40000000000000006 /* NotesWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = NotesWidget.entitlements; sourceTree = "<group>"; };
 		B5012B002C47F4CD00C39BF9 /* NotesContainer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = NotesContainer.xcdatamodel; sourceTree = "<group>"; };
-		B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
-		B5B35EEC2C47F7DB00DB701E /* StatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusView.swift; sourceTree = "<group>"; };
-		B5B35EEE2C47F7F400DB701E /* StatusComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusComponent.swift; sourceTree = "<group>"; };
-		B5B35EF02C47F80100DB701E /* CategoryComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryComponent.swift; sourceTree = "<group>"; };
-		B5B35EF22C47F80E00DB701E /* LogComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogComponent.swift; sourceTree = "<group>"; };
-		B5B35EF42C47F81A00DB701E /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
 		FB3BF60F2C3BB29300A9406D /* NotesAnxiety.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NotesAnxiety.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FB3BF6122C3BB29300A9406D /* NotesAnxietyApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesAnxietyApp.swift; sourceTree = "<group>"; };
 		FB3BF6142C3BB29300A9406D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		FB3BF6162C3BB29400A9406D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FB3BF6192C3BB29400A9406D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FB5CBA092C441B2E003DF098 /* HistoryNotesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryNotesView.swift; sourceTree = "<group>"; };
-		FB5CBA0B2C442E4A003DF098 /* ProgressState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressState.swift; sourceTree = "<group>"; };
-		FB64F3CB2C4B8B7100C55090 /* ToolbarEditNotes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolbarEditNotes.swift; sourceTree = "<group>"; };
-		FB64F3CD2C4B8EF700C55090 /* EditNotesNavBarTrailing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditNotesNavBarTrailing.swift; sourceTree = "<group>"; };
-		FB64F3CF2C4B954400C55090 /* AnxietyTemporaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyTemporaryModel.swift; sourceTree = "<group>"; };
 		FB64F3D12C4BA63A00C55090 /* TemporaryNoteModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryNoteModel.swift; sourceTree = "<group>"; };
 		FBA9D6B02C46213500BF7988 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		FBA9D6B22C46213500BF7988 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -111,7 +95,6 @@
 		FBA9D6E02C46268700BF7988 /* ImagePickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerComponent.swift; sourceTree = "<group>"; };
 		FBA9D6E22C4626AB00BF7988 /* AudioRecorderComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorderComponent.swift; sourceTree = "<group>"; };
 		FBA9D6E42C4627ED00BF7988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellButtonEdit.swift; sourceTree = "<group>"; };
 		FBA9D6F32C47836500BF7988 /* AnxietyLevelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnxietyLevelType.swift; sourceTree = "<group>"; };
 		FBA9D6F72C47843B00BF7988 /* TimePeriod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePeriod.swift; sourceTree = "<group>"; };
 		FBA9D6F92C4784D800BF7988 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
@@ -119,9 +102,6 @@
 		FBA9D6FD2C47B74700BF7988 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
 		FBA9D71B2C48A01C00BF7988 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		FBA9D71D2C48A7B300BF7988 /* WrapStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrapStack.swift; sourceTree = "<group>"; };
-		FBCC49272C3F692E0022F62C /* EditNotesView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditNotesView.swift; sourceTree = "<group>"; };
-		FBCC49282C3F692E0022F62C /* ListCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListCellView.swift; sourceTree = "<group>"; };
-		FBCC49292C3F692E0022F62C /* TextEditorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEditorView.swift; sourceTree = "<group>"; };
 		FBCC492F2C3F694B0022F62C /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		FBCC49312C3F695F0022F62C /* NotesViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
 		FBCC493A2C3F70F20022F62C /* AppError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppError.swift; sourceTree = "<group>"; };
@@ -211,12 +191,12 @@
 		FB3BF6202C3BB5E700A9406D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				FB5CBA092C441B2E003DF098 /* HistoryNotesView.swift */,
-				FBCC49272C3F692E0022F62C /* EditNotesView.swift */,
 				FBF68B892C44686100689EC2 /* InsightView.swift */,
 				FB3BF6142C3BB29300A9406D /* ContentView.swift */,
-				B5B35EEA2C47F7CE00DB701E /* CategoryView.swift */,
-				B5B35EF42C47F81A00DB701E /* LogView.swift */,
+				C0FFEE0000000000000004A1 /* SkyBackground.swift */,
+				C0FFEE0000000000000003A1 /* NoteDetailView.swift */,
+				C0FFEE0000000000000002A1 /* JournalView.swift */,
+				C0FFEE0000000000000001A1 /* HomeView.swift */,
 				FB3BF6222C3BB6C400A9406D /* Components */,
 			);
 			path = Views;
@@ -234,18 +214,12 @@
 			isa = PBXGroup;
 			children = (
 				FB64F3D32C4BA93B00C55090 /* Anxiety */,
-				FB64F3CD2C4B8EF700C55090 /* EditNotesNavBarTrailing.swift */,
-				FBCC49282C3F692E0022F62C /* ListCellView.swift */,
-				FBCC49292C3F692E0022F62C /* TextEditorView.swift */,
 				FBA9D6E02C46268700BF7988 /* ImagePickerComponent.swift */,
+				C0FFEE0000000000000005A1 /* SkyComponents.swift */,
 				FBA9D6E22C4626AB00BF7988 /* AudioRecorderComponent.swift */,
-				FBA9D6EC2C467AD700BF7988 /* CellButtonEdit.swift */,
 				FBA9D6F92C4784D800BF7988 /* ChartView.swift */,
 				FBA9D6FD2C47B74700BF7988 /* AnalyticsView.swift */,
-				B5B35EEC2C47F7DB00DB701E /* StatusView.swift */,
-				B5B35EEE2C47F7F400DB701E /* StatusComponent.swift */,
 				FBA9D71D2C48A7B300BF7988 /* WrapStack.swift */,
-				FB64F3CB2C4B8B7100C55090 /* ToolbarEditNotes.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -257,7 +231,6 @@
 				FBCC492F2C3F694B0022F62C /* Extensions.swift */,
 				FBECCD322C3E453E0089CEE8 /* DependencyInjection.swift */,
 				FBCC493A2C3F70F20022F62C /* AppError.swift */,
-				FB5CBA0B2C442E4A003DF098 /* ProgressState.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -276,7 +249,6 @@
 			children = (
 				FBA9D6F32C47836500BF7988 /* AnxietyLevelType.swift */,
 				FBA9D6F72C47843B00BF7988 /* TimePeriod.swift */,
-				FB64F3CF2C4B954400C55090 /* AnxietyTemporaryModel.swift */,
 				FB64F3D12C4BA63A00C55090 /* TemporaryNoteModel.swift */,
 			);
 			path = Models;
@@ -285,8 +257,6 @@
 		FB64F3D32C4BA93B00C55090 /* Anxiety */ = {
 			isa = PBXGroup;
 			children = (
-				B5B35EF02C47F80100DB701E /* CategoryComponent.swift */,
-				B5B35EF22C47F80E00DB701E /* LogComponent.swift */,
 				FBE682E82C5578F6002A4941 /* CloudScene.swift */,
 			);
 			path = Anxiety;
@@ -438,40 +408,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB64F3D02C4B954400C55090 /* AnxietyTemporaryModel.swift in Sources */,
 				FBA9D6E32C4626AB00BF7988 /* AudioRecorderComponent.swift in Sources */,
-				B5B35EF32C47F80E00DB701E /* LogComponent.swift in Sources */,
-				FB64F3CE2C4B8EF700C55090 /* EditNotesNavBarTrailing.swift in Sources */,
 				FBE682E92C5578F6002A4941 /* CloudScene.swift in Sources */,
-				B5B35EEF2C47F7F400DB701E /* StatusComponent.swift in Sources */,
 				FB3BF6152C3BB29300A9406D /* ContentView.swift in Sources */,
-				B5B35EF52C47F81A00DB701E /* LogView.swift in Sources */,
-				FBCC492C2C3F692E0022F62C /* ListCellView.swift in Sources */,
+				C0FFEE0000000000000005B1 /* SkyComponents.swift in Sources */,
+				C0FFEE0000000000000004B1 /* SkyBackground.swift in Sources */,
+				C0FFEE0000000000000003B1 /* NoteDetailView.swift in Sources */,
+				C0FFEE0000000000000002B1 /* JournalView.swift in Sources */,
+				C0FFEE0000000000000001B1 /* HomeView.swift in Sources */,
 				FB3BF6132C3BB29300A9406D /* NotesAnxietyApp.swift in Sources */,
 				FBA9D6F82C47843B00BF7988 /* TimePeriod.swift in Sources */,
-				B5B35EF12C47F80100DB701E /* CategoryComponent.swift in Sources */,
 				FBCC493B2C3F70F20022F62C /* AppError.swift in Sources */,
 				FBCC49322C3F695F0022F62C /* NotesViewModel.swift in Sources */,
-				FBCC492B2C3F692E0022F62C /* EditNotesView.swift in Sources */,
 				A1B2C3D40000000000000002 /* NoteStore.swift in Sources */,
-				FB5CBA0A2C441B2E003DF098 /* HistoryNotesView.swift in Sources */,
-				FB5CBA0C2C442E4A003DF098 /* ProgressState.swift in Sources */,
 				FBA9D6FE2C47B74700BF7988 /* AnalyticsView.swift in Sources */,
 				FBECCD352C3E463B0089CEE8 /* LocalDataService.swift in Sources */,
 				FBCC49302C3F694B0022F62C /* Extensions.swift in Sources */,
 				FBA9D71E2C48A7B300BF7988 /* WrapStack.swift in Sources */,
 				FBA9D6F42C47836500BF7988 /* AnxietyLevelType.swift in Sources */,
-				B5B35EED2C47F7DB00DB701E /* StatusView.swift in Sources */,
 				FBECCD332C3E453E0089CEE8 /* DependencyInjection.swift in Sources */,
 				FB64F3D22C4BA63A00C55090 /* TemporaryNoteModel.swift in Sources */,
 				FBF68B8A2C44686100689EC2 /* InsightView.swift in Sources */,
 				FBA9D6E12C46268700BF7988 /* ImagePickerComponent.swift in Sources */,
-				FBCC492D2C3F692E0022F62C /* TextEditorView.swift in Sources */,
-				FB64F3CC2C4B8B7100C55090 /* ToolbarEditNotes.swift in Sources */,
 				FBA9D6FC2C47A6C800BF7988 /* NotificationManager.swift in Sources */,
-				FBA9D6ED2C467AD700BF7988 /* CellButtonEdit.swift in Sources */,
 				FBA9D6FA2C4784D800BF7988 /* ChartView.swift in Sources */,
-				B5B35EEB2C47F7CE00DB701E /* CategoryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

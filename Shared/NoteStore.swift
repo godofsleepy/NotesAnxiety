@@ -21,7 +21,10 @@ final class NoteEntity {
     var audioPath: String?
     var videoPath: String?
     var pinned: Bool = false
+    /// The check-in level, set before unloading.
     var anxietyLevel: Double = 0
+    /// The level after unloading. Nil on notes saved before this existed.
+    var anxietyLevelAfter: Double?
     /// Comma-separated category names.
     var categoryAnxiety: String?
 
